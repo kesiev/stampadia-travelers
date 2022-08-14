@@ -7,7 +7,7 @@ const
         endYear:2022,
         homepageUrl:"https://www.kesiev.com/stampadia-travelers/",
         sourcesUrl:"https://github.com/kesiev/stampadia-travelers",
-        learnUrl:"https://www.kesiev.com/travelers-stampadia/learn.html",
+        learnUrl:"https://www.kesiev.com/stampadia-travelers/learn.html",
         languageDefault:"en",
         languagesList:["it","en"],
         settingsKey:"_tos"
