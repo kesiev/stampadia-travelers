@@ -86,14 +86,14 @@ I came up with 2 solutions: using graphic cells for the card tiles instead of bl
 
 <div align="center" style="margin:60px 0">
     <p><img src="markdown/mistfall.png"></p>
-    <p>Mistfall's second quest The Abomination lays the place tiles in a 3x3 grid.</p>
+    <p>Mistfall's second quest The Abomination lays the place tiles in a 3x3 grid. (From BGG)</p>
 </div>
 
 I needed another way to create something to explore with 9 cards that allowed a little more flavor text. Using single cards to describe an area and placing that on a grid is a quite common solution in board games (like in [Mistfall](https://boardgamegeek.com/boardgame/168274/mistfall) and the [Mini Rogue](https://boardgamegeek.com/boardgame/311715/mini-rogue)'s retail version) but, mixed with the procedural nature of the project, it suggested a new experiment.
 
 <div align="center" style="margin:60px 0">
     <p><img src="markdown/minirogue.png"></p>
-    <p>In Mini Rogue's retail version the player explores a 3x3 grid of Room cards, moving from the top-left to the bottom-right.</p>
+    <p>In Mini Rogue's retail version the player explores a 3x3 grid of Room cards, moving from the top-left to the bottom-right. (From BGG)</p>
 </div>
 
 COS and the TOS _Dungeon Adventures_ are inspired by old-school roguelikes, in which a procedurally generated planimetry is filled with stuff that may kill or help you. Some more modern roguelikes, especially metroidvania-inspired ones like [A Robot Named Fight!](https://store.steampowered.com/app/603530/A_Robot_Named_Fight/) and [Sundered](https://store.steampowered.com/app/535480/Sundered_Eldritch_Edition/), have some kind of _superstructure_, in which procedurally placed _biomes_ interact with each other to open new paths and offer some backtracking.
@@ -185,7 +185,7 @@ One of the most famous _optimization puzzle videogames_ is [Tetris](https://en.w
 
 <div align="center" style="margin:60px 0">
     <p><img src="markdown/tgm3.png"></p>
-    <p>Tetris The Grand Master 3 Terror-Instinct, with multiple next pieces preview and the holding area</p>
+    <p>Tetris The Grand Master 3 Terror-Instinct, with multiple next pieces preview and the holding area (From tetris.fandom.com)</p>
 </div>
 
 _Multiple next pieces_ allow the player to preview more than 1 next piece, allowing better strategies. The _Hold Piece_ allows the player to keep the falling Tetramino apart and swap it with the current one when needed, giving the player more control over the sequence of the pieces (and, in a way, more time to think). But, in my opinion, the most interesting is the _7-bag Random Generator_: all of the 7 one-sided different pieces are put in a _virtual bag_ and then drawn one by one and given to the player. This way the pieces are still drawn randomly but in a _semi-predictable_ way, making the game fairer and limiting the _wait and stack_.
