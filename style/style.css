@@ -1,0 +1,230 @@
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes wave {
+    0% { transform: translate(0,-10px); }
+    100% { transform: translate(0,10px); }
+}
+
+BODY {
+	font-family: Seshat;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 45%, rgba(104,104,104,1) 55%, rgba(45,45,45,1) 100%);
+    font-size: 20px;
+    width:100%;
+    height:100%;
+}
+
+A, .accent {
+    color:#f00;
+}
+
+.header {
+    font-weight: bold;
+}
+
+#packunwrapper {
+    z-index: 100;
+    position: absolute;
+    left:20%;
+    right:20%;
+    top:100px;
+    bottom:100px;
+    cursor: pointer;
+}
+
+#cardshadow {
+    z-index: 5;
+    transition: all 0.3s;
+    position: absolute;
+    left:100px;
+    right:100px;
+    top:100px;
+    bottom:100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image:url('../images/boosters/shadow.png');
+    transform: translate(0,200%);
+}
+
+#cardcontainer {
+    z-index: 10;
+    transition: all 0.3s;
+    position: absolute;
+    left:100px;
+    right:100px;
+    top:100px;
+    bottom:100px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    transform: translate(0,200%);
+}
+
+#cardunwrap {
+    transition: all 0.3s;
+    transform-origin: 50% 50%;
+    z-index: 15;
+    position: absolute;
+    left:58%;
+    top:60%;
+    width:90px;
+    height:90px;
+    transform: scale(0);
+    font-family: Ferrum;
+}
+
+#unwrappedmessage, #unwrappingmessage {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 30;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    transform: translate(0,200%);
+}
+
+#unwrappedmessage {
+    z-index: 40;
+}
+
+#unwrappedmessagecontent, #unwrappingmessagecontent {
+    max-width: 50%;
+    padding:10px;
+    background-color: #fff;
+    border:3px solid #000;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+}
+
+#cardunwrap.show {
+    transform: scale(1);
+}
+
+#cardcontainer.show {
+    transform: rotate(5deg) translate(0,0);
+}
+
+#unwrappedmessage.show {
+    transform: translate(0,0);
+}
+
+#unwrappingmessage.show {
+    transform: translate(0,0);
+    animation: 2.5s wave infinite alternate;
+}
+
+#cardshadow.show {
+    transform: translate(2%,5%) rotate(5deg);
+}
+
+#footer {
+    z-index: 100;
+    text-align: center;
+    position: absolute;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    font-size:18px;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+#language {
+    z-index: 100;
+    transition: all 0.5s;
+    position: absolute;
+    top:0;
+    right:20px;
+    padding:10px;
+    background-color: #fff;
+    border-left:3px solid #f00;
+    border-right:3px solid #f00;
+    border-bottom:3px solid #f00;
+    cursor:pointer;
+    user-select: none;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+    transform: translate(0,-200%);
+}
+
+#language.show {
+    transform: none;
+}
+
+#language:hover {
+    padding-top:20px;
+}
+
+.star {
+  animation: 2.5s rotate infinite;
+  animation-timing-function: linear;
+}
+
+.star {
+    position: absolute;
+    left:0;
+    top:0;
+    width: 90px;
+    height: 90px;
+    background: #f00;
+}
+
+.star:after {
+    content: "";
+    display: block;
+    width: 90px;
+    height: 90px;
+    background: #f00;
+    transform: rotate(45deg);
+}
+
+#startext {
+    color:#fff;
+    position: absolute;
+    left:0;
+    top:0;
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+
+    #packunwrapper {
+        top:50px;
+        bottom:50px;
+    }
+
+    #cardshadow {
+        left:50px;
+        right:50px;
+    }
+
+    #cardcontainer {
+        left:50px;
+        right:50px;
+    }
+
+	#unwrappedmessagecontent, #unwrappingmessagecontent {
+        font-size: 16px;
+    }
+
+    #unwrappedmessagecontent, #unwrappingmessagecontent {
+        max-width: 80%;
+    }
+    
+    #footer {
+        font-size: 14px;
+    }
+}

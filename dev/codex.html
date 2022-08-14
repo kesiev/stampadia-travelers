@@ -1,0 +1,265 @@
+<html><head>
+    <meta charset="UTF-8">
+    <script src="../js/consts/action/models.js"></script>
+    <script src="../js/consts/avatar/models.js"></script>
+
+    <script src="../js/databases/narrative/villains.js"></script>
+    <script src="../js/databases/narrative/enemies.js"></script>
+
+    <script src="../js/databases/dungeon/events.js"></script>
+    <script src="../js/databases/dungeon/mainquests.js"></script>
+    <script src="../js/databases/dungeon/sidequests.js"></script>
+    <script src="../js/databases/dungeon/mapskins.js"></script>
+
+    <script src="../js/databases/overworld/enemies.js"></script>
+    <script src="../js/databases/overworld/events.js"></script>
+    <script src="../js/databases/overworld/mainquests.js"></script>
+    <script src="../js/databases/overworld/sidequests.js"></script>
+
+    <script src="../js/databases/enemy/bonuses.js"></script>
+    <script src="../js/databases/enemy/bonusslots.js"></script>
+    <script src="../js/databases/enemy/modifiers.js"></script>
+    
+    <script src="../js/databases/hero/classes/swordsman.js"></script>
+    <script src="../js/databases/hero/classes/elementalist.js"></script>
+    <script src="../js/databases/hero/perks.js"></script>
+
+</head><body onload="onl()">
+</body></html>
+<script>
+/*
+
+EVENTO:
+- Mimic: nemico che da un buff una volta sconfitto.
+- Esaurisci una carta per un vantaggio?
+- Combo di elementi per rivelare delle stanze?
+
+CARTE EROE:
+- Usare le costellazioni
+*/
+
+const
+    EXTRASTUFFTARGET=3,
+    PERPACKTARGET=5,
+    PERCARDTARGET=10,
+    BODYCATEGORIES=[
+        "avatarBody", "avatarDress", "avatarHead", "avatarHat", "avatarEyes", "avatarEyebrows", "avatarMouth", "avatarNose", "avatarHairs", "avatarWeapon", "avatarAccessory", "avatarEars",
+        "avatarHeadAccessory", "avatarHeadDecoration", "avatarFaceDetail", "avatarEyesDecoration",
+    ],
+    REPORT=[
+        {
+            title:"Dungeon",
+            items:[
+                { key:"Dungeon", subkey:"Main Quests", target:PERPACKTARGET },
+                { key:"Dungeon", subkey:"Side Quests", target:PERPACKTARGET },
+                { key:"Dungeon", subkey:"Events", target:PERCARDTARGET },
+                { key:"Dungeon", subkey:"Tiles", target:PERCARDTARGET },
+                { key:"Dungeon", subkey:"Cells", target:PERCARDTARGET },
+            ]
+        },{
+            title:"Overworld",
+            items:[
+                { key:"Overworld", subkey:"Main Quests", target:PERPACKTARGET },
+                { key:"Overworld", subkey:"Side Quests", target:PERPACKTARGET },
+                { key:"Overworld", subkey:"Events", target:PERCARDTARGET },
+                { key:"Overworld", subkey:"Enemies", target:6 },
+            ]
+        },{
+            title:"Enemy",
+            items:[
+                { key:"Enemy", subkey:"Buff", target:PERPACKTARGET },
+                { key:"Enemy", subkey:"Debuff", target:PERPACKTARGET },
+                { key:"Enemy", subkey:"Level 1", target:EXTRASTUFFTARGET },
+                { key:"Enemy", subkey:"Level 2", target:EXTRASTUFFTARGET },
+                { key:"Enemy", subkey:"Level 3", target:EXTRASTUFFTARGET },
+                { key:"Enemy", subkey:"Level 4", target:EXTRASTUFFTARGET },
+                { key:"Enemy", subkey:"Level 5", target:EXTRASTUFFTARGET },
+                { key:"Enemy", subkey:"Villains", target:EXTRASTUFFTARGET },
+                { key:"Enemy", subkey:"Bonus", target:9 },
+                { key:"Enemy", subkey:"Bonus Slots", target:5 },
+            ]
+        },
+        {
+            title:"Avatar",
+            items:[
+                { key:"Avatar", subkey:"avatarBody", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarDress", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarHead", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarHat", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarEyes", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarEyebrows", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarMouth", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarNose", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarHairs", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarWeapon", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarAccessory", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarHeadAccessory", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarEars", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarHeadDecoration", target:EXTRASTUFFTARGET },
+                { key:"Avatar", subkey:"avatarEyesDecoration", target:PERCARDTARGET },
+                { key:"Avatar", subkey:"avatarFaceDetail", target:PERCARDTARGET },
+            ]
+        },
+        {
+            title:"Hero - All",
+            items:[
+                { key:"Hero", subkey:"Perks", target:PERCARDTARGET },
+            ]
+        },
+        {
+            title:"Hero - Elementalist",
+            items:[
+                { key:"Hero - Elementalist", subkey:"Skills", target:PERCARDTARGET },
+                { key:"Hero - Elementalist", subkey:"Legacy Skills", target:PERPACKTARGET },
+            ]
+        },
+        {
+            title:"Hero - Swordsman",
+            items:[
+                { key:"Hero - Swordsman", subkey:"Skills", target:PERCARDTARGET },
+                { key:"Hero - Swordsman", subkey:"Legacy Skills", target:PERPACKTARGET },
+            ]
+        }
+    ]
+
+let
+    index={};
+
+function addToIndex(root,sub,set) {
+    if (!index[root]) index[root]={};
+    if (!index[root][sub]) index[root][sub]={items:[]};
+    for (let k in set)
+        index[root][sub].items.push(set[k].codex);
+}
+
+function countToIndex(root,sub,set) {
+    if (!index[root]) index[root]={};
+    if (!index[root][sub]) index[root][sub]={count:0};
+    index[root][sub].count+=set.length;
+}
+
+function suggest(from,to,exclude) {
+    if (!to.suggestions) to.suggestions=[];
+    from.items.forEach(from=>{
+        if (!exclude || (exclude.indexOf(from)==-1))
+            if ((to.items.indexOf(from)==-1) && (to.suggestions.indexOf(from)==-1)) to.suggestions.push(from);
+    })
+}
+
+function onl() { 
+    let MOD={
+        timing:{ },
+        cards:{ },
+        LOWCOST:0
+    };
+    addToIndex("Dungeon","Events",loadDungeonEvents(MOD));
+    addToIndex("Dungeon","Main Quests",loadDungeonMainQuests(MOD));
+    addToIndex("Dungeon","Side Quests",loadDungeonSideQuests(MOD));
+    addToIndex("Dungeon","Tiles",loadMapSkins(MOD).tiles);
+    addToIndex("Dungeon","Cells",loadMapSkins(MOD).cells);
+    addToIndex("Overworld","Enemies",loadOverworldUpperEnemies(MOD));
+    addToIndex("Overworld","Enemies",loadOverworldMidEnemies(MOD));
+    addToIndex("Overworld","Enemies",loadOverworldLowerEnemies(MOD));
+    addToIndex("Overworld","Events",loadOverworldLowerEvents(MOD));
+    addToIndex("Overworld","Events",loadOverworldMidEvents(MOD));
+    addToIndex("Overworld","Main Quests",loadOverworldMainQuests(MOD));
+    addToIndex("Overworld","Side Quests",loadOverworldSideQuests(MOD));
+    countToIndex("Enemy","Bonus",loadEnemyBonuses(MOD).balanced);
+    countToIndex("Enemy","Bonus",loadEnemyBonuses(MOD).debuff);
+    countToIndex("Enemy","Bonus",loadEnemyBonuses(MOD).buff);
+    countToIndex("Enemy","Bonus Slots",loadEnemyBonusSlots(MOD).none);
+    countToIndex("Enemy","Bonus Slots",loadEnemyBonusSlots(MOD).all);
+    countToIndex("Enemy","Bonus Slots",loadEnemyBonusSlots(MOD).balanced);
+    addToIndex("Enemy","Buff",loadEnemyModifiers(MOD).buff.attack);
+    addToIndex("Enemy","Buff",loadEnemyModifiers(MOD).buff.defense);
+    addToIndex("Enemy","Debuff",loadEnemyModifiers(MOD).debuff.attack);
+    addToIndex("Enemy","Debuff",loadEnemyModifiers(MOD).debuff.defense);
+    addToIndex("Enemy","Level 1",loadNarrativeEnemies(MOD).lvl1);
+    addToIndex("Enemy","Level 2",loadNarrativeEnemies(MOD).lvl2);
+    addToIndex("Enemy","Level 3",loadNarrativeEnemies(MOD).lvl3);
+    addToIndex("Enemy","Level 4",loadNarrativeEnemies(MOD).lvl4);
+    addToIndex("Enemy","Level 5",loadNarrativeEnemies(MOD).lvl5);
+    addToIndex("Enemy","Villains",loadNarrativeVillains(MOD));
+    addToIndex("Hero","Perks",loadHeroPerks(MOD));
+    countToIndex("Hero - Elementalist","Skills",loadHeroElementalistClassSkills(MOD));
+    countToIndex("Hero - Elementalist","Legacy Skills",loadHeroElementalistClassLegacySkills(MOD));
+    countToIndex("Hero - Swordsman","Skills",loadHeroSwordsmanClassSkills(MOD));
+    countToIndex("Hero - Swordsman","Legacy Skills",loadHeroSwordsmanClassLegacySkills(MOD));
+
+    index.Avatar={};
+    for (let k in AVATARPALETTES)
+        AVATARPALETTES[k].forEach(item=>{
+            if (item) {
+                let
+                    category="",
+                    label="";
+                BODYCATEGORIES.forEach(cat=>{
+                    if (item.substr(0,cat.length)==cat) {
+                        category=cat;
+                        label=item.substr(cat.length,item.length);
+                    }
+                });
+                if (category) {
+                    if (!index.Avatar[category]) index.Avatar[category]={items:[]};
+                    if (index.Avatar[category].items.indexOf(label)==-1)
+                        index.Avatar[category].items.push(label);
+                } else console.warn(item);
+            }
+        })
+
+    suggest(index["Dungeon"]["Events"],index["Overworld"]["Events"],[
+        // Teleportations doesn't work well on smaller maps of overworld.
+        "The Bidirectional Teleport: teleport on another place in the dungeon.",
+        "The Teleport Trap: teleports on a room with an enemy."
+    ]);
+    suggest(index["Overworld"]["Events"],index["Dungeon"]["Events"],[
+        // The banner challenge explanation is too long for the dungeon cards.
+        "The Banner Challenge: how many banners do you have?",
+        // The migration doesn't work on dungeons. Can't freely swap cards.
+        "The Migration: swap 2 cards on map.",
+    ]);
+
+    suggest(index["Dungeon"]["Main Quests"],index["Overworld"]["Main Quests"]);
+    suggest(index["Overworld"]["Main Quests"],index["Dungeon"]["Main Quests"]);
+
+    suggest(index["Dungeon"]["Side Quests"],index["Overworld"]["Side Quests"]);
+    suggest(index["Overworld"]["Side Quests"],index["Dungeon"]["Side Quests"]);
+
+    console.log(index);
+
+    let html="";
+    REPORT.forEach(block=>{
+        html+="<h2>"+block.title+"</h2><ul>";
+        block.items.forEach(item=>{
+            let
+                set=index[item.key][item.subkey],
+                left="",
+                count=0,
+                color="",
+                extra="";
+            if (set.items) {
+                count=set.items.length;
+                extra="<ul style='font-size:12px'>";
+                set.items.forEach(codex=>{
+                    extra+="<li>"+codex+"</li>";
+                });
+                if (set.suggestions && set.suggestions.length)
+                    set.suggestions.forEach(codex=>{
+                        extra+="<li><span style='color:#ccc'>"+codex+"</span></li>";
+                    })
+                extra+="</ul>";
+            } else {
+                count=set.count;
+            }
+            color=count>=item.target?"green":"red";
+            if (count<item.target)
+                left="<span style='color:"+color+"'>"+(item.target-count)+" left.</span> ";
+            html+="<li><span style='background-color:"+color+";color:#fff'>"+count+"/"+item.target+"</span> "+left+"<b>"+item.subkey+"</b>"+extra+"</li>";
+        })
+        html+="</ul>";
+    });
+
+    console.log(index);
+    document.write(html);
+}
+</script>

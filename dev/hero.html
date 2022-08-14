@@ -1,0 +1,67 @@
+<html><head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../style/Seshat/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../style/Ferrum/stylesheet.css">
+
+    <script src="../js/jspdf.umd.min.js"></script>
+    <script src="../js/svg2pdf.umd.min.js"></script>
+    <script src="../js/fonts/Seshat-normal.js"></script>
+    <script src="../js/fonts/Ferrum-normal.js"></script>
+
+    <script src="../js/tools.js"></script>
+    <script src="../js/random.js"></script>
+    <script src="../js/languages.js"></script>
+    <script src="../js/cardprinter.js"></script>
+    <script src="../js/svg.js"></script>
+
+    <script src="../js/databases/hero/classes/swordsman.js"></script>
+    <script src="../js/databases/hero/classes/elementalist.js"></script>
+    <script src="../js/databases/hero/perks.js"></script>
+
+    <script src="../js/generators/hero.js"></script>
+    <script src="../js/generators/skill.js"></script>
+
+    <script src="../js/printers/hero.js"></script>
+
+</head><body onload="onl()">
+</body></html>
+<script>
+
+function onl() {
+
+    let seed = Math.floor(Math.random()*1000);
+    console.warn("seed",seed);
+    let heroPrinter = new HeroPrinter({
+        //classType:"swordsman",
+        classType:"elementalist",
+
+        seed:seed,
+        setSide:"A",
+        setCode:"TOS20202020"
+        //seed:seed,
+        //noRandom:true,
+        //noPerks:true,
+        //noSkills:true,
+        //testSkill:"basicAttack1"
+    });
+    heroPrinter.print({
+        language:"en",
+        root:"../"
+    },print=>{
+        let
+            out=print.svg.getSVG(),
+            page=document.createElement("div");
+        page.style.border="1px solid red";
+        page.style.display="inline-block";
+        page.innerHTML=out;
+        document.body.appendChild(page);
+
+       print.svg.downloadPDF("sample-hero.pdf");
+       print.svg.downloadSVG("sample-hero.svg");
+
+    });
+
+}
+
+</script>

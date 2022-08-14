@@ -1,0 +1,112 @@
+BODY {
+	background-color: rgba(45,45,45,1);
+    font-size: 18px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+    color: #fff;
+	font-family: Seshat;    
+}
+
+A {
+    color:#fff;
+}
+
+A, .accent {
+    font-weight: bold;
+}
+
+#language {
+    z-index: 100;
+    position: fixed;
+    transition: all 0.5s;
+    top:0;
+    right:20px;
+    padding:10px;
+    background-color: #fff;
+    border-left:3px solid #f00;
+    border-right:3px solid #f00;
+    border-bottom:3px solid #f00;
+    cursor:pointer;
+    user-select: none;
+    color: #000;
+    box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
+}
+
+#language:hover {
+    padding-top:20px;
+}
+
+#body {
+	text-align:center;
+	margin:20px 0;
+}
+
+.logo {
+	width:200px;
+	height:100px;
+	display: inline-block;
+	background-image: url(../images/logo-reverse.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.divider {
+	padding:0;
+	margin:40px 0;
+	height:20px;
+	background-image: url(../images/divider.png);
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.block {	
+	margin: auto;
+	width:40%;
+}
+
+.block .image {
+	margin-bottom:20px;
+}
+
+.block .preview {
+	display: inline-block;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+}
+
+.block .preview.manual {
+	height:150px;
+	width:100px;
+	background-image: url(../images/manual.png);
+}
+
+#faqsbox {
+	background-color: #fff;
+	color:#000;
+	text-align: left;
+	border:1px solid #ccc;
+	box-shadow: 2px 2px 0px #ccc;
+	width:60%;
+	margin: auto;
+	padding: 20px;
+}
+
+#faqsbox .q {
+	font-weight: bold;
+	margin:10px 0;
+}
+
+#faqsbox .a A {
+	color:#f00;
+}
+
+
+#credits {
+    font-size:18px;
+	padding:10px;
+	text-align: center;
+}

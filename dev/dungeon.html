@@ -1,0 +1,71 @@
+<html><head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../style/Seshat/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../style/Ferrum/stylesheet.css">
+
+    <script src="../js/jspdf.umd.min.js"></script>
+    <script src="../js/svg2pdf.umd.min.js"></script>
+    <script src="../js/fonts/Seshat-normal.js"></script>
+    <script src="../js/fonts/Ferrum-normal.js"></script>
+
+    <script src="../js/tools.js"></script>
+    <script src="../js/random.js"></script>
+    <script src="../js/languages.js"></script>
+    <script src="../js/cardprinter.js"></script>
+    <script src="../js/svg.js"></script>
+
+    <script src="../js/consts/action/models.js"></script>
+    <script src="../js/consts/avatar/models.js"></script>
+
+    <script src="../js/databases/narrative/villains.js"></script>
+    <script src="../js/databases/narrative/enemies.js"></script>
+    <script src="../js/databases/narrative/names.js"></script>
+    <script src="../js/databases/dungeon/events.js"></script>
+    <script src="../js/databases/dungeon/mainquests.js"></script>
+    <script src="../js/databases/dungeon/sidequests.js"></script>
+    <script src="../js/databases/dungeon/mapskins.js"></script>
+    <script src="../js/databases/enemy/bonuses.js"></script>
+    <script src="../js/databases/enemy/bonusslots.js"></script>
+    <script src="../js/databases/enemy/modifiers.js"></script>
+
+    <script src="../js/generators/narrative.js"></script>
+    <script src="../js/generators/dungeon.js"></script>
+    <script src="../js/generators/enemy.js"></script>
+    <script src="../js/generators/action.js"></script>
+
+    <script src="../js/printers/dungeon.js"></script>
+    
+</head><body onload="onl()">
+</body></html>
+<script>
+    
+function onl() { 
+
+    seed=Math.floor(Math.random()*100000);
+    console.warn(seed);
+    let dungeonPrinter = new DungeonPrinter({
+        setSide:"B",
+        setCode:"TOS20202020",
+        seed:seed
+        // noRandom:true
+    });
+
+    dungeonPrinter.print({
+        language:"en",
+        root:"../"
+    },print=>{
+        let
+            out=print.svg.getSVG(),
+            page=document.createElement("div");
+        page.style.border="1px solid red";
+        page.style.display="inline-block";
+        page.innerHTML=out;
+        document.body.appendChild(page);
+
+        print.svg.downloadPDF("sample-dungeon.pdf");
+        print.svg.downloadSVG("sample-dungeon.svg");
+    });
+
+}
+</script>

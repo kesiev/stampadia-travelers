@@ -1,0 +1,814 @@
+{
+  "placeholders":{
+    "manualVersion":"0.1b",
+    "gameShortTitle":"TOS",
+    "place":"Stampadia",
+    "thanks":"**Bianca** and the **Discord** and **BGG** travelers of Stampadia for sharing their efforts and ideas",
+
+    "adventure-dungeon":"Dungeon Adventure",
+    "adventure-dungeon-plural":"Dungeon Adventures",
+    "adventure-world":"World Adventure",
+    "adventure-world-plural":"World Adventures",
+
+    "card-adventure-plural":"Adventure Cards",
+    "card-adventure":"Adventure Card",
+    "card-hero-plural":"Hero Cards",
+    "card-hero":"Hero Card",
+    "card-index":"Index Card",
+    "card-index-plural":"Index Cards",
+    "card-open":"Opening Card",
+    "card-removed-plural":"Removed Cards",
+    "card-room-plural":"Room Cards",
+    "card-room":"Room Card",
+    "card-status":"Status Card",
+
+    "eliminate-to":"remove",
+    "eliminate-past":"removed",
+    "eliminate-done":"removed",
+
+    "ability":"ability",
+    "ability-plural":"abilities",
+    "ability-secondary":"Secondary Ability",
+
+    "draw-do":"draw",
+    "draw-done":"drawn",
+    "draw-doing":"drawing",
+
+    "turn-combat":"Combat Turn",
+    "turn-combat-plural":"Combat Turns",
+    "phase-prepare":"Prepare",
+    "phase-open":"Play the Opening Card",
+    "phase-plan":"Plan",
+    "action-load":"Charge",
+    "action-load-to":"Charging",
+    "action-infuse":"Infuse",
+    "action-infuse-to":"infuse",
+    "action-activate":"Activate abilities",
+    "action-add":"Add",
+    "action-add-to":"Add",
+    "action-strain":"Strain",
+    "phase-exhaust":"Exhaust",
+    "phase-execute":"Execute",
+    "phase-restore":"Restore",
+
+    "activable":"activable",
+    "activate-female":"activate",
+    "activate-female-that":"activate",
+    "activate-of":"activated",
+    "activate-past-female":"activated",
+    "activate-past-plural":"activated",
+    "activate-past-singular":"activated",
+    "activate-to":"activate",
+    "activation":"activation",
+    "activation-plural":"activations",
+
+    "inplay":"in play",
+    "inplay-put-ofthat":"putting in play",
+    "inplay-put-self":"entering play",
+    "inplay-put":"put in play",
+    "inplay-have":"have in play",
+
+    "map-on":"mapped",
+
+    "reveal-doing":"reveal",
+
+    "attribute":"attribute",
+    "attribute-plural":"attributes",
+
+    "enemy":"enemy",
+    "enemy-plural":"enemies",
+
+    "tracked":"tracked",    
+    "tracked-plural":"tracked",    
+    "track":"track",
+    "track-plural":"tracks",
+
+    "defeated":"defeated",
+    "defeated-plural":"defeated",
+    "defeat":"defeat",
+    "defeat-doing":"defeat",
+    "defeat-that":"defeat",
+
+    "instruction":"instruction",
+    "instruction-plural":"instructions",
+
+    "cost-activation":"Activation Cost",
+    "cost-activation-plural":"Activation Costs",
+    "card-value":"Card Value",
+
+    "point-attack-plural":"Attack Points {symbol heroCardAttackSmallSymbol}",
+    "point-attack":"Attack Point {symbol heroCardAttackSmallSymbol}",
+    "point-defense-plural":"Defense Points {symbol heroCardDefenseSmallSymbol}",
+    "point-defense":"Defense Point {symbol heroCardDefenseSmallSymbol}",
+
+    "movement":"movement",
+    "movement-plural":"movements",
+    "movement-future":"will move",
+    "movement-do":"move",
+    "movement-self":"move",
+    "movement-perform":"move",
+    "movement-that-female":"move",
+    "movement-doing":"moving",
+    
+    "exhaust":"Exhaust",
+    "exhaust-to":"Exhaust",
+
+    "effect-exhaust":"Exhaust Effect",
+    "effect-exhaust-plural":"Exhaust Effects",
+
+    "earn":"earn",
+
+    "discard":"discard",
+    "discard-done":"discarded",
+    "discard-do":"discard",
+    "discard-them":"Discard",
+
+    "deck-discard":"Discard Deck",
+
+    "hero":"hero",
+    "your-hero":"your hero",
+
+    "pawn-hero":"Hero Token",
+    "hand":"hand",
+
+    "token":"token",
+    "token-plural":"tokens",
+
+    "attack":"Attack {symbol heroCardAttackSmallSymbol}",
+    "defense":"Defense {symbol heroCardDefenseSmallSymbol}",
+    "level":"Level {symbol heroCardAttackLevelSymbol}",
+    "mana":"Mana {symbol heroCardManaSmallSymbol}",
+
+    "banner":"Banner",
+    "banner-plural":"Banners",
+    "banner-main":"Main Banner",
+    "banner1":"Banner 1 {symbol heroCardBanner1SmallSymbol}",
+    "banner2":"Banner 2 {symbol heroCardBanner2SmallSymbol}",
+
+    "element":"Element",
+    "element-plural":"Elements",
+    "element-air":"Air {symbol heroCardAirSmallSymbol}",
+    "element-earth":"Earth {symbol heroCardEarthSmallSymbol}",
+    "element-fire":"Fire {symbol heroCardFireSmallSymbol}",
+    "element-water":"Water {symbol heroCardWaterSmallSymbol}",
+
+    "constellation":"Constellation",
+    "constellation-plural":"Constellations",
+    "star1":"Star 1 {symbol heroCardStar1SmallSymbol}",
+    "star2":"Star 2 {symbol heroCardStar2SmallSymbol}",
+
+    "choice":"Choice {symbol heroCardChoiceSymbol}",
+    "immediate":"Immediate {symbol heroCardImmediateSymbol}",
+    "walkon":"Walk on {symbol heroCardOnWalkSymbol}"
+  }
+}
+{TEXT}
+{image logo}
+{centerOpen}
+Game version: {config-version} - Manual version: {manualVersion}
+{centerClose}
+{boxOpenNotes}
+You can find an updated digital version of this manual, FAQs, and more information about {config-title} at {config-learnUrl}
+{boxCloseNotes}
+
+# Welcome back to {place}!
+
+The reign of {place} had thousands of years of dangerous places and brave mercenaries before disappearing mysteriously from our globe.
+
+But {place} Central Administration, generation after generation, managed to relentlessly archive the ID cards of every single inhabitant, the combat license of every single reckless hero, the maps of every single dungeon, and the papers hidden in them in a dossier called **{config-title}**.
+
+{image dossier}
+
+We managed to find a damaged copy in an abandoned basement... and it looks like the documents are imbued with some kind of magic: the reader can live the owner's life moments with just some pawns and a pencil!
+
+We’re recovering, translating, and digitalizing one new **document set** daily at {config-homepageUrl}. Go there, download the daily set, get it ready and bring back to life the world of {place}!
+
+# Construction
+
+To play {config-title} you need **2 complete sets (even two copies of the same set is enough)**.
+
+A single {gameShortTitle} set is made of 9 double-faced cards: on one face there are the cards that will allow you to live the role of a {hero} and on the other one there are the cards that will tell you a story in the lands of {place}, playable with any {hero}.
+
+Every day you can download a new set from the game website ({config-homepageUrl}): it's a 2-page PDF, one for the {hero} and the other one for the {adventure}, to cut and assemble.
+
+{image createset}
+
+There are many ways to assemble a set of {gameShortTitle}. I'll teach the most common one.
+
+# Stuff you need
+
+{image materials}
+
+You need 9 63.5x88mm card game sleeves {symbol 1}. They shouldn't be expensive, you can use them to create your own card game and, if you're a board game fan, you should have a bunch of them in some drawer.
+
+You also need a regular 3.5"x2.5" poker deck {symbol 2} from which you'll borrow 9 cards or you can cut 9 cardboard same-sized rectangles and use them instead.
+
+Finally, you need one PDF downloaded from the game site to be printed on 2 A4 sheets {symbol 3}.
+
+# Let's start!
+
+First, you've to cut the 9 slips from the 2 printed sheets, following the dashed lines.
+
+Every slip has a code printed on one of its longer sides, similar to "TOS20220706-H-1A" or "TOS20220706-H-1B". Use the penultimate character of this code to split the little sheets into 9 pairs: 1A and 1B, 2A and 2B, 3A and 3B, and so on.
+
+Now take a sleeve and put one poker card or one cardboard rectangle in it.
+
+Take one of the 9 slip pairs you formed before and sleeve them so both are facing out.
+
+{image sleeving}
+
+Repeat these last 2 steps for every slips pair. Once done, **your first set of {gameShortTitle} will be ready**: 9 cards, with a {hero} on one side and an adventure on the other one!
+
+# Hints
+
+If you've opted for poker cards or if the cardboard rectangles have different colors for the front and the back I suggest you match the colors with the last letter of the codes printed on the slips when you're sleeving them. For example, you may decide to put the slips with the A code on the poker cards front (or on the cardboard clear part) and then put the slips with the B code on the other side. This way it will be harder for you to recognize the cards from their back when you're playing.
+
+If you can't remember from which set a slip comes from you can use the first part of its code to recognize it. The slips from the same set have the same code first part, so "**TOS20220706**-H-1A" and "**TOS20220706**-W-3B" are coming from the same set with the "**TOS20220706**" code and "**TOS20220712**-H-1A" comes from the set with the "**TOS20220712**" code.
+
+You'll need 2 sets to play, so you've to repeat the construction procedure twice. Don't worry: when you'll want to play a new {gameShortTitle} set you'll just have to print a new PDF, cut the slips, choose one of the two sets you already have (use the cards' first code part to recognize the set), and replace its slips.
+
+# Other components
+
+{image extramaterials}
+
+In addition to the 2 {gameShortTitle} sets {symbol 1},  you'll need a pawn for {your-hero} once again {symbol 2}. You can use a button, a shell, a miniature, or any small object you like. From now we will call this token the "**{pawn-hero}**".
+
+You may need a pencil too {symbol 3}... but I don't want to spoil you the surprise!
+
+Finally, to make your first {gameShortTitle} games easier, I suggest you get about 20 little {token-plural} {symbol 4} different from the {pawn-hero}. You can use small cardboard squares, small cubes, little rocks, etc. It doesn't matter the shape and color. You'll use them less and less as you'll learn how to play.
+
+# Setup
+
+{image setup}
+
+Once the 2 sets are ready, it's time to learn how to fight. First split the 2 sets into 2 decks {symbol 1} so every card displays a {banner} with a single tip that starts from its upper right corner. To find the right side you may need to flip and turn the cards. In each deck, there is one particular card, with a very short {banner} and some {track-plural} printed on it: put this card on the top of each deck.
+
+Every {gameShortTitle} game starts with {your-hero} choice. Choose one of the two decks {symbol 2} and put the other one away for now.
+
+Put the chosen deck's first card in front of you {symbol 3}, the one with the shorter {banner} and the {track-plural}: this card shows {your-hero} stats during the adventure and we will call this card the **{card-status}**. Put a {token} at the beginning of each {card-status} {track}: on 0 of the sword {track} {symbol heroCardAttackSmallSymbol} (Attack), on 0 of the shield {track} {symbol heroCardDefenseSmallSymbol} (Defense), on 2 of the trophy {track} {symbol heroCardAttackLevelSymbol} (Level), and on 0 of the circle {track} {symbol heroCardManaSmallSymbol} (Mana).
+
+During the game, the values of these {track-plural} will go up and down. The {attack} and {defense} {track-plural} are going to be considered of infinite length (so it's allowed to surpass the 23 {point-attack-plural} and 15 {point-defense-plural}) and the {level} {track} can never surpass the 9 and the {mana} can never surpass the {level} {track} value.
+
+Shuffle all the other remaining cards face up and put them vertically on the {card-status} right: this deck will be named **{deck-discard}** {symbol 4}.
+
+In {gameShortTitle} {card-hero-plural} are always {draw-done} from the {deck-discard} sliding them **to the bottom**, so slide 5 cards from the {deck-discard} bottom to form your first {hand}, keeping all the cards facing up {symbol 5}. 
+
+On the {card-status} left, there is the **{card-removed-plural}** deck {symbol 6}. It's horizontal and collects all of {your-hero} lost cards you can't use anymore. When the game starts the {card-removed-plural} deck is empty. In {gameShortTitle} the {card-hero-plural} are not only the different techniques {your-hero} knows but also his life: **when all of your {card-hero-plural} are in the {card-removed-plural} deck {your-hero} will be {defeated} and the game will instantly end**!
+
+We're ready to go!
+
+# The Golden Rule
+
+In {gameShortTitle} cards will often ask you to perform actions. If these actions will go against the rules of this manual, **the text on the card always takes precedence**!
+
+# Training: The {card-hero}
+
+Before starting let's have a look at the {card-hero-plural}. Place your first 5-cards {hand} on the table.
+
+{image herocardparts}
+
+The valid part of a {card-hero} is always the upper and straight one: the lower and upside-down part has always no effect. We're going to ignore everything that's on the card lower part.
+
+During setup, you've already seen that there is a {banner} starting from the upper right corner of each {card-hero} {symbol 1} that ends at the card half. The {banner-plural} of the {hand} cards all have a single tip {symbol heroCardBanner1SmallSymbol} but, as you can see, the upside-down part of each card shows a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} instead. The number of {banner} tips represents the {card-hero}'s power and difficulty: {card-hero-plural} with a single-tipped {banner} {symbol heroCardBanner1SmallSymbol} are less powerful and easier to use while those with the double-tipped {banner} {symbol heroCardBanner2SmallSymbol} have devastating {ability-plural} but are harder to use. Different {banner-plural} {inplay} may also be used to {activate-to} some {ability-plural}. Finally, during the game, you will have several opportunities to flip the cards and switch from one {banner} to another: on some occasions, it will be vital to do so, on some others it will be a disaster.
+
+{card-hero-plural:capital} have a sphere in the upper right part {symbol 2}, just near the {banner} beginning, with a number inside: that's the **{card-value}**. When cards are played as {card-open} or used for {action-load-to}, the {card-hero-plural} will let you {earn} as many {mana} as its {card-value} that you can spend to {activate-to} card {ability-plural}. We will discover {action-load-to} later.
+
+On the upper side in the middle of the card {symbol 3}, there is its name and, just below, its {effect-exhaust}. The {effect-exhaust} describes what you've to do with some cards during the {turn-combat} {phase-exhaust} phase, or when the game will ask you to {exhaust-to} a card - we'll learn that better later. 
+
+On the card upper left {symbol 4}, some cards show a triangle: that's the card {element}. There are 4 {element-plural} in {gameShortTitle}: {element-air}, {element-water}, {element-earth}, and {element-fire}.
+
+{image elements}
+
+Each {element} is effective against another {element}:
+
+{listStart}
+The {element-fire} burns the {element-air}.
+{listItemNext}
+The {element-air} erodes the {element-earth}.
+{listItemNext}
+The {element-earth} absorbs the {element-water}.
+{listItemNext}
+The {element-water} extinguishes the {element-fire}.
+{listEnd}
+
+During the adventure events and {ability-plural} may make use of {element-plural} so you better know them.
+
+Every card may have up to 2 {ability-plural} printed in the middle {symbol 5}. The spheres on the left with a number in the middle are the {cost-activation}: to apply the described {ability} you'll need to pay the {cost-activation} with {mana} in the sphere. In cards with 2 {ability-plural}, the lower one is a {ability-secondary} and can be {activate-past-singular} only when the upper one has been previously {activate-past-singular}.
+
+Finally, pairs and single {ability-plural} {cost-activation} spheres on the card left {symbol 6} can be placed side by side during the game, creating sphere sequences called {constellation-plural}. {inplay:capital} {constellation-plural}, like {element-plural} and {banner-plural}, can be used to {activate-to} {ability-plural}.
+
+# Training: A Little Help
+
+{boxOpen}
+**Training**: We'll learn how to play {gameShortTitle} on the field! I'll teach you step-by-step how to train in these boxes. In a game of {gameShortTitle}, {your-hero} starts from {level} 2 as explained during setup. In our training we'll start from {level} 4: move the {level} {token} (the one on the trophy {track}) to the {track}'s number 4.
+{boxClose}
+
+# The {turn-combat}
+
+In {gameShortTitle} combat is made of a series of {turn-combat-plural} in which you've to {earn} {point-attack-plural} ({tracked} by the {card-status} sword {track}) and {point-defense-plural} ({tracked} by the {card-status} shield {track}). Different effects then are applied, depending on the combat type, the event, or the adventure you're facing.
+
+Every {turn-combat} is split into these phases:
+
+{listStart}
+**{phase-prepare}**: At the beginning of the first {turn-combat} against an enemy you'll shuffle the {deck-discard} ad {draw-do} cards from the bottom until you've 5 cards in {hand} or the {deck-discard} is empty.
+{listItemNext}
+**{phase-open}**: You'll choose your first card from the {hand}, collecting {mana} and {inplay-put-ofthat} its {banner}, {element}, and {constellation}. The {card-open} will start the {banner-main}.
+{listItemNext}
+**{phase-plan}**: You'll play any number of {card-hero-plural} from {hand} to change your {point-attack-plural} and {point-defense-plural}.
+{listItemNext}
+  {listSubStart}
+  **{action-load}**: You'll play a {card-hero} from {hand} to {earn} {mana} and {banner-plural} {inplay-put}.
+  {listItemNext}
+  **{action-infuse}**: You'll play a {card-hero} from {hand} to {element-plural} {inplay-put} and extend {constellation-plural}.
+  {listItemNext}
+  **{action-activate}**: You'll {activate-to} {ability-plural} from cards by paying their {cost-activation}.
+  {listItemNext}
+  **{action-add}**: You'll play a {card-hero} from {hand} to add new {ability-plural} to the {card-open}, {inplay-put} {element-plural}, and change the {banner-main}.
+  {listItemNext}
+  **{action-strain}**: You'll play one {card-hero} from the {hand} to perform a simple {attack} or a simple {defense} defense paying 1 {mana}.
+  {listSubEnd}
+{listItemNext}
+**{phase-exhaust}**: You'll perform all the visible {effect-exhaust-plural} from the cards {inplay} and {discard} the other cards on the {deck-discard} top.
+{listItemNext}
+**{phase-execute}**: You'll use your collected {point-attack-plural} and {point-defense-plural} to {defeat} or block the {enemy}.
+{listItemNext}
+**{phase-restore}**: You'll set the {attack}, {defense}, and {mana} {track-plural} to 0 and {draw-do} 5 new cards from the bottom.
+{listEnd}
+
+# {phase-prepare}
+
+This phase is performed **just once per fight**, at the first {turn-combat} beginning against an enemy. Shuffle the {deck-discard} and {draw-do} cards from the bottom until you've 5 cards in {hand}. The {deck-discard} may end: in that case, you'll play with fewer cards in {hand}.
+
+In {gameShortTitle} you may meet old enemies thirsting for revenge, so you may find yourself battling them multiple times. If you meet them again, that fight **will start with a new {phase-prepare} phase** since you start **a new fight against an enemy**.
+
+# {phase-open}
+
+{image cardopen}
+
+To start combat you've to choose one opening card from your {hand} and play it in front of you. The {card-open} gives you these advantages:
+
+{listStart}s
+**{earn:capital} {mana}**: increase the {card-status} {mana} {track} by the played {card-value} {symbol 1} (the number in the sphere on the top right). Remember that {your-hero} can never have more {mana} than its {level}.
+{listItemNext}
+**Put the first {element} {inplay}**: if there is an {element} symbol on the top left, that {element} is {inplay} {symbol 2}.
+{listItemNext}
+**Put the first {banner} {inplay}**: the {banner} on the card's right side is now {inplay} {symbol 3}.
+{listItemNext}
+**Start the {banner-main}**: the {banner} that starts from the {card-open} {symbol 3} is called {banner-main} and it can be changed during the {turn-combat} performing the {action-add} action.
+{listItemNext}
+**Start the first {constellation}**: the spheres on the card's left side {symbol 4} are the parts for your {constellation-plural} {inplay}.
+{listEnd}
+
+During the {phase-plan} phase you'll place the {card-hero-plural} from your {hand} on the top, bottom, right, and left to {activate-to} different effects.
+
+{boxOpen}
+**Training**: Choose one card from your {hand}, place it on the table and increase the {card-status} {mana} {track} by its {card-value}. From now on you'll have the {element} and the {constellation} printed on that card {inplay}. You'll also have its {banner} {inplay}, which will start the {banner-main}.
+{boxClose}
+
+# {phase-plan}: {action-load}
+
+{image charge}
+
+You may slide one {card-hero} from your {hand} under the first free side on the {card-open} right {symbol 1} to form a line to the right and show just the {card-value} and the {banner}. This action will let you:
+
+{listStart}
+**{earn:capital} {mana}**: increase the {card-status} {mana} {track} by the played {card-value} (the number in the sphere on the top right) {symbol 2}. Remember that {your-hero} can never have more {mana} than his {level}.
+{listItemNext}
+**{inplay-put:capital} a new {banner}**: a new {banner} will join the previous ones, {inplay-put-self} {symbol 3}. You may have multiple same-typed {banner-plural} or different {banner} types {inplay} at the same time.
+{listEnd}
+
+{boxOpen}
+**Training**: {action-load-to} some {mana} with one card of your {hand}. You may go back and choose another {card-open}: set the {card-status} {mana} {track} to 0 and pick all the {card-hero-plural} {inplay}.
+{boxClose}
+
+# {phase-plan}: {action-infuse}
+
+{image infuse}
+
+You may slide one {card-hero} from your {hand} under the first free side on the {card-open} left {symbol 1} to form a line to the left and show just the {element} and the {cost-activation-plural}. This action will let you:
+
+{listStart}
+**Put a new {element} {inplay}**: if there is an {element} symbol on the top right, that {element} is {inplay} with the others {symbol 2}. You may have multiple same-typed {element-plural} or different {element} types {inplay} at the same time.
+{listItemNext}
+**Continue your {constellation-plural}**: the spheres on the card's left side are a new component for the {constellation-plural} {inplay} {symbol 3}.
+{listEnd}
+
+{boxOpen}
+**Training**: {action-infuse-to:capital} with one card from your {hand}. You can still decide to go back and make different choices, setting first the {card-status} {mana} {track} to 0 and then taking back in {hand} all of the {card-hero-plural} {inplay}.
+{boxClose}
+
+# {phase-plan}: {action-activate}
+
+{image activate}
+
+You can {activate-to} the topmost visible, readable (so it shouldn't be upside-down or fully or partially covered by other cards), and not {activate-past-singular} {ability} in the {card-open} by paying its {cost-activation} with {mana} {symbol 1}. The {card-status} {mana} {track} must have the same or more {mana} than the {ability} {cost-activation} to be {activate-past-singular}. If you can do it, decrease the {mana} {track} by the {cost-activation} and follow the {instruction-plural} on the card {symbol 2}.
+
+In the beginning, you'll be able to {activate-to} just the first {card-open} {ability} and you've to be able to pay the {cost-activation}. Choose your {card-open} carefully, considering that your collected {mana} can never be higher than {your-hero} {level}.
+
+You can make {activation-plural} easier using a {token}: when the first {ability} on the {card-open} is {activate-past-plural}, place a {token} on top of that {symbol 3}. The next {ability} you can {activate-to} **is the one that's visible and readable just after the {token}**. When you'll decide to {activate-female-that} by paying its cost, follow the {instruction-plural} and move the {token} down on that: now the next one will be {activable}.
+
+{boxOpen}
+**Training**: Try to {activate-to} the {ability} on the {card-open} top. If you don't have enough {mana} try {action-load-to} a second time, choosing a {card-hero} from your {hand} and sliding it under the {card-hero} right side you used for {action-load-to} the first time. Remember that {your-hero} can never have more {mana} than his {level} (now 4) so, if the first {card-open} {ability} has an {cost-activation} higher than 4 {mana} you'll never be able to {activate-female-that} it! You'll have to start over and choose an {card-open} with an {cost-activation} that's lower or equal to 4 on his first {ability}.
+{boxClose}
+
+# {phase-plan}: {action-add}
+
+{image add}
+
+You can cover part of the {card-open} and the other cards added with the {action-add} action using one {card-hero} from your {hand}, forming a line down, and placing the new card upper side on the last {activate-past-singular} {ability} lower side (or just under the {card-open} {effect-exhaust} if no {card-open} {ability} has been {activate-past-singular}), aligning the {banner} symbol with the covered cards' same symbol to "stretch" it.
+
+This action will let you:
+
+{listStart}
+**Change the next {activable} {ability}**: from now on the next {activable} {ability} will be the one on the card you just played top {symbol 1}.
+{listItemNext}
+**Change the {banner-main} type**: the played card {banner} tip "replaces" the previous card's {banner} tip, changing the {banner-main} type {symbol 2}. This way the number of {banner-plural} {inplay} won't change.
+{listItemNext}
+**Put a new {element} {inplay}**: if there is an {element} symbol on the top right, that {element} is now {inplay} with the others {symbol 3}. You may have multiple same-typed {element-plural} or different {element} types {inplay} at the same time.
+{listEnd}
+
+{boxOpen}
+**Training**: Can you {action-add-to} a new card and {activate-to} his first {ability} by paying the {cost-activation} with the {card-status} {mana} {track}? You may need to {earn} more {mana}: to do that you may play another {card-hero} to {action-load}. If you can't do that, start over again and make different choices. This time you may decide to not {action-infuse} and get to this point with one more card.
+{boxClose}
+
+# {phase-plan}: {action-strain}
+
+{image force}
+
+You may pay 1 {mana} to slide one {card-hero} from your {hand} under the first free side on the {card-open} top {symbol 1} to form a line to the top and just show the card name and its {effect-exhaust}. Then you may choose to {earn} 1 {point-attack} or 1 {point-defense}.
+
+{boxOpen}
+**Training**: Choose one card from your {hand} and use it for {action-strain}. Then decide to {earn} 1 {point-attack} or {earn} 1 {point-defense} by moving the matching {card-status} {token} {track}.
+{boxClose}
+
+# {phase-exhaust}
+
+You may perform any number of {phase-plan} actions you want or can. When you're OK with {your-hero}'s {point-attack-plural} and {point-defense-plural} the {phase-exhaust} phase starts.
+
+In the {phase-exhaust} phase, all of the {card-hero-plural} {inplay} are {discard-done} on the {deck-discard} top but some conditions are applied to them.
+
+{image exhaust1}
+
+{listStart}
+The cards used to {action-infuse} and {action-load} (on the {card-open} left and right) don't have any visible {effect-exhaust} and they are {discard-done} in the {deck-discard} with no condition. {discard-them:capital} them face up on the {deck-discard} **top** in any order and without turning them.
+{listEnd}
+
+{image exhaust2}
+
+{listStart}
+The {card-open}, the cards you used for the {action-add} actions, and the cards used for the {action-strain} actions have a visible {effect-exhaust} {symbol 1}: you must follow the {instruction-plural} on each card one by one in any order to remove them from play. You're usually going to spend {mana} to {discard} them face up on the {deck-discard} top: you must have the required {mana} full amount on the {card-status} {mana} {track} and reduce it by the required cost {symbol 2}. If you can't or you don't want to do that, cards will ask you to perform a different action depending on their {banner} tips: cards with a one-tip {banner} {symbol heroCardBanner1SmallSymbol} will ask you to turn them and then {discard} {symbol 3} and the cards with a two tips {banner} {symbol heroCardBanner2SmallSymbol} will ask you to be {eliminate-past} {symbol 4}.
+{listEnd}
+
+To {eliminate-to} a card you've to move that card to the {card-removed-plural}: turn the card horizontally on any side and place it on the {card-status} left side. {card-removed-plural} are no longer part of the {deck-discard} reducing the available cards and pushing {your-hero} to his {defeat}. During the game, some events will let you trade the {deck-discard} {card-hero-plural} with {eliminate-past} {card-hero-plural} or move them to the {deck-discard}. Choose the cards to sacrifice wisely...
+
+{boxOpen}
+**Training**: Did you keep some spare {mana} to {exhaust-to} the cards {inplay}? If you still have some cards in {hand} you may perform some {action-load} actions before passing to the {phase-exhaust} phase. Then move all the cards you used to {action-infuse} and {action-load} (the cards on the left and the {card-open} right) on the {deck-discard} top. Check if you can pay the {mana} required by the remaining cards {effect-exhaust-plural}: if yes, {discard-do} the card as you did for the other ones. If not, turn the card and discard it.
+{boxClose}
+
+# {phase-execute}
+
+{point-attack-plural} and {point-defense-plural} {tracked-plural} by the {card-status} are then used to determine the outcome of the {turn-combat}.
+
+You'll usually use them to fight the {enemy-plural} that will appear on the {card-adventure-plural} and, in {gameShortTitle}, the {enemy-plural} are described by 3 {attribute-plural}: {defense}, {attack}, and {level}.
+
+{image perform}
+
+{listStart}
+**{defense}**: if the {card-status} {tracked-plural} {point-attack-plural} reach or surpass this value, the {enemy} is {defeated}.
+{listItemNext}
+**{attack}**: if the {enemy} is not {defeated} and the {card-status} {tracked-plural} {point-defense-plural} don't reach or surpass the {enemy} {attack}, the difference between the {enemy} {attack} and the collected {point-defense-plural} will decide how many times you've to choose any {card-hero} from the {deck-discard} or from the {hand} to perform its "{exhaust}" text just below the card name **but you won't be able to pay with any resource, {mana} included**.
+{listItemNext}
+**{level}**: if the {enemy} is {defeated} and his {level} is equal to or greater than the one {tracked} by the {card-status}, move the {token} one square forward on the {level} {track}. From now you'll be able to {action-load} 1 more {mana} and perform more powerful actions but remember that {your-hero} level can never surpass {level} 9.
+{listEnd}
+
+Some {enemy-plural} may have **Modifiers**: they are special rules applied during the whole combat and they can get in your way or help you. You have to read them at the combat beginning and consider them throughout the {turn-combat}. Remember that their effect **always refers to the enemy itself** unless specifically stated.
+
+{boxOpen}
+**Training**: Look at the {point-attack-plural} marked by the {card-status} {attack} {track}. Can you {defeat-doing} a {defense} 5 {enemy}? If yes, you {defeated} the {enemy}! Increase by 1 the {card-status} {level} {track}. You didn't make it? Try defending: look at the {point-defense-plural} on the {card-status} {defense} {track}. Can you block the {enemy} {attack} 3 with the {point-defense-plural} you collected? If yes, you're safe! Maybe you'll be able to {defeat-that} the next {turn-combat}! If you didn't manage to block the whole attack, subtract the collected {point-defense-plural} by the {enemy} {attack} (3). The result will decide how many times you've to select a {card-hero} from the {deck-discard} or the {hand} and follow the {exhaust} action without paying any {mana}. You had to take a hard hit but, in the next {turn-combat}...
+{boxClose}
+
+# {phase-restore}
+
+{image restore}
+
+The {turn-combat} ended. Set the {attack}, {defense}, and {mana} {card-status} {track-plural} to 0 {symbol 1} and {draw-do} cards from its bottom until you've 5 cards in {hand} {symbol 2}.
+
+Depending on the adventure and the {phase-execute} outcome you may be able to travel to other places, keep fighting, and so on.
+
+{boxOpen}
+**Training**: Our training ends here and we are ready to go adventuring! If you prefer to train some more, follow the {phase-restore} phase (set the {attack}, {defense}, and {mana} {track-plural} to 0 and {draw-do} until you've 5 cards in {hand}) and repeat the {turn-combat} from the beginning. Since the fight is still on and you're beginning a new {turn-combat} against the same enemy remember **not to perform** the {phase-prepare}! Leveling up, your {enemy} will become easier to {defeat-doing}.
+{boxClose}
+
+# Reading the cards
+
+In your adventures, both {card-hero-plural} and {card-adventure-plural} will offer you choices and actions. You usually have to read all of the sentences one by one and follow their {instruction-plural}. Unless the sentence begins with the word "**If**" o "**You may**", the actions described by the sentence are to be considered mandatory.
+
+**The sentences starting with "If"** are split into two parts divided by a colon symbol (:). If the entire condition explained **before** the colon symbol is true then you've to apply what's explained **after** the colon symbol to the sentence end. You've to ignore the entire sentence entirely otherwise.
+
+Even **sentences starting with "You may"** are split into two parts but the part after the colon symbol is applied **only if you decide** to perform **all** of the {instruction-plural} described **before** the semicolon. You've to ignore the entire sentence otherwise.
+
+Some sentences may start with **Pay**: to execute the rest of the sentence you must   reduce the respective {track} of the {card-status} by the requested value. If you don't have enough resources to pay the price, ignore the rest of the sentence.
+
+Finally, any condition **must be satisfied just when it's {activate-past-singular}** and is not needed to be satisfied after: for example, if a card requires you to have a specific {constellation} {inplay} to perform an action, that action may change the cards {inplay} so that {constellation} is no longer {inplay}. This behavior is legit.
+
+# {constellation-plural}, {element-plural} e {banner-plural}
+
+Some cards may ask you to have specific {constellation-plural}, {element-plural}, and {banner-plural} {inplay}. You can usually tell that by looking at the symbols on the cards {inplay} ignoring the cards used to {action-strain}. That's what you've to do:
+
+{image symbols}
+
+{listStart}
+**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} e 1 {constellation} with the length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the leftmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
+{listItemNext}
+**{element-plural}** {symbol 2}: the {element-plural} {inplay} are all of the elements on the left and below the {card-open}. In the example, there are 2 {element-plural} {symbol heroCardWaterSmallSymbol} and 2 {element-plural} {symbol heroCardFireSmallSymbol} {inplay}.
+{listItemNext}
+**{banner-plural}** {symbol 3}: the {banner-plural} {inplay} are the {banner-main} (the one that starts from the {card-open}) and the ones on the cards used to {action-load}. Consider the {card-open} row {banner} **as a single {banner}** with the lowest card {banner} tip. In the example, there is 1 {banner} {symbol heroCardBanner1SmallSymbol} that starts from the {card-open} and 1 {banner} {symbol heroCardBanner2SmallSymbol} {inplay}.
+{listEnd}
+
+# Let's Go Adventuring!
+
+Now it's the time to start a complete {gameShortTitle} game! Follow the steps explained in the Setup chapter and then flip the deck you put away: this new deck will be the Adventure Deck and will guide {your-hero} around the dangerous places of {place}.
+
+{image adventure}
+
+In {gameShortTitle} there are 2 adventure types: the {adventure-world-plural}, set in different regions, and the {adventure-dungeon-plural}, set in dangerous dungeons. Each adventure type has different rules. What adventure happened to you? Look at the code printed on one of the long borders of any card. If the letter between the 2 dashes is a "**D**" then it's a **{adventure-dungeon}** and if it's a "**W**" is a **{adventure-world}**. Cards from different adventure types are very different so you'll soon learn how to recognize them without looking at the codes.
+
+Skip to the manual part named as your adventure type. See you there!
+
+# {adventure-world}
+
+{place} is in danger and you're the only one that can save the day! The {adventure-world-plural} will bring {your-hero} around the lands of {place}, meeting precious allies and terrible {enemy-plural}.
+
+{enemy-plural:capital} and places will change a little every time you play the same {adventure-world}!
+
+# {adventure-world}: Notes
+
+{adventure-world-plural} cards are divided into 2 halves as the {card-hero-plural}. The lower and upside-down part is never {activate-past-singular}.
+
+# {adventure-world}: Setup
+
+{image overworldsetup}
+
+Flip the {card-adventure-plural} so the symbol on the top left has a small triangle on the top {symbol 1}. Then shuffle them and make a 3x3 grid {symbol 2}. Pick the {pawn-hero} and place it on the card with the black triangle on the top left symbol {symbol 3}.
+
+Leave some space on a side to keep the {eliminate-past} {card-adventure-plural} {symbol 4}: you'll keep them horizontally like {your-hero} {card-removed-plural}. This deck is empty when the game starts. {eliminate-past:capital} {card-adventure-plural} are never {inplay}.
+
+Finally, read the text on the card in which the {pawn-hero} is: that's your main mission. Will you be able to complete it?
+
+# {adventure-world}: {movement:capital}
+
+{image overworldmovement}
+
+Each card represents a {place} region. You may move {your-hero} to another region and go adventuring. 
+
+To do that, you've to {discard} a {card-hero} from your {hand}, if any {symbol 1}, and then move the {pawn-hero} up, down, left, or right by one cell into the 3x3 grid {symbol 2}. If the {pawn-hero} enters a new card you've to read its text and follow its {instruction-plural}. Once the execution ends you may {movement-do} again.
+
+When the game starts all of the grid cells will have a card but, as the game goes on, some {card-adventure-plural} will be {eliminate-past} and their cells will become empty. It's still allowed to move the {pawn-hero} on 3x3 grid empty cells but they will be considered as containing a card with no text inside.
+
+# {adventure-world}: Combat
+
+{image overworldfight}
+
+Some cards will contain an {enemy} to {defeat-doing}: you'll have to fight!
+
+Read the text on the card top and start a {turn-combat} against the {enemy} described in the middle.
+
+Standard combat rules apply: the {enemy} {level}, {attack}, and {defense} {attribute-plural} are on the 3 spaces on the card's right side {symbol 1} while any Modifier is explained by the scroll on the {enemy} illustration right {symbol 2}. Grid's first or second rows {enemy-plural} may change their {level}, {attack}, and {defense} {attribute-plural} depending on the bonus given by the card on their right. You can get the bonuses matching the **opened spaces** on the enemy card right with the ones of the card on its right.
+
+After the {phase-restore} phase:
+
+{listStart}
+**If the {enemy} is {defeated}**: you must keep reading the text under the {enemy} description. Then you can {movement-do} the {pawn-hero} as before to explore a new region.
+{listItemNext}
+**If the {enemy} is not {defeated}**: you must start a new {turn-combat} against the same {enemy}.
+{listEnd}
+
+{enemy-plural:capital} can be fought multiple times, coming back on the same {card-adventure} with a {movement}.
+
+# {adventure-world}: {map-on} cards and {reveal-doing}
+
+{image overworldonmap}
+
+Some {instruction-plural} will refer to "**{map-on}**" cards. A card is {map-on} **if its two-letters code appears on the 3x3 grid cards top left**, so {eliminate-past} cards are excluded {symbol 1}.
+
+Moreover, during the adventure, the game will ask you to **{reveal-doing}** a specific card: to do that find the {map-on} card with the requested code (usually it's on their upside-down part) and turn it so the code appears on the card's top left {symbol 2}. From now on that card will be {map-on}. In some cases, the game may ask you to {reveal-doing} a card that's already {map-on} or {eliminate-past}: ignore the {instruction}.
+
+# {adventure-world}: "For 1 time"
+
+Some cards will show the wording: "**For 1 time**". The following action must (or may) be performed **only once per game** and can't be repeated: if it has been already performed the sentence rest must be ignored. Each card has a maximum of 1 "For 1 time" so you can place a {token} on the {card-adventure} or tilt it by 30° to remember that you already performed that. Remember to remove the mark when the {card-adventure} is {eliminate-done} or turned and to keep it if it changes its position on the 3x3 grid.
+
+# {adventure-dungeon}
+
+Something suspicious is happening in the dungeons... It's time to investigate and settle the matter once and for all!
+
+{adventure-dungeon-plural:capital} are set in dangerous and intricate mazes in which {your-hero} will lose the way... but luckily they stay the same every game. Play the same {adventure-dungeon} multiple times and learn the best routes to win!
+
+# {adventure-dungeon}: Setup
+
+{image dungeonsetup}
+
+{adventure-dungeon:capital} cards are divided into {card-room-plural} (with a 4x6 symbols grid) and {card-index-plural} (with a number in the bottom right).
+
+Separate the {card-room-plural} this way: find the 5 {card-room-plural} with a gray triangle on the top left and make a deck {symbol 1}, keep the remaining {card-room} with the 1 digit in the symbol and flip it so the black triangle is on the top left (1A side) {symbol 2}, gather the 3 {card-index-plural} cards {symbol 3}.
+
+Put the 1A {card-room} in the table center {symbol 4} and place the {pawn-hero} on the card symbol {symbol 5}. Keep the other 5 {card-room-plural} apart {symbol 6}. Finally, put the {card-index-plural} side-by-side in page order so they're fully visible {symbol 7}.
+
+Find the symbol under the {pawn-hero} on {card-index-plural}: you'll read your main mission description. Will you be able to complete it?
+
+# {adventure-dungeon}: {movement:capital}
+
+{image dungeonmovement}
+
+When you're not involved in a {turn-combat} you may {movement-do} the {pawn-hero} by 1 cell up, down, left, or right once as many times as you want in the same {card-room} {symbol 1}. Cells with black borders are walls that cannot be crossed. Some cells may have arcs made with rocks with some codes around {symbol 2}: these are doors that the {pawn-hero} can cross to move from one {card-room} to another.
+
+To cross the door you have to keep {movement-doing} the {pawn-hero} orthogonally to the arc square and then check if there is a readable code like 4B" or "5D" on it. Ignore all of the codes with other orientations.
+
+If there is no code, the door is blocked and it can't be crossed: the {pawn-hero} can freely {movement-self} again in the same {card-room}. If there is a code, the door is opened and you may decide to cross it.
+
+If there already is another {card-room} adjacent to the {pawn-hero} and the destination cell has a rock arc, move the {pawn-hero} to that cell {symbol 1}.
+
+If there is no card, {discard-do} 1 {card-hero} from the {hand} if any, and find the {card-room} with the door code {symbol 3}. This {card-room} may be in the {card-room-plural} deck you prepared at the game start or it may be already on the table. In both cases pick the requested {card-room}, turn it to the requested side, look for the door that leads to the {pawn-hero} {card-room} and place it adjacent to the {pawn-hero} {symbol 4}. Finally, {movement-perform} the {pawn-hero} by 1 cell to the new {card-room} {symbol 5}.
+
+It may happen that the door requested {card-room} isn't in the {card-room-plural} deck and on the table: in this case, the door is blocked, as something on the other side is keeping the door shut.
+
+If you moved the {pawn-hero} on a new {card-room} look for the symbol on the card in the {card-index-plural} and follow its {instruction-plural} if any {symbol 6}. Symbols with different orientations are different symbols.
+
+Dungeons are places with a twisted planimetry and {your-hero} may lose the way quite often... you've to help him **in some way**!
+
+# {adventure-dungeon}: Timing
+
+Symbols descriptions start with an icon telling you when its {instruction} will be applied:
+
+{listStart}
+**{immediate}**: the description will be applied when you read it.
+{listItemNext}
+**{walkon}**: the description will be applied as the {pawn-hero} enters the cell with the symbol.
+{listItemNext}
+**{choice}**: the description will be applied as the {pawn-hero} enters the cell with the symbol **and you decide** to perform the action.
+{listEnd}
+
+# {adventure-dungeon}: Combat
+
+Some {instruction-plural} will describe {enemy-plural}: you've to fight them!
+
+They're described as symbol and number sequences, with {level}, {attack}, and {defense} {enemy} {attribute-plural} displayed one after another and followed by a possible modifier name in bold with its description in brackets. {enemy-plural:capital} must be {defeated-plural} before reading the rest of the {instruction}.
+
+Standard combat rules apply, except for the {phase-execute} phase.
+
+{image dungeonfight1}
+
+During combat, the {pawn-hero} cannot freely {movement-do} as explained in the "{adventure-dungeon}: {movement:capital}" chapter but it may spend collected {point-attack-plural} to do that during the {phase-execute} phase. That's how {adventure-dungeon}'s {phase-execute} phase works:
+
+{listStart}
+As the {card-status} {attack} {track} marks at least 1 {point-attack}, you can reduce it by 1 to {movement-do} the {pawn-hero} by 1 cell to the up, down, left, or right performing a {movement} {symbol 1}. During the {turn-combat}, **you cannot displace any {card-room}** so you can just cross doors to a {card-room} that's already on the table. For now, ignore all of the {card-room} symbols except for the {enemy} you're fighting.
+{listItemNext}
+If you don't want or you can't move you've to compare the {point-attack-plural} of {your-hero} with the {enemy} {defense} {attribute} following the standard rules {symbol 2}, but if the {pawn-hero} isn't **over** the {enemy} symbol, {your-hero}'s {point-attack-plural} for this phase are 0 (don't change the {card-status} {attack} {track} for now) {symbol 3}.
+{listEnd}
+
+{image dungeonfight2}
+
+{listStart}
+Then it's the {enemy}'s turn to attack: as the {pawn-hero} is not **over** the {enemy} symbol and the {attack} {enemy} {attribute} is greater than 0, {movement-that-female} it by 1 cell to the up, down, left, or right following the shortest valid route to its symbol and reduce its {attack} {attribute} by 1 {symbol 1}.
+{listItemNext}
+Finally, compare the remaining {enemy} {attack} {attribute} to the {card-status} {point-defense-plural} following the standard rules {symbol 2}.
+{listEnd}
+
+In the {phase-restore} phase, after restoring the {card-status} {tracked-plural}, consider the {enemy} {attribute-plural} restored to the ones in its description and, at the phase end:
+
+{listStart}
+**If the {enemy} is {defeated}**: the combat ends and **the {enemy} will no longer be in his room until the same {instruction-plural} re-reading**. You must keep reading the text following the {enemy} description. Finally, you can keep {movement-doing} the {pawn-hero} freely.
+{listItemNext}
+**If the {enemy} is not {defeated}**: if the {pawn-hero} isn't in the same room with the just fought {enemy} **the combat ends and {your-hero} managed to escape!** Follow the new {card-room} {card-index-plural} {instruction-plural}. If {your-hero} didn't manage to escape you've to start a new {turn-combat} against the same {enemy}.
+{listEnd}
+
+{enemy-plural:capital} can be fought multiple times, as you'll have to read its symbol {instruction-plural} from the beginning.
+
+# {adventure-dungeon}: "If a symbol is {map-on}"
+
+{image dungeononmap}
+
+Some {instruction-plural} may refer to symbols "**{map-on}**". A symbol is {map-on} **if the containing {card-room} isn't in the {card-room-plural} deck and it's on the table** {symbol 1}. Moreover, **that {card-room} must show the symbol with the exact required orientation** {symbol 2}: for example, the {symbol icon-symbol-a1} symbol is different from the {symbol icon-symbol-a2}, {symbol icon-symbol-a3}, and {symbol icon-symbol-a4} symbols.
+
+# {adventure-world}: "For 1 time"
+
+Some {instruction-plural} may show the wording: "**For 1 time**". The following action must (or may) be performed **only once per game** and can't be repeated: if it has been already performed the sentence must be ignored. Each {instruction} has a maximum of 1 "For 1 time" so you can place a {token} on the {card-index} on the matching {instruction} symbol to mark it as already performed.
+
+# {adventure-dungeon}: Teleports
+
+Some {instruction-plural} may ask you to move the {pawn-hero} around a specific symbol. If the symbol is {map-on} move the {pawn-hero} in its {card-room} following the {instruction-plural}. If the symbol isn't {map-on} look into the {card-room} deck for the matching symbol, flip it to the correct orientation, look for the rock arcs on the border and check if there is any code matching the {card-room-plural} on the table. If yes, place the card as explained in "{adventure-dungeon}: {movement:capital}" and move the {pawn-hero} on that card following the {instruction-plural}.
+
+If the card with the required symbol isn't connecting with anything... **where will {your-hero} go**? Place the {card-room} **where you imagine it can be on the map and not adjacent to any card**. Keep exploring... soon {your-hero} will return to orientate.
+
+Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol {instruction-plural}** on the {card-index-plural}, as it happens when you perform a {movement} through a door.
+
+{boxOpenNotes}
+{gameShortTitle} is an open-source project: {config-sourcesUrl}. Very special thanks to {thanks:format}.
+{boxCloseNotes}
+{pageBreakStart}Quick Reference: Setup{pageBreakEnd}
+**{card-hero-plural}**: Flip the cards to the {symbol heroCardBanner1SmallSymbol}. Place the {card-status} on the table. Place 1 {token} at the beginning of all {track-plural}. {draw-do:capital} 5 cards from the bottom. Place the remaining {deck-discard} on the {card-status} right.
+{boxOpen}
+**{adventure-world}**: Flip the cards to have a triangle in the top left. Shuffle. Place them in a 3x3 grid. Place the {pawn-hero} on the black triangle card. Read the {instruction-plural} under the {pawn-hero}.
+{boxClose}
+{boxOpen}
+**{adventure-dungeon}**: Place the 1A {card-room} on the table. Place the {pawn-hero} on its symbol. Put the {card-index-plural} in page order and visible. Put the remaining {card-room-plural} aside. Read the {instruction-plural} of the symbol under the {pawn-hero} on the {card-index-plural}.
+{boxClose}
+
+# Guida Rapida: {movement:capital}
+{boxOpen}
+**{adventure-world}**: {discard-do:capital} 1 {card-hero} from {hand} if any. Move the {pawn-hero} by 1 cell orthogonally in the 3x3 grid. Read the {instruction-plural} if any.
+{boxClose}
+{boxOpen}
+**{adventure-dungeon}**: {movement-perform:capital} the {pawn-hero} orthogonally in the {card-room}.
+**Moving through a door**: If the destination {card-room} is not attached: {discard-do} 1 {card-hero} from {hand} if any. Attach the {card-room} matching the doors. Move the {pawn-hero} to the destination. Read the reached {card-room} symbol {instruction-plural} on the {card-index-plural}.
+{boxClose}
+
+# Guida Rapida: {turn-combat}
+{listStart}
+**{phase-prepare}**: At the beginning of the first {turn-combat} against an enemy shuffle the {deck-discard} and {draw-do} from the bottom until you've 5 cards in {hand}.
+{listItemNext}
+**{phase-open}**: Play your first card from {hand}. +{symbol heroCardManaSmallSymbol}. +{symbol heroCardBanner1SmallSymbol}/{symbol heroCardBanner2SmallSymbol}.  +{symbol heroCardAirSmallSymbol}/{symbol heroCardEarthSmallSymbol}/{symbol heroCardFireSmallSymbol}/{symbol heroCardWaterSmallSymbol}. +{symbol heroCardStar1SmallSymbol}/{symbol heroCardStar1SmallSymbol}.
+{listItemNext}
+**{phase-plan}**: Perform as many times as you want.
+  {listSubStart}
+  **{action-load}**: Add a card to the right. +{symbol heroCardManaSmallSymbol}. +{symbol heroCardBanner1SmallSymbol}/{symbol heroCardBanner2SmallSymbol}.
+  {listItemNext}
+  **{action-infuse}**: Add a card to the left. +{symbol heroCardAirSmallSymbol}/{symbol heroCardEarthSmallSymbol}/{symbol heroCardFireSmallSymbol}/{symbol heroCardWaterSmallSymbol}. +{symbol heroCardStar1SmallSymbol}/{symbol heroCardStar1SmallSymbol}.
+  {listItemNext}
+  **{action-activate}**: Pay the next available {ability} with {mana}. {activate-female:capital}.
+  {listItemNext}
+  **{action-add}**: Add a card below. Change the next available {ability}. ~{symbol heroCardBanner1SmallSymbol}/{symbol heroCardBanner2SmallSymbol}.
+  {listItemNext}
+  **{action-strain}**: Add a card to the top. +1{symbol heroCardAttackSmallSymbol}/{symbol heroCardDefenseSmallSymbol}.
+  {listSubEnd}
+{listItemNext}
+**{phase-exhaust}**: {discard-do:capital} cards on the left and right of the {card-open}. Perform visible {exhaust}. 
+**{phase-execute}**:
+{listEnd}
+{boxOpen}
+**{adventure-world}**:
+{listStart}
+    {listSubStart}
+    Add the {enemy} bonus on the {card-adventure}'s right.
+    {listItemNext}
+    If {point-attack-plural} - {defense} {enemy}
+       {listSubStart}
+       >= 0: {enemy:capital} {defeated}.
+       {listItemNext}
+       < 0: If {attack} {enemy} - {point-defense-plural} > 0: {exhaust} as many {card-hero-plural} as the difference.
+       {listSubEnd}
+    {listSubEnd}
+{listEnd}
+{boxClose}
+{boxOpen}
+**{adventure-dungeon}**:
+{listStart}
+    {listSubStart}
+    Use {point-attack-plural} to {movement-do} the {pawn-hero} to the {enemy} symbol. If {pawn-hero} is not on the symbol: {point-attack-plural} = 0.
+    {listItemNext}
+    If {point-attack-plural} - {defense} {enemy}
+       {listSubStart}
+       >= 0: {enemy:capital} {defeated}
+       {listItemNext}
+       < 0: Use {enemy} {attack} to {movement-do} the {pawn-hero} to the {enemy} symbol. If {pawn-hero} is not on the symbol: {enemy} {attack} = 0. If {enemy} {attack} - {point-defense-plural} > 0: {exhaust} as many {card-hero-plural} as the difference.
+       {listSubEnd}
+    {listSubEnd}
+{listEnd}
+{boxClose}
+{listStart}
+    {listSubStart}
+    **If the {enemy} is {defeated}**: If {your-hero} {level} <= {enemy} {level}: +1{symbol heroCardAttackLevelSymbol}.
+    {listSubEnd}
+{listItemNext}
+**{phase-restore}**:
+    {listSubStart}
+    {attack:capital}, {defense}, and {mana} {track-plural} to 0. {draw-do:capital} until 5 cards from the bottom.
+    {listSubEnd}
+{listEnd}
+{boxOpen}
+**{adventure-world}**:
+{listStart}
+   {listSubStart}
+   **If the {enemy} is {defeated}**: Keep reading {instruction-plural}.
+   {listSubEnd}
+{listEnd}
+{boxClose}
+{boxOpen}
+**{adventure-dungeon}**:
+{listStart}
+    {listSubStart}
+    **If the {enemy} is {defeated}**: The {enemy} won't be there until its description is read again. Keep reading the {instruction-plural}.
+    {listItemNext}
+    **If the {enemy} is not {defeated} and the {pawn-hero} is**:
+        {listSubStart}
+        **On a new {card-room}**: The combat ends. Read the new {card-room} {instruction-plural}.
+        {listItemNext}
+        **On the same {card-room}**: Reset the {enemy} {attribute-plural}.
+        {listSubEnd}
+    {listSubEnd}
+{listEnd}
+{boxClose}
+{listStart}
+    {listSubStart}
+    **If the {enemy} is not {defeated}**: Perform a new {turn-combat} without performing the {phase-prepare} phase.
+    {listSubEnd}
+{listEnd}

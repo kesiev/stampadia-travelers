@@ -1,0 +1,623 @@
+<html><head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="../style/Seshat/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="../style/Ferrum/stylesheet.css">
+
+    <script src="../js/jspdf.umd.min.js"></script>
+    <script src="../js/svg2pdf.umd.min.js"></script>
+    <script src="../js/fonts/Seshat-normal.js"></script>
+    <script src="../js/fonts/Ferrum-normal.js"></script>
+
+    <script src="../js/tools.js"></script>
+    <script src="../js/random.js"></script>
+    <script src="../js/languages.js"></script>
+    <script src="../js/cardprinter.js"></script>
+    <script src="../js/svg.js"></script>
+
+    <script src="../js/consts/avatar/models.js"></script>
+    <script src="../js/consts/action/models.js"></script>
+    <script src="../js/databases/narrative/enemies.js"></script>
+    <script src="../js/databases/narrative/villains.js"></script>
+    <script src="../js/databases/narrative/names.js"></script>
+
+    <script src="../js/databases/hero/classes/swordsman.js"></script>
+    <script src="../js/databases/hero/classes/elementalist.js"></script>
+    <script src="../js/databases/hero/perks.js"></script>
+
+    <script src="../js/databases/overworld/enemies.js"></script>
+    <script src="../js/databases/overworld/events.js"></script>
+    <script src="../js/databases/overworld/mainquests.js"></script>
+    <script src="../js/databases/overworld/sidequests.js"></script>
+    <script src="../js/databases/enemy/bonuses.js"></script>
+    <script src="../js/databases/enemy/bonusslots.js"></script>
+    <script src="../js/databases/enemy/modifiers.js"></script>    
+
+    <script src="../js/generators/narrative.js"></script>
+    <script src="../js/generators/overworld.js"></script>
+    <script src="../js/generators/hero.js"></script>
+    <script src="../js/generators/enemy.js"></script>
+    <script src="../js/generators/avatar.js"></script>
+    <script src="../js/generators/action.js"></script>
+
+    <script src="../js/printers/hero.js"></script>
+    <script src="../js/printers/overworld.js"></script>
+
+    <script src="../js/generators/skill.js"></script>
+
+
+</head><body onload="onl()">
+</body></html>
+<script>
+
+function Player() {
+
+    const
+        GAMELANGUAGE="en",
+        CARDWIDTH=259,
+        CARDHEIGHT=360,
+        MAPX=10,
+        MAPY=10,
+        MAPSPACINGX=5,
+        SHUFFLERX=10,
+        SHUFFLERY=700,
+        SHUFFLERWIDTH=800,
+        SHUFFLERHEIGHT=40,
+        COUNTERSWIDTH=180,
+        PAWNSIZE=30,
+        PAWNGAPY=50,
+        COUNTERSX=850,
+        COUNTERSY=10;
+
+    let
+        table,
+        dragging=0,
+        over=0,
+        hovering=0,
+        draggingStartX=0,
+        draggingStartY=0,
+        draggingOriginX=0,
+        draggingOriginY=0,
+        startingCard=0,
+        heroCards,
+        mapCards;
+
+
+    function shuffle(arr) {
+        for (let i=0;i<10;i++)
+            for (let fid=0;fid<arr.length;fid++) {
+                var
+                    tid=Math.floor(Math.random()*arr.length),
+                    from=arr[fid];
+                arr[fid]=arr[tid];
+                arr[tid]=from;
+            }
+    }
+
+
+    function unsetDragging() {
+        if (dragging) dragging=0;
+    }
+
+    function startDragging(obj,e) {
+        if (dragging) unsetDragging();
+        dragging=obj;
+        draggingStartX=obj.x;
+        draggingStartY=obj.y;
+        draggingOriginX=e.pageX;
+        draggingOriginY=e.pageY;
+    }
+
+    function unsetOver() {
+        if (over) {
+            over.setOver(false);
+            over=0;
+        }
+    }
+
+    function setOver(obj) {
+        if (!dragging) {
+            unsetOver();
+            over=obj;
+            over.setOver(true);
+        }
+    }
+
+    function makeDraggable(element) {
+
+        element.onpointerdown=function(e) {
+            if (e.pointerType != "touch") {
+                pen=e.button==2?2:1;
+                x1=e.offsetX;
+                y1=e.offsetY;
+                line(x1,y1,x1,y1,PENCOLORS[pen]);
+            }
+            return false;
+        }
+
+        element.onpointermove=function(e) {
+            if (pen) {
+                line(x1,y1,e.offsetX,e.offsetY,PENCOLORS[pen]);
+                x1=e.offsetX;
+                y1=e.offsetY;
+            }
+            return false;
+        }
+
+    }
+
+    function getOffset(left,top,node,root) {
+		while (node&&(node!==root)) {
+			if (node.offsetLeft) {
+				left+=node.offsetLeft;
+				top+=node.offsetTop;
+			}
+			node=node.parentNode;
+		}
+
+		return {left:left,top:top};
+	}
+
+    function getCollidingDivs(div) {
+        let
+            colliding=[],
+            checkrect = div.getBoundingClientRect(),
+            nodes=table.childNodes;
+        for (let i=0;i<nodes.length;i++) {
+            let
+                node=nodes[i],
+                noderect=node.getBoundingClientRect();
+            if ((node !== div) && !node._background && !((noderect.x>checkrect.x+checkrect.width)||(noderect.x+noderect.width<checkrect.x)||(noderect.y>checkrect.y+checkrect.height)||(noderect.y+noderect.height<checkrect.y)))
+                colliding.push(node);
+        }
+
+        return colliding;
+
+    }
+
+    function initializeUi() {
+
+        document.onpointerup=function() {
+            unsetDragging();
+            return false;
+        }
+
+        document.onpointermove=function(e) {
+            if (dragging) {
+                let
+                    px = draggingStartX + e.pageX - draggingOriginX,
+                    py = draggingStartY + e.pageY - draggingOriginY;
+                if (px<0) px=0;
+                if (py<0) py=0;
+                dragging.moveAt(px,py);
+                e.preventDefault();
+            }
+            return false;
+        }
+
+        document.onkeydown=function(e) {
+            switch (e.keyCode) {
+                case 90:{
+                    if (over && !over.node._background) {
+                        let divs=getCollidingDivs(over.node);
+                        if (divs.length) {
+                            let moveover=divs.pop();
+                            table.insertBefore(over.node, moveover.nextSibling);
+                        }
+                    }
+                    break;
+                }
+                case 88:{
+                    if (over && !over.node._background) {
+                        let divs=getCollidingDivs(over.node);
+                        if (divs.length) {
+                            let moveunder=divs.shift();
+                            table.insertBefore(over.node, moveunder);
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+
+    }
+
+    function cutCards(print,cb) {
+        let
+            ratio,
+            svgstring=print.svg.getSVG(),
+            image=document.createElement("img");
+        
+        document.body.appendChild(image);
+        image.width=print.sheet.width*100;
+        image.height=print.sheet.height*100;
+        image.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgstring);
+
+        image.onload = ()=>{
+            setTimeout(()=>{
+                let out=[];
+                print.cards[0].isStartingCard = true;
+                shuffle(print.cards);
+                print.cards.forEach(card=>{
+                    let
+                        cardxratio=(CARDWIDTH/card.width),
+                        cardyratio=(CARDHEIGHT/card.height),
+                        xratio = image.width/print.sheet.width,
+                        yratio = image.height/print.sheet.height,
+                        canvas = document.createElement("canvas"),
+                        ctx = canvas.getContext("2d");
+                    console.log(image.width);
+                    canvas.width=CARDWIDTH;
+                    canvas.height=CARDHEIGHT;
+                    ctx.drawImage(image, -card.x*cardxratio,-card.y*cardyratio,image.width/xratio*cardxratio,image.height/yratio*cardyratio);
+                    out.push(sleeveCard(canvas,card));
+                })
+            
+                document.body.removeChild(image);
+
+                cb(out);
+            },100)
+            
+        }
+
+    }
+
+    function sleeveCard(canvas,data) {
+        let
+            side=true,
+            contentDiv=document.createElement("div"),
+            div=document.createElement("div");
+        contentDiv.appendChild(canvas);
+        div.appendChild(contentDiv);
+        div.style.position="absolute";
+        div.style.border="2px solid #ccc";
+        div.style.borderRadius="5px";
+        div.style.overflow="hidden";
+        div.style.boxShadow="0px 2px 2px #ccc";
+        div.style.width=canvas.width;
+        div.style.height=canvas.height/2;
+        table.appendChild(div);
+        
+        function updateCard() {
+            if (side)
+                contentDiv.style.transform="";
+            else
+                contentDiv.style.transform="rotate(180deg)";
+        }
+
+        let obj={
+            data:data,
+            node:div,
+            width:canvas.width,
+            height:canvas.height/2,
+            x:0,
+            y:0,
+            setOver:(mode)=>{
+                div.style.borderColor=mode?"#f00":"#ccc";
+            },
+            show:()=>{
+                div.style.display="block";
+            },
+            hide:()=>{
+                div.style.display="none";
+            },
+            moveAt:(x,y)=>{
+                obj.x=x;
+                obj.y=y;
+                div.style.left=x+"px";
+                div.style.top=y+"px";
+            },
+            flip:()=>{
+                side=!side;
+                updateCard();
+            },
+            face:(newside)=>{
+                side=newside;
+                updateCard();
+            }
+        };
+        obj.hide();
+
+        div.onpointerdown=(e)=>{
+            startDragging(obj,e);
+        }
+
+        div.onpointerover=(e)=>{
+            setOver(obj);
+        }
+
+        div.ondblclick=(e)=>{
+            obj.flip();
+        }
+
+        div._obj=obj;
+        return obj;
+    }
+
+    function addShuffler(x,y,width,height) {
+        let
+            hheight=height/2,
+            div=document.createElement("div");
+        div.style.position="absolute";
+        div.style.border="3px solid #990";
+        div.style.backgroundColor="#ff0";
+        div.style.borderRadius="5px";
+        div.style.width=width+"px";
+        div.style.height=height+"px";
+        div._background=true;
+        table.appendChild(div);
+
+        let obj={
+            node:div,
+            width:width,
+            height:height,
+            x:0,
+            y:0,
+            setOver:(mode)=>{
+                div.style.borderColor=mode?"#f00":"#990";
+            },
+            moveAt:(x,y)=>{
+                obj.x=x;
+                obj.y=y;
+                div.style.left=x+"px";
+                div.style.top=y+"px";
+            },
+            shuffle:()=>{
+                let divs=getCollidingDivs(div);
+                if (divs.length) {
+                    shuffle(divs);
+                    divs.forEach(div=>table.removeChild(div));
+                    divs.forEach((div,id)=>{
+                        table.appendChild(div);
+                        div._obj.moveAt(obj.x+10+(id*div._obj.width/4),obj.y+hheight-div._obj.height/2);
+                    })
+                }
+            }
+        };
+        obj.moveAt(x,y);
+
+        div.onpointerover=(e)=>{
+            setOver(obj);
+        }
+
+        div.ondblclick=(e)=>{
+            obj.shuffle();
+        }
+
+        div._obj=obj;
+        return obj;
+
+    }
+
+    function addButton(parent,label,onclick) {
+        let div=document.createElement("div");
+        div.style.backgroundColor="#ccc";
+        div.style.padding="5px";
+        div.style.display="inline-block";
+        div.style.margin="0 5px";
+        div.style.width="30px";
+        div.style.borderRadius="5px";
+        div.innerHTML=label;
+        div.onclick=onclick;
+        parent.appendChild(div);
+    }
+
+    function addCounter(x,y,label,value,validator) {
+        let
+            width=COUNTERSWIDTH,
+            height=100,
+            div=document.createElement("div"),
+            labelDisplay=document.createElement("div"),
+            valueDisplay=document.createElement("div");
+
+        div.style.userSelect="none";
+        div.style.textAlign="center";
+        div.style.position="absolute";
+        div.style.border="3px solid #900";
+        div.style.backgroundColor="#f00";
+        div.style.borderRadius="5px";
+        div.style.width=width+"px";
+        div.style.height=height+"px";
+        div._background=true;
+
+        labelDisplay.innerHTML=label;
+        labelDisplay.style.fontSize="20px";
+        div.appendChild(labelDisplay);
+
+        valueDisplay.innerHTML=value;
+        valueDisplay.style.fontSize="40px";
+        div.appendChild(valueDisplay);
+
+        table.appendChild(div);
+
+        let obj={
+            value:value,
+            node:div,
+            width:width,
+            height:height,
+            x:0,
+            y:0,
+            setOver:(mode)=>{
+                div.style.borderColor=mode?"#0f0":"#900";
+            },
+            moveAt:(x,y)=>{
+                obj.x=x;
+                obj.y=y;
+                div.style.left=x+"px";
+                div.style.top=y+"px";
+            }
+        };
+        obj.moveAt(x,y);
+
+        addButton(div,"-",()=>{
+            value = validator(value-1);
+            obj.value = value;
+            valueDisplay.innerHTML = value;
+        })
+        addButton(div,"0",()=>{
+            value = validator(0);
+            obj.value = value;
+            valueDisplay.innerHTML = value;
+        })
+        addButton(div,"+",()=>{
+            value = validator(value+1);
+            obj.value = value;
+            valueDisplay.innerHTML = value;
+        })
+
+        div.onpointerdown=(e)=>{
+            startDragging(obj,e);
+        }
+
+        div.onpointerover=(e)=>{
+            setOver(obj);
+        }
+
+        div._obj=obj;
+        return obj;
+
+    }
+
+    function addPawn(x,y) {
+        let
+            width=PAWNSIZE,
+            height=PAWNSIZE,
+            div=document.createElement("div");
+
+        div.style.position="absolute";
+        div.style.border="3px solid #900";
+        div.style.borderBottom="6px solid #900";
+        div.style.backgroundColor="#f00";
+        div.style.borderRadius=PAWNSIZE+"px";
+        div.style.width=PAWNSIZE+"px";
+        div.style.height=PAWNSIZE+"px";
+        div._background=true;
+        table.appendChild(div);
+
+        let obj={
+            node:div,
+            width:PAWNSIZE,
+            height:PAWNSIZE,
+            x:0,
+            y:0,
+            setOver:(mode)=>{
+                div.style.borderColor=mode?"#0f0":"#900";
+            },
+            moveAt:(x,y)=>{
+                obj.x=x;
+                obj.y=y;
+                div.style.left=x+"px";
+                div.style.top=y+"px";
+            }
+        };
+        obj.moveAt(x,y);
+
+        div.onpointerdown=(e)=>{
+            startDragging(obj,e);
+        }
+
+        div.onpointerover=(e)=>{
+            setOver(obj);
+        }
+
+        div._obj=obj;
+        return obj;
+
+    }
+
+    function layMap() {
+        mapCards.forEach((card,id)=>{
+            let
+                y=Math.floor(id/3),
+                atx=MAPX+((card.width+MAPSPACINGX)*(id%3)),
+                aty=MAPY+(card.height*y);
+            card.moveAt(atx,aty);
+            card.face(true);
+            card.show();
+            if (card.data.isStartingCard)
+                startingCard=card;
+        })
+    }
+
+    function layHand() {
+        heroCards.forEach((card,id)=>{
+            card.moveAt(SHUFFLERX,SHUFFLERY);
+            card.show();
+        })
+    }
+
+    this.initialize=()=>{
+
+        table = document.createElement("div");
+        document.body.appendChild(table);
+        let shuffler = addShuffler(SHUFFLERX,SHUFFLERY,SHUFFLERWIDTH,SHUFFLERHEIGHT);
+
+        let seed = 5;
+
+        let heroPrinter = new HeroPrinter({
+            seed:seed,
+            classType:"swordsman",
+            //noRandom:true,
+            //noPerks:true,
+            //noSkills:true,
+            //testSkill:"basicAttack1"
+        });
+        heroPrinter.print({
+            language:GAMELANGUAGE,
+            root:"../"
+            },print=>{
+            cutCards(print,canvaslist=>{
+                heroCards=canvaslist;
+                let overworldPrinter = new OverworldPrinter({
+                    seed:seed,
+                    //noRandom:true,
+                    //noPerks:true,
+                    //noSkills:true,
+                    //testSkill:"basicAttack1"
+                });
+                overworldPrinter.print({
+                    language:GAMELANGUAGE,
+                    root:"../"
+                },print=>{
+                    cutCards(print,canvaslist=>{
+                        mapCards = canvaslist;
+                        layMap();
+                        layHand();
+                        initializeUi();
+                        shuffler.shuffle();
+                        addPawn(startingCard.x+((startingCard.width-PAWNSIZE)/2),startingCard.y+PAWNGAPY);
+                        let levelCounter = addCounter(COUNTERSX,COUNTERSY,"LEVEL",2,(value)=>{
+                            if (value<2) return 2;
+                            else if (value>9) return 9;
+                            else return value;
+                        });
+                        addCounter(COUNTERSX+COUNTERSWIDTH+10,COUNTERSY,"MANA",0,(value)=>{
+                            if (value<0) return 0;
+                            else if (value>levelCounter.value) return levelCounter.value;
+                            else return value;
+                        });
+                        addCounter(COUNTERSX+(COUNTERSWIDTH+10)*2,COUNTERSY,"ATK",0,(value)=>{
+                            if (value<0) return 0;
+                            else return value;
+                        });
+                        addCounter(COUNTERSX+(COUNTERSWIDTH+10)*3,COUNTERSY,"DEF",0,(value)=>{
+                            if (value<0) return 0;
+                            else return value;
+                        });
+                    });
+                })
+            });
+        });
+
+    }
+
+}
+
+function onl() {
+
+    let player = new Player();
+    player.initialize();
+
+}
+
+</script>

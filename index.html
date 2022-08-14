@@ -1,0 +1,175 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Travelers Of Stampadia</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/Seshat/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="style/Ferrum/stylesheet.css">
+    <script src="js/config.js"></script>
+    <script src="js/webpages.js"></script>
+
+    <script src="js/jspdf.umd.min.js"></script>
+    <script src="js/svg2pdf.umd.min.js"></script>
+    <script src="js/fonts/Seshat-normal.js"></script>
+    <script src="js/fonts/Ferrum-normal.js"></script>
+
+    <script src="js/tools.js"></script>
+    <script src="js/random.js"></script>
+    <script src="js/languages.js"></script>
+    <script src="js/cardprinter.js"></script>
+    <script src="js/svg.js"></script>
+
+    <script src="js/consts/action/models.js"></script>
+    <script src="js/consts/avatar/models.js"></script>
+
+    <script src="js/databases/hero/classes/swordsman.js"></script>
+    <script src="js/databases/hero/classes/elementalist.js"></script>
+    <script src="js/databases/hero/perks.js"></script>
+    <script src="js/databases/narrative/villains.js"></script>
+    <script src="js/databases/narrative/enemies.js"></script>
+    <script src="js/databases/narrative/names.js"></script>
+    <script src="js/databases/enemy/bonuses.js"></script>
+    <script src="js/databases/enemy/bonusslots.js"></script>
+    <script src="js/databases/enemy/modifiers.js"></script>    
+    <script src="js/databases/dungeon/events.js"></script>
+    <script src="js/databases/dungeon/mainquests.js"></script>
+    <script src="js/databases/dungeon/sidequests.js"></script>
+    <script src="js/databases/dungeon/mapskins.js"></script>
+    <script src="js/databases/overworld/enemies.js"></script>
+    <script src="js/databases/overworld/events.js"></script>
+    <script src="js/databases/overworld/mainquests.js"></script>
+    <script src="js/databases/overworld/sidequests.js"></script>
+
+    <script src="js/generators/hero.js"></script>
+    <script src="js/generators/skill.js"></script>
+    <script src="js/generators/narrative.js"></script>
+    <script src="js/generators/dungeon.js"></script>
+    <script src="js/generators/overworld.js"></script>
+    <script src="js/generators/avatar.js"></script>
+    <script src="js/generators/enemy.js"></script>
+    <script src="js/generators/action.js"></script>
+
+    <script src="js/printers/hero.js"></script>
+    <script src="js/printers/dungeon.js"></script>
+    <script src="js/printers/overworld.js"></script>
+
+    <script src="js/pack/packgenerator.js"></script>
+    
+</head><body onload="onl()">
+    <div id="language"></div>
+    <div id="cardshadow"></div>
+    <div id="cardcontainer"></div>
+    <div id="cardunwrap">
+        <div class="star"></div>
+        <div id="startext"></div>
+    </div>
+    <div id="unwrappingmessage">
+        <div id="unwrappingmessagecontent"></div>
+    </div>
+    <div id="unwrappedmessage">
+        <div id="unwrappedmessagecontent"></div>
+    </div>
+    <div id="packunwrapper"></div>
+    <div id="footer"></div>
+</body></html>
+<script>
+
+function onl() {
+
+    let
+        busy = false,
+        manualLink,
+        showTimeout,
+        settings;
+
+    function setLanguage(lang) {
+        if (!busy) {
+            if (CONFIG.languagesList.indexOf(lang) == -1) lang=CONFIG.languageDefault;
+            manualLink = "manuals/manual-"+lang+".pdf";
+            settings.language=lang;
+            saveSettings(settings);
+            document.getElementById("language").className="";
+            document.getElementById("cardcontainer").className="";
+            document.getElementById("cardshadow").className="";
+            document.getElementById("cardunwrap").className="";
+            document.getElementById("unwrappedmessage").className="";
+            document.getElementById("unwrappingmessage").className="";
+            document.getElementById("packunwrapper").style.display="none";
+            if (showTimeout) showTimeout = 0;
+            showTimeout=setTimeout(()=>{
+                document.getElementById("cardcontainer").style.backgroundImage = "url('images/boosters/" + lang + ".png')";
+                document.getElementById("language").innerHTML = LANGUAGES[lang].name;
+                document.getElementById("startext").innerHTML = LANGUAGES[lang].homepage.unwrap;
+                document.getElementById("footer").innerHTML=getCreditsLine(lang);
+                showTimeout=setTimeout(()=>{
+                    document.getElementById("packunwrapper").style.display="block";
+                    document.getElementById("language").className="show";
+                    document.getElementById("cardshadow").className="show";
+                    document.getElementById("cardcontainer").className="show";
+                    showTimeout=setTimeout(()=>{
+                        document.getElementById("cardunwrap").className="show";
+                    },500);
+                },500)
+            },500)
+        }
+    }
+
+    function unwrap() {
+        if (!busy) {
+            let unwrappingMessages = LANGUAGES[settings.language].homepage.unwrapping;
+            busy = true;
+            document.getElementById("language").className="";
+            document.getElementById("cardcontainer").className="";
+            document.getElementById("cardshadow").className="";
+            document.getElementById("cardunwrap").className="";
+            document.getElementById("packunwrapper").style.display="none";
+            document.getElementById("unwrappingmessage").className="show";
+            document.getElementById("unwrappingmessagecontent").innerHTML="<p><span class=\"header accent\">"+LANGUAGES[settings.language].homepage.pleaseWait+"</span></p><p>"+unwrappingMessages[Math.floor(Math.random()*unwrappingMessages.length)]+"</p>";
+
+            setTimeout(()=>{
+                let packGenerator = new PackGenerator();
+                packGenerator.generate({
+                    language:settings.language
+                },(status)=>{
+                    if (status == "done") {
+                        let message="";
+                        LANGUAGES[settings.language].homepage.instructions.forEach(line=>{
+                            message += "<p>"+
+                                line.replace(/\{title\}/g,"<span class=\"accent\">"+CONFIG.title+"</span>")
+                                .replace(/\{manualLink\}/g,"<a target=\"_blank\" href=\""+manualLink+"\">")
+                                .replace(/\{endManualLink\}/g,"</a>")
+                                .replace(/\{accent\}/g,"<span class=\"accent\">")
+                                .replace(/\{endAccent\}/g,"</span>")
+                                .replace(/\{header\}/g,"<span class=\"header\">")
+                                .replace(/\{endHeader\}/g,"</span>")
+                                +"</p>";
+                        });
+                        document.getElementById("language").className="show";
+                        document.getElementById("unwrappingmessage").className="";
+                        document.getElementById("unwrappedmessagecontent").innerHTML = message;
+                        document.getElementById("unwrappedmessage").className="show";
+                        busy = false;
+                    }
+                });
+            },500);
+        }
+    }
+
+    document.getElementById("language").onclick=function() {
+        setLanguage(CONFIG.languagesList[(CONFIG.languagesList.indexOf(settings.language)+1) % CONFIG.languagesList.length]);
+    }
+
+    document.getElementById("packunwrapper").onclick=function() {
+        unwrap();
+    }
+
+    settings = loadSettings();
+
+    document.title = CONFIG.title;
+
+    setLanguage(settings.language);
+
+}
+</script>

@@ -1,0 +1,99 @@
+<html><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Travelers Of Stampadia</title>
+    <link rel="stylesheet" href="style/style-learn.css">
+    <link rel="stylesheet" type="text/css" href="style/Seshat/stylesheet.css">
+    <script src="js/config.js"></script>
+    <script src="js/webpages.js"></script>
+    <script src="js/languages.js"></script>
+
+</head><body onload="onl()">
+    <div id="language"></div>
+    <div id="body">
+        <a href="index.html" class="logo"></a>
+        <p class="translatable" id="learnHowToPlayTheGame"></p>
+        <div class="divider"></div>
+        <h1><span class="translatable" id="theGameManual"></span></h1>
+        <div class="block">
+			<div class="image"><a class="manualLink" href="#"><div class="preview manual"></div></a></div>
+			<div class="description">
+				<p class="translatable" id="readTheManual"></p>
+			</div>
+		</div>
+        <div class="divider"></div>
+        <h1><span class="translatable" id="faqs"></span></h1>
+        <div id="faqsbox"></div>
+        <div class="divider"></div>
+        <div id="credits"></div>
+    </div>
+</body></html>
+<script>
+
+function onl() {
+
+    let manualLink;
+
+    function formatText(text) {
+        return text.replace(/\{title\}/g,"<span class=\"accent\">"+CONFIG.title+"</span>")
+            .replace(/\{anchor\}/g,"<a target=\"_blank\" href=\"")
+            .replace(/\{anchorBody\}/g,"\">")
+            .replace(/\{endAnchor\}/g,"</a>")
+            .replace(/\{manualLink\}/g,"<a target=\"_blank\" href=\""+manualLink+"\">")
+            .replace(/\{endManualLink\}/g,"</a>")
+            .replace(/\{accent\}/g,"<span class=\"accent\">")
+            .replace(/\{endAccent\}/g,"</span>")
+            .replace(/\{header\}/g,"<span class=\"header\">")
+            .replace(/\{endHeader\}/g,"</span>");
+    }
+
+    function setLanguage(lang) {
+
+        let
+            faqHtml="",
+            language = LANGUAGES[lang].homepage,
+            translatables = document.getElementsByClassName("translatable"),
+            manualLinks = document.getElementsByClassName("manualLink");
+
+        settings.language=lang;
+        saveSettings(settings);
+
+        manualLink = "manuals/manual-"+lang+".pdf";
+        document.getElementById("language").innerHTML = LANGUAGES[lang].name;
+
+        document.title = CONFIG.title + " - " + language.learnHowToPlay;
+        
+        for (let i=0;i<translatables.length;i++)
+            translatables[i].innerHTML = formatText(language[translatables[i].id]);
+        
+        for (let i=0;i<manualLinks.length;i++)
+            manualLinks[i].href = manualLink;
+
+        document.getElementById("credits").innerHTML = getCreditsLine(lang);
+
+        language.faqsList.forEach(faq=>{
+            faqHtml+="<h2>"+faq.section+"</h2>";
+            faq.questions.forEach(question=>{
+                faqHtml+="<div class=\"q\">Q: "+formatText(question.q)+"</div>";
+                faqHtml+="<div class=\"a\">A: "+formatText(question.a)+"</div>";
+            });
+        });
+
+        document.getElementById("faqsbox").innerHTML=faqHtml;
+
+
+    }
+
+    document.getElementById("language").onclick=function() {
+        setLanguage(CONFIG.languagesList[(CONFIG.languagesList.indexOf(settings.language)+1) % CONFIG.languagesList.length]);
+    }
+
+    settings = loadSettings();
+
+    setLanguage(settings.language);
+
+
+}
+</script>

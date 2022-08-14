@@ -1,0 +1,435 @@
+<html><head>
+    <title>TOS Translation Tool</title>
+    <meta charset="UTF-8">
+    <script src="../../js/languages.js"></script>
+</head><body onload="onl()">
+    <h2>TOS Language tool</h2>
+    <p>To add a new language, add an item to the <tt>ALLLANGUAGES</tt> array in this file.</p>
+    <h3>Starting language</h3>
+    <p id="startinglanguage"></p>
+    <h3>Full dictionaries</h3>
+    <p>Open dictionaries as ISO-88591-1.</p>
+    <p id="dictionaries"></p>
+    <h3>Missing/wrong keys sub-dictionaries</h3>
+    <p id="missingkeys"></p>
+    <h3>Import &amp; merge dictionaries</h3>
+    <p>Save your dictionary file as UTF-8 CSV.</p>
+    <input type="file" id="file-input" />
+    <p>An updated <tt>languages.js</tt> will be generated below. Replace it with the one in <tt>js/</tt> folder.</p>
+    <p id="importwarns"></p>
+    <h4>languages.js</h4>
+    <textarea id="outputjs"></textarea><br>
+    <input type="button" onclick="regenerateLanguage()" value="Generate now">
+</body></html>
+<script>
+
+const ALLLANGUAGES = [ "it", "en" ];
+
+let diffs;
+
+var decodeEntities = (function() {
+  // this prevents any overhead from creating the object each time
+  var element = document.createElement('div');
+
+  function decodeHTMLEntities (str) {
+    if(str && typeof str === 'string') {
+      // strip script/html tags
+      str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+      str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+      element.innerHTML = str;
+      str = element.textContent;
+      element.textContent = '';
+    }
+
+    return str;
+  }
+
+  return decodeHTMLEntities;
+})();
+
+function readSingleFile(e) {
+  var file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var contents = e.target.result;
+    displayContents(contents);
+  };
+  reader.readAsText(file);
+}
+
+function splitCsvLine(textline) {
+    let
+        line=[],
+        id=0,
+        cellId=0,
+        stringMode=false,
+        cell="";
+
+    while (id<textline.length) {
+        let ch=textline[id];
+        if (cellId == 0) {
+            if (ch == ",") {
+                line.push(cell);
+                cell="";
+                cellId=-1;
+            } else if (ch == "\"") stringMode=true;
+            else cell+=ch;
+        } else {
+            if (ch == ",")
+                if (stringMode) cell+=ch;
+                else {
+                    line.push(cell);
+                    cell="";
+                    cellId=-1;
+                }
+            else if (ch == "\"")
+                if (textline[id+1]=="\"") {
+                    cell+="\"";
+                    id++;
+                    cellId++;
+                } else stringMode=false;
+            else cell+=ch;
+        }
+        id++;
+        cellId++;
+    }
+    line.push(cell);
+    return line;
+    
+}
+
+function getKeyValue(from,key) {
+    let dest=key.split(".");
+    for (let i=1;i<dest.length;i++) {
+        let sub=dest[i];
+        if (sub[0]=="-" || sub[0]=="_") sub=sub.substr(1);
+        if (from[sub] === undefined)
+            return false;
+        else
+            from=from[sub];
+    }
+    return from;
+}
+
+function setKeyValue(from,key,value) {
+    let
+        dest=key.split("."),
+        limit=dest.length-1;
+    if (value==undefined) limit++;
+    for (let i=1;i<limit;i++) {
+        let sub=fullsub=dest[i];
+        if (sub[0]=="-" || sub[0]=="_") sub=sub.substr(1);
+        if (from[sub])
+            from=from[sub];
+        else {
+            if (fullsub[0]=="-") from[sub]=[];
+            else from[sub]={};
+            from=from[sub];
+        }
+    }
+    if (value!==undefined)
+        from[dest[dest.length-1]]=value;
+    return from;
+}
+
+function symbolsOnly(line) {
+    return line.replace(/\.\.\./g,"").replace(/[a-zA-Z0-9'àéèòùì\-,È ]/g,"");
+}
+
+function specialOnly(line) {
+    let out=[];
+    line.replace(/\{[^}]*\}/g,match=>{
+        out.push(match);
+    })
+    return out.join(" ");
+}
+
+function displayContents(contents) {
+  let
+    lines=contents.replace(/\r/g,"").split("\n"),
+    warns=[],
+    from,
+    dest;
+  lines.forEach((rawline,id)=>{
+    line=splitCsvLine(rawline);
+    if (id == 0) {
+        dest=line[2];
+        from=line[1];
+        if (!LANGUAGES[dest]) LANGUAGES[dest]={};
+    } else if (line[0]) {
+            let
+                key=line[0],
+                logline=key+": ",
+                translated=line[2],
+                original=getKeyValue(LANGUAGES[from],key);
+
+            translated=translated.replace(/[“”]/g,"\"");
+            translated=translated.replace(/[…]/g,"...");
+            translated=translated.replace(/[’]/g,"'");
+            
+
+            if (original === false)
+                warns.push(logline+"Key not found in original language.");
+            else {
+
+                original = decodeEntities(original);
+                let vs=" ("+original+" | "+translated+")";
+
+                if (original && translated) {
+
+                    let
+                        symbolsOnlyOriginal = symbolsOnly(original),
+                        symbolsOnlyTranslated = symbolsOnly(translated),
+                        specialOnlyOriginal = specialOnly(original),
+                        specialOnlyTranslated = specialOnly(translated),
+                        symbolsOnlyVs = vs+" ("+symbolsOnlyOriginal+" | "+symbolsOnlyTranslated+")",
+                        specialOnlyVs = vs+" ("+specialOnlyOriginal+" | "+specialOnlyTranslated+")";
+
+                    if (symbolsOnlyOriginal != symbolsOnlyTranslated)
+                        warns.push(logline+"Symbols are not matching"+symbolsOnlyVs);
+
+                    if (specialOnlyOriginal != specialOnlyTranslated)
+                        warns.push(logline+"Specials are not matching"+specialOnlyVs);
+
+                    if (translated.match(/ \.\.\./))
+                        warns.push(logline+"Spaced ellipsis found"+specialOnlyVs);
+
+                    if (translated.match(/  /))
+                        warns.push(logline+"Double spaces found"+specialOnlyVs);
+
+                    setKeyValue(LANGUAGES[dest],key, encodeStr(translated))
+
+                }
+            }
+                
+
+        }
+    })
+
+    let html="<ul>";
+    warns.forEach(warn=>{
+        html+="<li>"+encodeStr(warn)+"</li>";
+    });
+    html+="</ul>";
+
+    document.getElementById("importwarns").innerHTML=html;
+
+    regenerateLanguage();
+    
+
+}
+
+function regenerateLanguage() {
+    let
+        js="const\n\tLANGUAGES={\n";
+        prefix="\t\t";
+    for (var k in LANGUAGES)
+        js+="\t\t\""+k+"\":"+formatLanguage(LANGUAGES[k],prefix)+",\n";
+    js+="\t};";
+
+    document.getElementById("outputjs").value=js;
+}
+
+
+function encodeStr(rawStr) {
+return (rawStr||"").replace(/[\u00A0-\u9999<>\&]/g, function(i) {
+   return '&#'+i.charCodeAt(0)+';';
+});
+}
+
+function quoteCsv(str) {
+    if (!str) str="";
+    return str.replace(/"/g,"\"\"");
+}
+
+function getMissingKeys(to) {
+    let
+        from=document.getElementById("languageselector").value;
+        set = diffs.byLang[to],
+        csv=',"'+from+'","'+to+'"\n';
+    for (let k in set)
+        csv+='"'+k+'","'+quoteCsv(decodeEntities(set[k][from]))+'"\n';
+    
+    var a = document.createElement('a');
+    a.href='data:text/csv;base64,' + btoa(csv);
+    a.click();
+
+}
+
+
+function getDictionary(to) {
+    let
+        from=document.getElementById("languageselector").value;
+        csv=',"'+from+'","'+to+'"\n';
+    for (let k in diffs.keys)
+        csv+='"'+k+'","'+quoteCsv(decodeEntities(diffs.keys[k][from]))+'","'+quoteCsv(decodeEntities(diffs.keys[k][to]))+'"\n';
+    
+    var a = document.createElement('a');
+    a.href='data:text/csv;base64,' + btoa(csv);
+    a.click();
+
+}
+
+function formatLanguage(lang,prefix) {
+    let out="";
+    if (!prefix) prefix="";
+    switch (typeof lang) {
+        case "object":{
+            if (lang.length === undefined) {
+                out+="{\n";
+                for (var k in lang) {
+                    out+=prefix+"\t\""+k+"\":"+formatLanguage(lang[k],prefix+"\t")+",\n";
+                }
+                out+=prefix+"}";
+                break;
+            } else {
+                out+="[\n";
+                lang.forEach(itm=>{
+                    out+=prefix+"\t"+formatLanguage(itm,prefix+"\t")+",\n";
+                })
+                out+=prefix+"]";
+                break;
+            }
+            break;
+        }
+        case "string":{
+            out="\""+lang.replace(/"/g,"\\\"").replace(/\n/g,"\\n")+"\"";
+            break;
+        }
+        default:{
+            out=lang;
+            break;
+        }
+    }
+    return out;
+}
+
+function onl() {
+
+    function compareKeys(a,aid,b,bid,diffs,root) {
+        if (!diffs) diffs = {
+            warnsByLang:{},
+            missingKeys:{},
+            byLang:{},
+            keys:{}
+        };
+        if (!root) root="";
+        for (let id in a) {
+            let subkey=root+"."+(typeof a[id]=="object"?a[id].length === undefined?"_":"-":"")+id;
+            if (typeof a[id] == "object") {
+                let isEmpty=true;
+                for (let i in a[id]) {
+                    isEmpty = false;
+                    break;
+                }
+                if (isEmpty)
+                    setKeyValue(LANGUAGES[bid],subkey);
+                else
+                    compareKeys(a[id],aid,b?b[id]:undefined,bid,diffs,subkey);
+            } else {
+                if ((typeof a[id] == "string") && a[id].trim()) {
+                    let error=false;
+                    if ((b === undefined) || (b[id] === undefined)) error=true;
+                    else {
+                        let
+                            original = decodeEntities(a[id]),
+                            translated = decodeEntities(b[id]),
+                            logline=subkey+": ",
+                            vs=" ("+original+" | "+translated+")",
+                            symbolsOnlyOriginal = symbolsOnly(original),
+                            symbolsOnlyTranslated = symbolsOnly(translated),
+                            specialOnlyOriginal = specialOnly(original),
+                            specialOnlyTranslated = specialOnly(translated),
+                            symbolsOnlyVs = vs+" ("+symbolsOnlyOriginal+" | "+symbolsOnlyTranslated+")",
+                            specialOnlyVs = vs+" ("+specialOnlyOriginal+" | "+specialOnlyTranslated+")";
+
+                        if (!diffs.warnsByLang[bid]) diffs.warnsByLang[bid] = [];
+
+                        if (symbolsOnlyOriginal != symbolsOnlyTranslated) {
+                            diffs.warnsByLang[bid].push(logline+"Symbols are not matching with "+aid+symbolsOnlyVs);
+                            error = true;
+                        }
+
+                        if (specialOnlyOriginal != specialOnlyTranslated) {
+                            diffs.warnsByLang[bid].push(logline+"Specials are not matching with "+aid+specialOnlyVs);
+                            error = true;
+                        }
+                            
+                    }
+
+                    if (!diffs.keys[subkey]) diffs.keys[subkey]={};
+                    diffs.keys[subkey][aid]=a[id];
+
+                    if (error) {
+                        if (!diffs.missingKeys[bid]) diffs.missingKeys[bid]=0;
+                        if (!diffs.byLang[bid]) diffs.byLang[bid]={};
+                        if (!diffs.byLang[bid][subkey]) {
+                            diffs.byLang[bid][subkey]={};
+                            diffs.missingKeys[bid]++;
+                        }
+                        diffs.byLang[bid][subkey][aid]=a[id];
+                    }
+                } else {
+                    console.log(subkey,a[id]);
+                    setKeyValue(LANGUAGES[bid],subkey,a[id]);
+                }
+            }
+        }
+        return diffs;
+    }
+
+
+    ALLLANGUAGES.forEach(l1=>{
+        ALLLANGUAGES.forEach(l2=>{
+            if (l1!=l2) {
+                if (!LANGUAGES[l2]) LANGUAGES[l2]={};
+                diffs = compareKeys(LANGUAGES[l1],l1,LANGUAGES[l2],l2,diffs);
+            }
+        });
+    });
+
+    console.log(diffs);
+
+    let html="";
+
+    html="<select id='languageselector'>"
+    ALLLANGUAGES.forEach(l=>{
+        html+="<option value='"+l+"'>"+(LANGUAGES[l].name||l)+"</option>";
+    })
+    html+="</select>";
+    document.getElementById("startinglanguage").innerHTML = html;
+
+    html="<ul>";
+    ALLLANGUAGES.forEach(id=>{
+        html+="<li><b>"+(LANGUAGES[id].name||id)+"</b>:<input type='button' onclick='getDictionary(\""+id+"\")' value='Get dictionary'></li>";
+    });
+    html+="</ul>";
+    document.getElementById("dictionaries").innerHTML = html;
+
+    html="<ul>";
+    let noErrors=true;
+    for(let id in diffs.missingKeys)  {
+        noErrors=false;
+        html+="<li><b>"+(LANGUAGES[id].name||id)+"</b>: "+diffs.missingKeys[id]+" key(s) missing/wrong <input type='button' onclick='getMissingKeys(\""+id+"\")' value='Get dictionary'>";
+        if (diffs.warnsByLang[id]) {
+            html+="<ul>";
+            diffs.warnsByLang[id].forEach(warn=>{
+                html+="<li>"+encodeStr(warn)+"</li>";
+            })
+            html+="</ul>";
+        }
+        html+="</li>";
+    }
+    html+="</ul>";
+
+    document.getElementById("missingkeys").innerHTML = noErrors ? "Everything is OK." : html;
+
+        
+    document.getElementById('file-input')
+    .addEventListener('change', readSingleFile, false);
+    
+}
+</script>
