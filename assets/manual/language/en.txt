@@ -513,14 +513,14 @@ Some sentences may start with **Pay**: to execute the rest of the sentence you m
 
 Finally, any condition **must be satisfied just when it's {activate-past-singular}** and is not needed to be satisfied after: for example, if a card requires you to have a specific {constellation} {inplay} to perform an action, that action may change the cards {inplay} so that {constellation} is no longer {inplay}. This behavior is legit.
 
-# {constellation-plural}, {element-plural} e {banner-plural}
+# {constellation-plural}, {element-plural} and {banner-plural}
 
 Some cards may ask you to have specific {constellation-plural}, {element-plural}, and {banner-plural} {inplay}. You can usually tell that by looking at the symbols on the cards {inplay} ignoring the cards used to {action-strain}. That's what you've to do:
 
 {image symbols}
 
 {listStart}
-**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} e 1 {constellation} with the length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the leftmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
+**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} and 1 {constellation} with the length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the leftmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
 {listItemNext}
 **{element-plural}** {symbol 2}: the {element-plural} {inplay} are all of the elements on the left and below the {card-open}. In the example, there are 2 {element-plural} {symbol heroCardWaterSmallSymbol} and 2 {element-plural} {symbol heroCardFireSmallSymbol} {inplay}.
 {listItemNext}
@@ -691,7 +691,7 @@ In the {phase-restore} phase, after restoring the {card-status} {tracked-plural}
 
 Some {instruction-plural} may refer to symbols "**{map-on}**". A symbol is {map-on} **if the containing {card-room} isn't in the {card-room-plural} deck and it's on the table** {symbol 1}. Moreover, **that {card-room} must show the symbol with the exact required orientation** {symbol 2}: for example, the {symbol icon-symbol-a1} symbol is different from the {symbol icon-symbol-a2}, {symbol icon-symbol-a3}, and {symbol icon-symbol-a4} symbols.
 
-# {adventure-world}: "For 1 time"
+# {adventure-dungeon}: "For 1 time"
 
 Some {instruction-plural} may show the wording: "**For 1 time**". The following action must (or may) be performed **only once per game** and can't be repeated: if it has been already performed the sentence must be ignored. Each {instruction} has a maximum of 1 "For 1 time" so you can place a {token} on the {card-index} on the matching {instruction} symbol to mark it as already performed.
 
