@@ -24,8 +24,21 @@ A, .accent {
     color:#f00;
 }
 
+SELECT {
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 2px;
+    font-family: Seshat;
+    font-size: 20px;
+}
+
 .header {
+    display: inline-block;
     font-weight: bold;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 #packunwrapper {
@@ -80,7 +93,7 @@ A, .accent {
     font-family: Ferrum;
 }
 
-#unwrappedmessage, #unwrappingmessage {
+#unwrappedmessage, #unwrappingmessage, #settingsmessage {
     position: absolute;
     left: 0;
     right: 0;
@@ -96,11 +109,11 @@ A, .accent {
     transform: translate(0,200%);
 }
 
-#unwrappedmessage {
+#unwrappedmessage, #settingsmessage {
     z-index: 40;
 }
 
-#unwrappedmessagecontent, #unwrappingmessagecontent {
+#unwrappedmessagecontent, #unwrappingmessagecontent, #settingsmessagecontent {
     max-width: 50%;
     padding:10px;
     background-color: #fff;
@@ -116,7 +129,7 @@ A, .accent {
     transform: rotate(5deg) translate(0,0);
 }
 
-#unwrappedmessage.show {
+#unwrappedmessage.show, #settingsmessage.show {
     transform: translate(0,0);
 }
 
@@ -140,28 +153,41 @@ A, .accent {
     text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
-#language {
+.notes {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size:14px;    
+}
+
+#topbar, #confirmbar {
+    white-space: nowrap;
     z-index: 100;
     transition: all 0.5s;
     position: absolute;
     top:0;
-    right:20px;
+    right:20px;    
+    user-select: none;
+    transform: translate(0,-200%);
+}
+
+#topbar.show, #confirmbar.show {
+    transform: none;
+}
+
+#language, #settings, #confirm {
+    vertical-align: text-top;
+    display: inline-block;
     padding:10px;
+    transition: all 0.5s;
     background-color: #fff;
     border-left:3px solid #f00;
     border-right:3px solid #f00;
     border-bottom:3px solid #f00;
     cursor:pointer;
-    user-select: none;
     box-shadow: 0px 5px 5px rgba(0,0,0,0.5);
-    transform: translate(0,-200%);
 }
 
-#language.show {
-    transform: none;
-}
-
-#language:hover {
+#language:hover, #settings:hover {
     padding-top:20px;
 }
 
@@ -216,11 +242,8 @@ A, .accent {
         right:50px;
     }
 
-	#unwrappedmessagecontent, #unwrappingmessagecontent {
+	#unwrappedmessagecontent, #unwrappingmessagecontent, #settingscontent {
         font-size: 16px;
-    }
-
-    #unwrappedmessagecontent, #unwrappingmessagecontent {
         max-width: 80%;
     }
     

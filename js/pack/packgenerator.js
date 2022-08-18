@@ -1,3 +1,12 @@
+const GENERATORMODES=[
+    {
+        id:"default",
+        settings:[{ flipX:false, noBorder:false, noCode:false }, { flipX:false, noBorder:false, noCode:false }]
+    },{
+        id:"doublesided",
+        settings:[{ flipX:false, noBorder:false, noCode:false }, { flipX:true, noBorder:true, noCode:true }] 
+    }
+];
 
 function PackGenerator(timestamp) {
 
@@ -19,7 +28,10 @@ function PackGenerator(timestamp) {
 
     let
         busy=false,
+        modesById={},
         date=new Date(timestamp);
+
+    GENERATORMODES.forEach(mode=>{ modesById[mode.id]=mode; });
 
     console.log("SEED",timestamp);
 
@@ -83,7 +95,9 @@ function PackGenerator(timestamp) {
 
     this.generate = function(settings,cb) {
         if (busy) return;
+        if (!modesById[settings.printMode]) settings.printMode="default";
         let
+            mode=modesById[settings.printMode],
             adventure=getRandomLoop(ADVENTURE,0),
             classType=getRandomLoop(HEROCLASSES,1000),
             serial="TOS"+padNumber(date.getFullYear(),4)+padNumber(date.getDate(),2)+padNumber(date.getMonth()+1,2);
@@ -97,6 +111,8 @@ function PackGenerator(timestamp) {
 
         busy=true;
         cb("generatingHero");
+        for (var k in mode.settings[0])
+            settings[k]=mode.settings[0][k];
 
         heroPrinter.print(settings,heroPrint=>{
             
@@ -123,6 +139,8 @@ function PackGenerator(timestamp) {
 
             if (adventurePrinter) {
                 cb("generatingAdventure");
+                for (var k in mode.settings[1])
+                    settings[k]=mode.settings[1][k];
                 adventurePrinter.print(settings,adventurePrint=>{
                     generatePdf(cb, serial+"-"+settings.language+".pdf", [ heroPrint, adventurePrint ]);
                 });

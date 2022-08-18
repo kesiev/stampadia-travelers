@@ -59,7 +59,10 @@ function onl() {
 
     overworldPrinter.print({
         language:"it",
-        root:"../"
+        root:"../",
+        // flipX:true,
+        // noBorder:true,
+        // noCode:true
     },print=>{
         let
             out=print.svg.getSVG(),
@@ -70,7 +73,7 @@ function onl() {
         document.body.appendChild(page);
 
         // print.svg.downloadPDF("sample-overworld.pdf");
-        print.svg.downloadSVG("sample-overworld.svg");
+        // print.svg.downloadSVG("sample-overworld.svg");
     });
 
 }

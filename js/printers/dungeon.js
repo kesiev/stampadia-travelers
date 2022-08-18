@@ -14,7 +14,7 @@ function DungeonPrinter(modifiers) {
         };
         
   
-    function printMapCard(svg,language,narrative,translatedNarrative,x,y,data) {
+    function printMapCard(settings,svg,language,narrative,translatedNarrative,x,y,data) {
 
         let
             cardPrinter=new CardPrinter(svg,"dungeonCard",x,y),
@@ -77,15 +77,21 @@ function DungeonPrinter(modifiers) {
                 cardPrinter.addStencil("dungeonSymbol"+symbol.id,"topSymbol",rulers.tiles[symbol.y][symbol.x].cell,symbol.angle);
             })
 
-        cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
+        if (!settings.noCode)
+            cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
         
         cardPrinter.delete([
             "dungeonCardBorder"
         ]);
 
+        if (settings.noBorder)
+            cardPrinter.delete([
+                "dungeonCardCutout"
+            ]);
+
     }
 
-    function printLegendCard(svg,language,narrative,translatedNarrative,x,y,data,page) {
+    function printLegendCard(settings,svg,language,narrative,translatedNarrative,x,y,data,page) {
         let
             labels=language.dungeonCards,
             cardPrinter=new CardPrinter(svg,"dungeonLegendCard",x,y),
@@ -240,11 +246,18 @@ function DungeonPrinter(modifiers) {
             cardPrinter.addText(legendTextSettings,rulers.blocks[i],note.symbol+": "+triggerSymbol+text.trim());
         });
 
-        cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
+        if (!settings.noCode)
+            cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
         
         cardPrinter.delete([
             "dungeonLegendCardBorder"
         ]);
+
+        if (settings.noBorder)
+            cardPrinter.delete([
+                "dungeonLegendCardCutout"
+            ]);
+
     }
 
     this.print=(settings,then)=>{
@@ -264,16 +277,16 @@ function DungeonPrinter(modifiers) {
 
             for (let id=0;id<9;id++) {
                 let
-                    x=id%3,
+                    x=settings.flipX?2-id%3:id%3,
                     y=Math.floor(id/3),
                     dx=borderLeft+((CARDWIDTH+CARDSPACING)*x),
                     dy=borderTop+((CARDHEIGHT+CARDSPACING)*y);
                 cards.push({x:dx,y:dy,width:CARDWIDTH,height:CARDHEIGHT});
                 if (id<lastMapCard)
-                    printMapCard(svg,language,dungeon.narrative,translatedNarrative,dx,dy,dungeon.cards[id]);
+                    printMapCard(settings,svg,language,dungeon.narrative,translatedNarrative,dx,dy,dungeon.cards[id]);
                 else {
                     let indexPage=id-lastMapCard;
-                    printLegendCard(svg,language,dungeon.narrative,translatedNarrative,dx,dy,dungeon.flatSymbolsIndex[indexPage],indexPage);
+                    printLegendCard(settings,svg,language,dungeon.narrative,translatedNarrative,dx,dy,dungeon.flatSymbolsIndex[indexPage],indexPage);
                 }
             }
 

@@ -19,6 +19,19 @@ const
 					"Se non hai mai giocato puoi imparare come preparare il tuo primo set e giocare la tua prima avventura leggendo il {accent}manuale di gioco{endAccent} che trovi {manualLink}qui{endManualLink}.",
 					"C'&egrave; un nuovo pacchetto di carte {title} ogni giorno per cui, se vuoi espandere il tuo gioco con nuovi eroi e nuove avventure, ci vediamo qui domani!",
 				],
+				"settings":"Opzioni",
+				"confirm":"OK",
+				"printMode":"Modalit&agrave; di stampa",
+				"printModes":{
+					"default":{
+						label:"Default",
+						description:"Il PDF deve essere stampato su 2 diversi fogli A4 che devono poi essere tagliati e costruiti usando 9 bustine per carte da gioco e 9 carte da poker o cartoncini rettangolari seguendo le istruzioni del manuale di gioco. In questo modo le carte sono pi&ugrave; carine, solide e facili da mescolare ma richiedono pi&ugrave; lavoro per essere assemblate."
+					},
+					"doublesided":{
+						label:"Fronte-retro",
+						description:"Il PDF deve essere stampato sulle 2 facce dello stesso foglio A4 sul lato lungo e semplicemente ritagliato lungo le righe tratteggiate. In questo modo le carte potrebbero non risultare perfettamente centrate, sono meno solide e pi&ugrave; difficili da mescolare ma sono di gran lunga pi&ugrave; facili da assemblare."
+					}
+				},
 				"learnHowToPlayTheGame":"Impara a giocare a {title}!",
 				"theGameManual":"Il Manuale di Gioco",
 				"readTheManual":"Leggi {manualLink}questo manuale{endManualLink} per sapere tutto quello che serve per esplorare e combattere nel mondo di {accent}Stampadia{endAccent}!",
@@ -1922,6 +1935,19 @@ const
 					"If you're new to the game, you can learn how to prepare your first set and play your first adventure on the {accent}game manual{endAccent} {manualLink}here{endManualLink}.",
 					"There is a new pack of {title} cards every day, so if you want to expand your game with new heroes and adventures, see you here tomorrow!",
 				],
+				"settings":"Settings",
+				"confirm":"OK",
+				"printMode":"Print mode",
+				"printModes":{
+					"default":{
+						label:"Default",
+						description:"The PDF must be printed on 2 different A4 sheets, cut, and constructed using 9 card sleeves and 9 poker cards or cardboard rectangles following the game manual instructions. This way the cards are nicer, solid, and easier to shuffle but they need more work to be assembled."
+					},
+					"doublesided":{
+						label:"Double-sided",
+						description:"The PDF must be printed on 2 sides of the same A4 sheet on the long edge and just cut following the dashed lines. This way the cards may not be exactly centered, less solid, and a little harder to shuffle but they are way faster to assemble."
+					}
+				},
 				"learnHowToPlayTheGame":"Learn how to play {title}!",
 				"theGameManual":"The Game Manual",
 				"faqs":"FAQs",

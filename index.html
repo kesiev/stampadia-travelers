@@ -58,7 +58,13 @@
     <script src="js/pack/packgenerator.js"></script>
     
 </head><body onload="onl()">
-    <div id="language"></div>
+    <div id="topbar">
+        <div id="settings"></div>
+        <div id="language"></div>
+    </div>
+    <div id="confirmbar">
+        <div id="confirm"></div>
+    </div>
     <div id="cardshadow"></div>
     <div id="cardcontainer"></div>
     <div id="cardunwrap">
@@ -71,6 +77,9 @@
     <div id="unwrappedmessage">
         <div id="unwrappedmessagecontent"></div>
     </div>
+    <div id="settingsmessage">
+        <div id="settingsmessagecontent"></div>
+    </div>
     <div id="packunwrapper"></div>
     <div id="footer"></div>
 </body></html>
@@ -82,7 +91,17 @@ function onl() {
         busy = false,
         manualLink,
         showTimeout,
-        settings;
+        settings,
+        printModeSelector,
+        printModeDescription;
+
+    function createNode(parent,type,className,content) {
+        let node=document.createElement(type);
+        if (className) node.className=className;
+        if (content) node.innerHTML=content;
+        if (parent) parent.appendChild(node);
+        return node;
+    }
 
     function setLanguage(lang) {
         if (!busy) {
@@ -90,22 +109,26 @@ function onl() {
             manualLink = "manuals/manual-"+lang+".pdf";
             settings.language=lang;
             saveSettings(settings);
-            document.getElementById("language").className="";
+            document.getElementById("topbar").className="";
+            document.getElementById("confirmbar").className="";
             document.getElementById("cardcontainer").className="";
             document.getElementById("cardshadow").className="";
             document.getElementById("cardunwrap").className="";
             document.getElementById("unwrappedmessage").className="";
             document.getElementById("unwrappingmessage").className="";
             document.getElementById("packunwrapper").style.display="none";
+            document.getElementById("settingsmessage").className="";
             if (showTimeout) showTimeout = 0;
             showTimeout=setTimeout(()=>{
                 document.getElementById("cardcontainer").style.backgroundImage = "url('images/boosters/" + lang + ".png')";
+                document.getElementById("settings").innerHTML = LANGUAGES[lang].homepage.settings;
+                document.getElementById("confirm").innerHTML = LANGUAGES[lang].homepage.confirm;
                 document.getElementById("language").innerHTML = LANGUAGES[lang].name;
                 document.getElementById("startext").innerHTML = LANGUAGES[lang].homepage.unwrap;
                 document.getElementById("footer").innerHTML=getCreditsLine(lang);
                 showTimeout=setTimeout(()=>{
                     document.getElementById("packunwrapper").style.display="block";
-                    document.getElementById("language").className="show";
+                    document.getElementById("topbar").className="show";
                     document.getElementById("cardshadow").className="show";
                     document.getElementById("cardcontainer").className="show";
                     showTimeout=setTimeout(()=>{
@@ -116,11 +139,56 @@ function onl() {
         }
     }
 
+    function openSettings() {
+        if (!busy) {
+            let
+                node, row, option,
+                lang=LANGUAGES[settings.language].homepage,
+                content = document.getElementById("settingsmessagecontent");
+            document.getElementById("topbar").className="";
+            document.getElementById("cardcontainer").className="";
+            document.getElementById("cardshadow").className="";
+            document.getElementById("cardunwrap").className="";
+            document.getElementById("unwrappedmessage").className="";
+            document.getElementById("unwrappingmessage").className="";
+            document.getElementById("packunwrapper").style.display="none";
+            document.getElementById("settingsmessage").className="show";
+            document.getElementById("confirmbar").className="show";
+            content.innerHTML="";
+            createNode(content,"span","header accent",lang.settings);
+            row=createNode(content,"div");
+            createNode(row,"span",0,lang.printMode+": ");
+            printModeSelector=createNode(row,"select");
+            printModeSelector.onchange=onPrintModeChange;
+            GENERATORMODES.forEach(mode=>{
+                option = createNode(printModeSelector,"option",0,lang.printModes[mode.id].label);
+                option.value=mode.id;
+                printModeSelector.value=settings.printMode;
+            })
+            printModeDescription = createNode(content,"div","notes");
+            onPrintModeChange();
+            document.getElementById("confirmbar").onclick=function() {
+                setLanguage(settings.language);
+            }
+        }
+    }
+
+    function onPrintModeChange() {
+
+        let lang=LANGUAGES[settings.language].homepage;
+
+        settings.printMode = printModeSelector.value;
+        saveSettings(settings);
+
+        printModeDescription.innerHTML = lang.printModes[settings.printMode].description||"";
+    }
+
     function unwrap() {
         if (!busy) {
             let unwrappingMessages = LANGUAGES[settings.language].homepage.unwrapping;
             busy = true;
-            document.getElementById("language").className="";
+            document.getElementById("topbar").className="";
+            document.getElementById("confirmbar").className="";
             document.getElementById("cardcontainer").className="";
             document.getElementById("cardshadow").className="";
             document.getElementById("cardunwrap").className="";
@@ -131,7 +199,8 @@ function onl() {
             setTimeout(()=>{
                 let packGenerator = new PackGenerator();
                 packGenerator.generate({
-                    language:settings.language
+                    language:settings.language,
+                    printMode:settings.printMode
                 },(status)=>{
                     if (status == "done") {
                         let message="";
@@ -146,7 +215,7 @@ function onl() {
                                 .replace(/\{endHeader\}/g,"</span>")
                                 +"</p>";
                         });
-                        document.getElementById("language").className="show";
+                        document.getElementById("topbar").className="show";
                         document.getElementById("unwrappingmessage").className="";
                         document.getElementById("unwrappedmessagecontent").innerHTML = message;
                         document.getElementById("unwrappedmessage").className="show";
@@ -161,6 +230,10 @@ function onl() {
         setLanguage(CONFIG.languagesList[(CONFIG.languagesList.indexOf(settings.language)+1) % CONFIG.languagesList.length]);
     }
 
+    document.getElementById("settings").onclick=function() {
+        openSettings();
+    }
+
     document.getElementById("packunwrapper").onclick=function() {
         unwrap();
     }
@@ -168,6 +241,8 @@ function onl() {
     settings = loadSettings();
 
     document.title = CONFIG.title;
+    if (!settings.printMode) settings.printMode="default";
+
 
     setLanguage(settings.language);
 

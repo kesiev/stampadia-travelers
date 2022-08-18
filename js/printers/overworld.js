@@ -1,6 +1,6 @@
 function OverworldPrinter(modifiers) {
   
-    function printMapCard(svg,language,narrative,translatedNarrative,x,y,data) {
+    function printMapCard(settings,svg,language,narrative,translatedNarrative,x,y,data) {
 
         const
             MISSINGLABEL="??";
@@ -140,7 +140,7 @@ function OverworldPrinter(modifiers) {
             else return "+"+val;
         }
 
-        function printSide(data,side,istop) {
+        function printSide(settings,data,side,istop) {
 
             let
                 rulers,
@@ -346,17 +346,23 @@ function OverworldPrinter(modifiers) {
 
             if (istop) {
                 cardPrinter.addRect(rulers.halfSeparator,"#000");
-                cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
+                if (!settings.noCode)
+                    cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
             } else
                 cardPrinter.delete(["mapCardTopMarker"]);
         }
         
         cardPrinter.startUpperSide();
-        printSide(data,data.sides[0],true);
+        printSide(settings,data,data.sides[0],true);
         cleanSide();
+        if (settings.noBorder)
+            cardPrinter.delete([
+                "mapCardCutout"
+            ]);
+
 
         cardPrinter.startLowerSide();
-        printSide(data,data.sides[1]);
+        printSide(settings,data,data.sides[1]);
         cleanSide();
         cardPrinter.delete([
             "mapCardCutout"
@@ -380,13 +386,13 @@ function OverworldPrinter(modifiers) {
         
             map.cards.forEach((card,id)=>{
                 let
-                    x=id%3,
+                    x=settings.flipX?2-id%3:id%3,
                     y=Math.floor(id/3),
                     dx=borderLeft+((CARDWIDTH+CARDSPACING)*x),
                     dy=borderTop+((CARDHEIGHT+CARDSPACING)*y);
                 
                 cards.push({x:dx,y:dy,width:CARDWIDTH,height:CARDHEIGHT});
-                printMapCard(svg,language,map.narrative,translatedNarrative,dx,dy,card);
+                printMapCard(settings,svg,language,map.narrative,translatedNarrative,dx,dy,card);
             });
 
             svg.finalize();

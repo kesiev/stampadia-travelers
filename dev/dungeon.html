@@ -47,13 +47,16 @@ function onl() {
     let dungeonPrinter = new DungeonPrinter({
         setSide:"B",
         setCode:"TOS20202020",
-        seed:seed
+        seed:seed,
         // noRandom:true
     });
 
     dungeonPrinter.print({
         language:"en",
-        root:"../"
+        root:"../",
+        // flipX:true,
+        // noBorder:true,
+        // noCode:true
     },print=>{
         let
             out=print.svg.getSVG(),
@@ -63,8 +66,8 @@ function onl() {
         page.innerHTML=out;
         document.body.appendChild(page);
 
-        print.svg.downloadPDF("sample-dungeon.pdf");
-        print.svg.downloadSVG("sample-dungeon.svg");
+        // print.svg.downloadPDF("sample-dungeon.pdf");
+        // print.svg.downloadSVG("sample-dungeon.svg");
     });
 
 }

@@ -225,6 +225,8 @@ If you've opted for poker cards or if the cardboard rectangles have different co
 
 If you can't remember from which set a slip comes from you can use the first part of its code to recognize it. The slips from the same set have the same code first part, so "**TOS20220706**-H-1A" and "**TOS20220706**-W-3B" are coming from the same set with the "**TOS20220706**" code and "**TOS20220712**-H-1A" comes from the set with the "**TOS20220712**" code.
 
+If your printer supports double-sided printing you can go to the site options and change the print mode. The next PDFs you download will be printed on the 2 sides of the same A4 sheet, which you will then have to cut out along the dotted lines. Cards made this way may not be perfectly centered, they are less solid and a little more difficult to shuffle but are far easier to assemble. The front and back of each card will be automatically paired during printing, so the code will only be found on one of the 2 sides.
+
 You'll need 2 sets to play, so you've to repeat the construction procedure twice. Don't worry: when you'll want to play a new {gameShortTitle} set you'll just have to print a new PDF, cut the slips, choose one of the two sets you already have (use the cards' first code part to recognize the set), and replace its slips.
 
 # Other components

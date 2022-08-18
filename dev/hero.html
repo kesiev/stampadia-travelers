@@ -47,7 +47,10 @@ function onl() {
     });
     heroPrinter.print({
         language:"en",
-        root:"../"
+        root:"../",
+        // flipX:true,
+        // noBorder:true,
+        // noCode:true        
     },print=>{
         let
             out=print.svg.getSVG(),
@@ -57,8 +60,8 @@ function onl() {
         page.innerHTML=out;
         document.body.appendChild(page);
 
-       print.svg.downloadPDF("sample-hero.pdf");
-       print.svg.downloadSVG("sample-hero.svg");
+       // print.svg.downloadPDF("sample-hero.pdf");
+       // print.svg.downloadSVG("sample-hero.svg");
 
     });
 

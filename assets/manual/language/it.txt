@@ -225,6 +225,8 @@ Se hai deciso di usare le carte da poker o se i cartoncini che hai usato hanno c
 
 Se non ricordi più a quale set appartiene un foglietto puoi usare la prima parte del suo codice per riconoscerlo. I foglietti di uno stesso set hanno la prima parte del codice uguale, per cui "**TOS20220706**-H-1A" e "**TOS20220706**-W-3B" appartengono allo stesso set con codice "**TOS20220706**", mentre "**TOS20220712**-H-1A" al set con codice "**TOS20220712**".
 
+Se la tua stampante supporta la stampa fronte-retro puoi andare nelle opzioni del sito e cambiare la modalità di stampa. I prossimi PDF che scaricherai andranno stampati sulle 2 facce dello stesso foglio A4, che dovrai poi ritagliare lungo le righe tratteggiate. Le carte realizzate in questo modo potrebbero non risultare perfettamente centrate, sono meno solide e un pochino più difficili da mescolare ma sono di gran lunga più facili da assemblare. Il fronte ed il retro di ogni carta verrà automaticamente appaiato durante la stampa, per cui il codice si troverà solo su una delle 2 facce.
+
 Per giocare ti serviranno 2 set, per cui dovrai ripetere la procedura di costruzione due volte. Ma non ti preoccupare: quando vorrai giocare un nuovo set di {gameShortTitle} ti basterà stampare un nuovo PDF, ritagliarne i foglietti, scegliere uno dei due set che già hai (puoi riconoscere le carte di uno stesso set dalla prima parte del codice) e sostituirne i foglietti.
 
 # Altri componenti

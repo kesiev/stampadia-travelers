@@ -18,7 +18,7 @@ function HeroPrinter(modifiers) {
             horizontalAlignment:"center"
         };
         
-    function printHelperCard(svg,playerClass,language,x,y) {
+    function printHelperCard(settings,svg,playerClass,language,x,y) {
 
 
         function getLabel(label) {
@@ -45,14 +45,20 @@ function HeroPrinter(modifiers) {
         cardPrinter.addText(titleSettings,titleBox,getLabel(playerClass.name));
         cardPrinter.addText(subtitleSettings,subTitleBox,getLabel(playerClass.description));
 
-        cardPrinter.printAt("cardCodeText",rulers.cardNumber,playerClass.heroCardCode);
+        if (!settings.noCode)
+            cardPrinter.printAt("cardCodeText",rulers.cardNumber,playerClass.heroCardCode);
 
         cardPrinter.delete([
             "heroHelpBorder"
         ]);
+
+        if (settings.noBorder)
+            cardPrinter.delete([
+                "heroHelpCutout"
+            ]);
     }
 
-    function printHeroCard(svg,playerClass,language,x,y,data) {
+    function printHeroCard(settings,svg,playerClass,language,x,y,data) {
 
         let
             actionTextSettings={
@@ -181,7 +187,7 @@ function HeroPrinter(modifiers) {
             cardPrinter.addText(actionTextSettings,box.textBox,textOptions.join(labels.optionsSeparator).trim());
         }
     
-        function printSide(card,side,istop) {
+        function printSide(settings,card,side,istop) {
     
             let
                 rulers,
@@ -270,7 +276,8 @@ function HeroPrinter(modifiers) {
             if (istop) {
                 cardPrinter.delete(["heroCardRibbon2"]);
                 cardPrinter.addRect(rulers.halfSeparator,"#000");
-                cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
+                if (!settings.noCode)
+                    cardPrinter.printAt("cardCodeText",rulers.cardNumber,data.cardCode);
             } else {
                 cardPrinter.delete(["heroCardRibbon1"]);
             }
@@ -278,11 +285,16 @@ function HeroPrinter(modifiers) {
         }
     
         cardPrinter.startUpperSide();
-        printSide(data,data.sides[0],true);
+        printSide(settings,data,data.sides[0],true);
         cleanSide();
-    
+
+        if (settings.noBorder)
+            cardPrinter.delete([
+                "heroCardCutout"
+            ]);
+
         cardPrinter.startLowerSide();
-        printSide(data,data.sides[1]);
+        printSide(settings,data,data.sides[1]);
         cleanSide();
 
         cardPrinter.delete([
@@ -307,16 +319,20 @@ function HeroPrinter(modifiers) {
 
             playerClass.cards.forEach((card,id)=>{
                 let
-                    x=id%3,
+                    x=settings.flipX?2-id%3:id%3,
                     y=Math.floor(id/3),
                     dx=borderLeft+(cardWidth*x),
                     dy=borderTop+(cardHeight*y);
                 
                 cards.push({x:dx,y:dy,width:CARDWIDTH,height:CARDHEIGHT});
-                printHeroCard(svg,playerClass,LANGUAGES[settings.language],dx,dy,card);
+                printHeroCard(settings,svg,playerClass,LANGUAGES[settings.language],dx,dy,card);
             });
 
-            printHelperCard(svg,playerClass,LANGUAGES[settings.language],borderLeft+(cardWidth*2),borderTop+(cardHeight*2));
+            printHelperCard(
+                settings,svg,playerClass,LANGUAGES[settings.language],
+                settings.flipX?borderLeft:borderLeft+(cardWidth*2),
+                borderTop+(cardHeight*2)
+            );
 
             svg.finalize();
 
