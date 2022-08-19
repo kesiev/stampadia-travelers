@@ -189,7 +189,7 @@ To play {config-title} you need **2 complete sets (even two copies of the same s
 
 A single {gameShortTitle} set is made of 9 double-faced cards: on one face there are the cards that will allow you to live the role of a {hero} and on the other one there are the cards that will tell you a story in the lands of {place}, playable with any {hero}.
 
-Every day you can download a new set from the game website ({config-homepageUrl}): it's a 2-page PDF, one for the {hero} and the other one for the {adventure}, to cut and assemble.
+Every day you can download a new set from the game website ({config-homepageUrl}): it's a 2-page PDF, one for the {hero} and the other one for the adventure, to cut and assemble.
 
 {image createset}
 
@@ -520,7 +520,7 @@ Some cards may ask you to have specific {constellation-plural}, {element-plural}
 {image symbols}
 
 {listStart}
-**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} and 1 {constellation} with the length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the leftmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
+**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} and 1 {constellation} with the length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the rightmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
 {listItemNext}
 **{element-plural}** {symbol 2}: the {element-plural} {inplay} are all of the elements on the left and below the {card-open}. In the example, there are 2 {element-plural} {symbol heroCardWaterSmallSymbol} and 2 {element-plural} {symbol heroCardFireSmallSymbol} {inplay}.
 {listItemNext}
@@ -715,7 +715,7 @@ Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol
 **{adventure-dungeon}**: Place the 1A {card-room} on the table. Place the {pawn-hero} on its symbol. Put the {card-index-plural} in page order and visible. Put the remaining {card-room-plural} aside. Read the {instruction-plural} of the symbol under the {pawn-hero} on the {card-index-plural}.
 {boxClose}
 
-# Guida Rapida: {movement:capital}
+# Quick Reference: {movement:capital}
 {boxOpen}
 **{adventure-world}**: {discard-do:capital} 1 {card-hero} from {hand} if any. Move the {pawn-hero} by 1 cell orthogonally in the 3x3 grid. Read the {instruction-plural} if any.
 {boxClose}
@@ -724,7 +724,7 @@ Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol
 **Moving through a door**: If the destination {card-room} is not attached: {discard-do} 1 {card-hero} from {hand} if any. Attach the {card-room} matching the doors. Move the {pawn-hero} to the destination. Read the reached {card-room} symbol {instruction-plural} on the {card-index-plural}.
 {boxClose}
 
-# Guida Rapida: {turn-combat}
+# Quick Reference: {turn-combat}
 {listStart}
 **{phase-prepare}**: At the beginning of the first {turn-combat} against an enemy shuffle the {deck-discard} and {draw-do} from the bottom until you've 5 cards in {hand}.
 {listItemNext}

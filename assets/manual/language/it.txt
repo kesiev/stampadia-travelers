@@ -520,7 +520,7 @@ Alcune azioni possono chiederti di avere specifiche {constellation-plural}, {ele
 {image symbols}
 
 {listStart}
-**{constellation-plural}** {symbol 1}: considera {inplay} tutte le sequenze di sfere a partire da sinistra verso destra fino ad arrivare alla {card-open}. Nell'esempio sono {inplay} 3 {constellation-plural}: la {constellation} lunga 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, la {constellation} lunga 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} e la {constellation} lunga 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. Il gioco a volte può fare riferimento a {constellation-plural} di singole carte, per cui possono considerarsi {inplay} anche 2 {constellation-plural} lunghe 1 {symbol heroCardStar1SmallSymbol} e 1 {constellation} lunga 1 {symbol heroCardStar2SmallSymbol}. Infine l'ultimo componente delle {constellation-plural} più a sinistra è identificato dalle sfere **stampate sulla {card-open}**, indipendentemente dal fatto che le sue {ability} siano state {activate-past-female} o meno o se sia stata completamente o parzialmente coperta da un'altra carta.
+**{constellation-plural}** {symbol 1}: considera {inplay} tutte le sequenze di sfere a partire da sinistra verso destra fino ad arrivare alla {card-open}. Nell'esempio sono {inplay} 3 {constellation-plural}: la {constellation} lunga 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, la {constellation} lunga 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} e la {constellation} lunga 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. Il gioco a volte può fare riferimento a {constellation-plural} di singole carte, per cui possono considerarsi {inplay} anche 2 {constellation-plural} lunghe 1 {symbol heroCardStar1SmallSymbol} e 1 {constellation} lunga 1 {symbol heroCardStar2SmallSymbol}. Infine il componente delle {constellation-plural} più a destra è identificato dalle sfere **stampate sulla {card-open}**, indipendentemente dal fatto che le sue {ability} siano state {activate-past-female} o meno o se sia stata completamente o parzialmente coperta da un'altra carta.
 {listItemNext}
 **{element-plural}** {symbol 2}: gli {element-plural} {inplay} sono tutti quelli a sinistra e sotto la {card-open}. Nell'esempio sono {inplay} sia 2 {element-plural} {symbol heroCardWaterSmallSymbol} che 2 {element-plural} {symbol heroCardFireSmallSymbol}.
 {listItemNext}
@@ -685,13 +685,13 @@ Nella fase {phase-restore}, dopo aver ripristinato i {tracked-plural} sulla {car
 
 I {enemy-plural} possono essere combattuti più volte, nel caso in cui leggerai nuovamente le {instruction-plural} del simbolo che lo descrive.
 
-# {adventure-dungeon}: "Se un simbolo è {map-on}"
+# {adventure-dungeon}: "Se un simbolo e' {map-on}"
 
 {image dungeononmap}
 
 Alcune {instruction-plural} fanno riferimento a simboli "**{map-on}**". Considera un simbolo {map-on} **se la {card-room} che lo contiene non si trova nel mazzo delle {card-room-plural} ed è, quindi, sul tavolo** {symbol 1}. Inoltre **quella {card-room} deve mostrare il simbolo con l'esatto orientamento richiesto** {symbol 2}: ad esempio, il simbolo {symbol icon-symbol-a1} è diverso di simboli {symbol icon-symbol-a2}, {symbol icon-symbol-a3} e {symbol icon-symbol-a4}.
 
-# {adventure-world}: "Per 1 volta"
+# {adventure-dungeon}: "Per 1 volta"
 
 Alcune {instruction-plural} dei simboli mostreranno la dicitura: "**Per 1 volta**". L'{instruction} che segue può (o deve) essere eseguita una sola volta per partita e non può essere ripetuta: qualora sia già stata eseguita il resto della frase non è applicabile. Ogni simbolo comprende al massimo una singola dicitura "Per 1 volta" per cui puoi posizionare un {token} sulla {card-index} in corrispondenza delle {instruction-plural} del simbolo per ricordarti di averla già eseguita.
 
