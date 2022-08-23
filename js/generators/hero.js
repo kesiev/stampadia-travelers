@@ -1,6 +1,7 @@
 if (typeof module != "undefined") {
     const
         PerksLib = require('../databases/hero/perks.js'),
+        StargazerLib = require('../databases/hero/classes/stargazer.js'),
         ElementalistLib = require('../databases/hero/classes/elementalist.js'),
         SwordsmanLib = require('../databases/hero/classes/swordsman.js'),
         RandomLib = require('../random.js'),
@@ -10,6 +11,7 @@ if (typeof module != "undefined") {
     loadHeroPerks = PerksLib.loadHeroPerks;
     loadHeroElementalistClass = ElementalistLib.loadHeroElementalistClass;
     loadHeroSwordsmanClass = SwordsmanLib.loadHeroSwordsmanClass;
+    loadHeroStargazerClass = StargazerLib.loadHeroStargazerClass;
 }
 
 function generateHero(modifiers) {
@@ -52,11 +54,32 @@ function generateHero(modifiers) {
             }
     }
 
-    function applyElement(cards,card,element) {
-        if (cards[card]) {
-            cards[card].sides[0].element=element;
+    function applyLowerElement(cards,card,element) {
+        if (cards[card])
             cards[card].sides[1].element=element;
+    }
+
+    function applyHigherElement(cards,card,element) {
+        if (cards[card])
+            cards[card].sides[0].element=element;
+    }
+
+    function applyElement(cards,card,element) {
+        applyLowerElement(cards,card,element);
+        applyHigherElement(cards,card,element);
+    }
+
+    function createConstellations(len) {
+        let out=[], cnt=Math.pow(2,len);
+        for (let i=0;i<cnt;i++) {
+            let line=[], m=i;
+            for (let j=0;j<len;j++) {
+                line.push(m%2+1);
+                m=Math.floor(m/2);
+            }
+            out.push(line);
         }
+        return out;
     }
 
     const
@@ -65,7 +88,10 @@ function generateHero(modifiers) {
             { element:"earth", consumedBy:"air", consumes:"water" },
             { element:"water", consumedBy:"earth", consumes:"fire" },
             { element:"air", consumedBy:"fire", consumes:"earth" },
-        ];
+        ],
+        EASYCONSTELLATIONS=createConstellations(2),
+        NORMALCONSTELLATIONS=createConstellations(3),
+        HARDCONSTELLATIONS=createConstellations(4);
 
     let
         random=new Random({
@@ -73,6 +99,9 @@ function generateHero(modifiers) {
             noRandom:modifiers.noRandom
         }),
         elementsBag=random.createBag(ELEMENTS,true),
+        easyConstellationsBag=random.createBag(EASYCONSTELLATIONS,true),
+        normalConstellationsBag=random.createBag(NORMALCONSTELLATIONS,true),
+        hardConstellationsBag=random.createBag(HARDCONSTELLATIONS,true),
         MODIFIERS = {
 
             // -- Costs
@@ -91,8 +120,11 @@ function generateHero(modifiers) {
 
             // Proxy randoms
             random:random,
-            elementsBag:elementsBag
-
+            elementsBag:elementsBag,
+            easyConstellationsBag:easyConstellationsBag,
+            normalConstellationsBag:normalConstellationsBag,
+            hardConstellationsBag:hardConstellationsBag
+            
         },
         perks=loadHeroPerks(MODIFIERS),
         perksBag = random.createBag(perks),
@@ -111,6 +143,10 @@ function generateHero(modifiers) {
         }
         case "elementalist":{
             playerClass=loadHeroElementalistClass(MODIFIERS)
+            break;
+        }
+        case "stargazer":{
+            playerClass=loadHeroStargazerClass(MODIFIERS)
             break;
         }
     }
@@ -156,6 +192,18 @@ function generateHero(modifiers) {
             case "addElement":{
                 step.toCards.forEach(cardid=>{
                     applyElement(cards,cardid,random.getFromBag(elementsBag).element);
+                })
+                break;
+            }
+            case "addLowerElement":{
+                step.toCards.forEach(cardid=>{
+                    applyLowerElement(cards,cardid,random.getFromBag(elementsBag).element);
+                })
+                break;
+            }
+            case "addHigherElement":{
+                step.toCards.forEach(cardid=>{
+                    applyHigherElement(cards,cardid,random.getFromBag(elementsBag).element);
                 })
                 break;
             }
