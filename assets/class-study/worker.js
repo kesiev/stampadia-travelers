@@ -45,6 +45,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
             playedCards:[],
             playedActionCards:[],
             playedResourcesCards:[],
+            playedInfuseCards:[],
             started:false,
             exhaustCost:{
                 mana:0
@@ -132,7 +133,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
                                         canPerform = false;
                                         if (DEBUG) data.logs.push(" | Failed condition: No previous card.");
                                     } else {
-                                        let previousCardSide = cards[previousCard[0]][previousCard[1]];
+                                        let previousCardSide = cards[previousCard[0]].sides[previousCard[1]];
                                         switch (condition.attribute) {
                                             case "stars":{
                                                 val=previousCardSide.options.length;
@@ -173,6 +174,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
                             }
                         }
 
+                        console.log(condition.action);
                         if (canPerform)
                             switch (condition.action) {
                                 case "pay":{
@@ -306,7 +308,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
     }
 
     function addActionCard(card,side) {
-        let cardSide=cards[card][side];
+        let cardSide=cards[card].sides[side];
         for (let k in cardSide.exhaustCost)
             if (data.exhaustCost[k] === undefined) {
                 console.warn("Missing exhaust resource",k);
@@ -330,23 +332,39 @@ function play(cards,config,data,results,action,card,side,tooption) {
             else data.resources.banner2++;
     }
 
+    function addInfuseCard(card,side) {
+        let cardSide=cards[card].sides[side];
+        removeCard(card,side);
+        data.playedInfuseCards.push([card,side]);
+        if (cardSide.element)
+            if (data.resources[cardSide.element] === undefined)
+                console.warn("Unsupported element",cardSide.element);
+            else
+                data.resources[cardSide.element]++;
+    }
+
     // Card play action
 
     let
         valid = true;
 
     if (action !== undefined) {
-
         switch (action) {
+            case "playCardAsInfuse":{
+                let cardSide = cards[card].sides[side];
+                if (DEBUG) data.logs.push(action+"("+card+","+side+"): "+cardSide.id);
+                addInfuseCard(card,side,true);
+                break;
+            }
             case "playCardAsResources":{
-                let cardSide = cards[card][side];
+                let cardSide = cards[card].sides[side];
                 if (DEBUG) data.logs.push(action+"("+card+","+side+"): "+cardSide.id);
                 addResourceCard(card,side,true);
                 valid = gainResources(cardSide);
                 break;
             }
             case "playCardAsStarter":{
-                let cardSide = cards[card][side];
+                let cardSide = cards[card].sides[side];
                 if (DEBUG) data.logs.push(action+"("+card+","+side+"): "+cardSide.id+(cardSide.element?" ["+cardSide.element+"]":"")+(cardSide.exhaustCost.mana?" {-"+cardSide.exhaustCost.mana+"}":""));
                 addActionCard(card,side);
                 addResourceCard(card,side);
@@ -355,7 +373,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
                 break;
             }
             case "playCardAsAction":{
-                let cardSide = cards[card][side];
+                let cardSide = cards[card].sides[side];
                 if (DEBUG) data.logs.push(action+"("+card+","+side+","+tooption+"): "+cardSide.id+(cardSide.element?" ["+cardSide.element+"]":"")+(cardSide.exhaustCost.mana?" {-"+cardSide.exhaustCost.mana+"}":""));
                 if (data.started) {
                     addActionCard(card,side);
@@ -364,7 +382,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
                 break;
             }
             case "tryToStart":{
-                let cardSide = cards[data.playedActionCards[0][0]][data.playedActionCards[0][1]];
+                let cardSide = cards[data.playedActionCards[0][0]].sides[data.playedActionCards[0][1]];
                 if (DEBUG) data.logs.push(action+": "+cardSide.id);
                 valid = performActions(cardSide,tooption);
                 if (valid) data.started = true;
@@ -393,17 +411,17 @@ function play(cards,config,data,results,action,card,side,tooption) {
             for (let i=firstCard;i<=lastCard;i++) {
                 if (data.playedCards.indexOf(i)==-1) {
                     for (let s=firstSide;s<=lastSide;s++) {
-                        if (cards[i][s])
+                        if (cards[i].sides[s])
                             if (data.playedCards.length == 0) {
                                 cantPlay&=!play(cards,config,data,results,"playCardAsStarter",i,s);
                             } else if (data.started) {
                                 cantPlay&=!play(cards,config,data,results,"playCardAsResources",i,s);
-                                cards[i][s].options.forEach((option,o)=>{
+                                cards[i].sides[s].options.forEach((option,o)=>{
                                     cantPlay&=!play(cards,config,data,results,"playCardAsAction",i,s,o);
                                 })
                             } else {
                                 let started = false;
-                                cards[i][s].options.forEach((option,o)=>{
+                                cards[i].sides[s].options.forEach((option,o)=>{
                                     let trystart=play(cards,config,data,results,"tryToStart",-1,-1,o);
                                     started|=trystart;
                                 })
