@@ -144,7 +144,7 @@ function specialOnly(line) {
     line.replace(/\{[^}]*\}/g,match=>{
         out.push(match);
     })
-    return out.join(" ");
+    return out.sort().join(" ");
 }
 
 function displayContents(contents) {
