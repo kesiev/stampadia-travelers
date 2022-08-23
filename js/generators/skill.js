@@ -113,6 +113,13 @@ let SkillCrafter=function(settings) {
             return null;
     }
 
+    function pickFrom(from, cards) {
+        if (cards)
+            return { action:"pickFrom", from:from, cards:cards };
+        else
+            return null;
+    }
+
     function pay(attr,value) {
         if (value)
             return { action:"pay", attribute:attr, value:value }
@@ -189,6 +196,74 @@ let SkillCrafter=function(settings) {
                 effects:[ {
                     if: [ { action:"check", attribute:"playedCardsCount", operator:"greaterEqualThan", value:4 } ],
                     then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources) ]
+                } ]
+            }]
+        });
+    }
+
+    this.showConstellation=(id,type,constellation,place,to,cards,level)=>{
+        let base=getBase(level,[{buy:[[constellation.length,"constellation"]],sell:[level,to]}]);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            exhaustCost:base.exhaustCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[ {
+                    if: [ { action:"checkConstellation", constellation:constellation, place:place } ],
+                    then: [
+                        gain(base.effects[0].gainResourceType,base.effects[0].gainResources),
+                        pickFrom("infuse",cards)
+                    ]
+                } ]
+            }]
+        });
+    }
+
+    this.showConstellationElement=(id,type,constellation,element,place,to,cards,level)=>{
+        let base=getBase(level,[{buy:[[1,"element"],[constellation.length,"constellation"]],sell:[level,to]}]);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            exhaustCost:base.exhaustCost,
+            perkId:"of3_"+element.element,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[ {
+                    if: [
+                        { action:"checkConstellation", constellation:constellation, place:place },
+                        { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements },
+                    ],
+                    then: [
+                        gain(base.effects[0].gainResourceType,base.effects[0].gainResources),
+                        pickFrom("infuse",cards)
+                    ]
+                } ]
+            }]
+        });
+    }
+
+    this.fullTransferConstellation=(id,type,constellation,place,from,to,cards,level)=>{
+        let base=getBase(level,[{buy:[[level,from],[constellation.length,"constellation"]],sell:[level,to]}]);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            exhaustCost:base.exhaustCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[ {
+                    if: [ { action:"checkConstellation", constellation:constellation, place:place } ],
+                    then: [
+                        { action:"transfer", attribute:from, toAttribute:to },
+                        gain(base.effects[0].payResourceType[0],base.effects[0].giftResource),
+                        pickFrom("infuse",cards)
+                    ]
                 } ]
             }]
         });
@@ -401,6 +476,26 @@ let SkillCrafter=function(settings) {
         });
     }
 
+    this.legacyConstellation=(id,type,constellation,place,cards,to,level)=>{
+        let base=getBase(level,[{buy:[[constellation.length,"constellation"]],sell:[level,to]}]);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            exhaustCost:base.exhaustCost,
+            options:[
+                { cost:base.effects[0].cost, effects:[ {
+                    if: [ { action:"checkConstellation", constellation:constellation, place:place } ],
+                    then: [
+                        { action:"gainTick", bar:["empty","1","0","1","1","2"], endBar:"0", attribute:base.effects[0].gainResourceType },
+                        gain(base.effects[0].gainResourceType,base.effects[0].gainResources-1 ),
+                        pickFrom("infuse",cards)
+                    ]
+                } ] }
+            ]
+        });
+    }
+
     // --- Base cards
 
     this.base=(id,type,itm1,itm2,level)=>{
@@ -443,7 +538,8 @@ let SkillCrafter=function(settings) {
 
         if (extraconfig)
             for (let k in extraconfig)
-                fullconfig[k]=extraconfig[k];
+                if (fullconfig[k] === undefined)
+                    fullconfig[k]=extraconfig[k];
 
         // Base skills
         switch (config.model) {
@@ -457,6 +553,10 @@ let SkillCrafter=function(settings) {
             }
             case "legacyElemental":{
                 skill = this.legacyElemental(fullconfig.id,type,fullconfig.element,fullconfig.item,level);
+                break;
+            }
+            case "legacyConstellation":{
+                skill = this.legacyConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.cards,fullconfig.item,level);
                 break;
             }
             case "baseElemental":{
@@ -505,6 +605,18 @@ let SkillCrafter=function(settings) {
             }
             case "fullTransfer":{
                 skill = this.fullTransfer(fullconfig.id,type,fullconfig.from,fullconfig.to,level);
+                break;
+            }
+            case "showConstellation":{
+                skill = this.showConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.to,fullconfig.cards,level);
+                break;
+            }
+            case "showConstellationElement":{
+                skill = this.showConstellationElement(fullconfig.id,type,fullconfig.constellation,fullconfig.element,fullconfig.place,fullconfig.to,fullconfig.cards,level);
+                break;
+            }
+            case "fullTransferConstellation":{
+                skill = this.fullTransferConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.from,fullconfig.to,fullconfig.cards,level);
                 break;
             }
             default:{

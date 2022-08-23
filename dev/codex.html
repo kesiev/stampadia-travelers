@@ -22,6 +22,7 @@
     
     <script src="../js/databases/hero/classes/swordsman.js"></script>
     <script src="../js/databases/hero/classes/elementalist.js"></script>
+    <script src="../js/databases/hero/classes/stargazer.js"></script>
     <script src="../js/databases/hero/perks.js"></script>
 
 </head><body onload="onl()">
@@ -119,6 +120,13 @@ const
                 { key:"Hero - Swordsman", subkey:"Skills", target:PERCARDTARGET },
                 { key:"Hero - Swordsman", subkey:"Legacy Skills", target:PERPACKTARGET },
             ]
+        },
+        {
+            title:"Hero - Stargazer",
+            items:[
+                { key:"Hero - Stargazer", subkey:"Skills", target:PERCARDTARGET },
+                { key:"Hero - Stargazer", subkey:"Legacy Skills", target:PERPACKTARGET },
+            ]
         }
     ]
 
@@ -185,6 +193,8 @@ function onl() {
     countToIndex("Hero - Elementalist","Legacy Skills",loadHeroElementalistClassLegacySkills(MOD));
     countToIndex("Hero - Swordsman","Skills",loadHeroSwordsmanClassSkills(MOD));
     countToIndex("Hero - Swordsman","Legacy Skills",loadHeroSwordsmanClassLegacySkills(MOD));
+    countToIndex("Hero - Stargazer","Skills",loadHeroStargazerClassSkills(MOD));
+    countToIndex("Hero - Stargazer","Legacy Skills",loadHeroStargazerClassLegacySkills(MOD));
 
     index.Avatar={};
     for (let k in AVATARPALETTES)

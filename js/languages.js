@@ -24,13 +24,13 @@ const
 				"printMode":"Modalit&agrave; di stampa",
 				"printModes":{
 					"default":{
-						label:"Default",
-						description:"Il PDF deve essere stampato su 2 diversi fogli A4 che devono poi essere tagliati e costruiti usando 9 bustine per carte da gioco e 9 carte da poker o cartoncini rettangolari seguendo le istruzioni del manuale di gioco. In questo modo le carte sono pi&ugrave; carine, solide e facili da mescolare ma richiedono pi&ugrave; lavoro per essere assemblate."
+						"label":"Default",
+						"description":"Il PDF deve essere stampato su 2 diversi fogli A4 che devono poi essere tagliati e costruiti usando 9 bustine per carte da gioco e 9 carte da poker o cartoncini rettangolari seguendo le istruzioni del manuale di gioco. In questo modo le carte sono pi&ugrave; carine, solide e facili da mescolare ma richiedono pi&ugrave; lavoro per essere assemblate.",
 					},
 					"doublesided":{
-						label:"Fronte-retro",
-						description:"Il PDF deve essere stampato sulle 2 facce dello stesso foglio A4 sul lato lungo e semplicemente ritagliato lungo le righe tratteggiate. In questo modo le carte potrebbero non risultare perfettamente centrate, sono meno solide e pi&ugrave; difficili da mescolare ma sono di gran lunga pi&ugrave; facili da assemblare."
-					}
+						"label":"Fronte-retro",
+						"description":"Il PDF deve essere stampato sulle 2 facce dello stesso foglio A4 sul lato lungo e semplicemente ritagliato lungo le righe tratteggiate. In questo modo le carte potrebbero non risultare perfettamente centrate, sono meno solide e pi&ugrave; difficili da mescolare ma sono di gran lunga pi&ugrave; facili da assemblare.",
+					},
 				},
 				"learnHowToPlayTheGame":"Impara a giocare a {title}!",
 				"theGameManual":"Il Manuale di Gioco",
@@ -557,6 +557,10 @@ const
 					"{value} carta",
 					"{value} carte",
 				],
+				"used":[
+					"usata",
+					"usate",
+				],
 				"times":[
 					"{value} volta",
 					"{value} volte",
@@ -803,6 +807,10 @@ const
 							"equal":"{subject} {formattedValue}",
 						},
 					},
+					"checkConstellation":{
+						"inPlay":"hai in gioco {constellation}",
+						"inHand":"hai in mano {constellation}",
+					},
 				},
 				"effect":{
 					"gainTick":{
@@ -840,6 +848,9 @@ const
 						"defense":{
 							"attack":"trasferisci {symbol heroCardDefenseSmallSymbol} in {symbol heroCardAttackSmallSymbol}",
 						},
+					},
+					"pickFrom":{
+						"infuse":"riprendi in mano fino a {cards} {used} per Infondere",
 					},
 				},
 				"classes":{
@@ -995,6 +1006,88 @@ const
 							},
 						},
 					},
+					"stargazer":{
+						"name":[
+							"L'Astronomo",
+						],
+						"description":[
+							"Cerca le risorse tra le stelle",
+						],
+						"skills":{
+							"baseAttack1":{
+								"label":"raggio {value}",
+								"valueGenre":"male",
+							},
+							"baseDefense1":{
+								"label":"anello {value}",
+								"valueGenre":"male",
+							},
+							"strongAttack1":{
+								"label":"meteora {value}",
+								"valueGenre":"female",
+							},
+							"strongDefense1":{
+								"label":"atmosfera {value}",
+								"valueGenre":"female",
+							},
+							"baseAttack2":{
+								"label":"luce {value}",
+								"valueGenre":"female",
+							},
+							"baseDefense2":{
+								"label":"specchio {value}",
+								"valueGenre":"male",
+							},
+							"strongAttack2":{
+								"label":"sole {value}",
+								"valueGenre":"male",
+							},
+							"strongDefense2":{
+								"label":"luna {value}",
+								"valueGenre":"female",
+							},
+							"glare":{
+								"label":"occhiata {value}",
+								"valueGenre":"female",
+							},
+							"gaze":{
+								"label":"sguardo {value}",
+								"valueGenre":"male",
+							},
+							"reduction":{
+								"label":"riduzione {value}",
+								"valueGenre":"female",
+							},
+							"zoomin":{
+								"label":"zoom {value}",
+								"valueGenre":"male",
+							},
+							"zoomout":{
+								"label":"scala {value}",
+								"valueGenre":"female",
+							},
+							"erasing":{
+								"label":"cancellazione {value}",
+								"valueGenre":"female",
+							},
+							"tracing":{
+								"label":"traccia {value}",
+								"valueGenre":"female",
+							},
+							"blackHole":{
+								"label":"buco nero {value}",
+								"valueGenre":"male",
+							},
+							"nebula":{
+								"label":"nebula {value}",
+								"valueGenre":"female",
+							},
+							"legacyAttack":{
+								"label":"la via dell'astronomo",
+								"valueGenre":"female",
+							},
+						},
+					},
 				},
 				"perks":{
 					"safe":{
@@ -1060,6 +1153,22 @@ const
 					"of2_water":{
 						"male":"dell'acqua",
 						"female":"dell'acqua",
+					},
+					"of3_earth":{
+						"male":"marrone",
+						"female":"marrone",
+					},
+					"of3_air":{
+						"male":"bianco",
+						"female":"bianca",
+					},
+					"of3_fire":{
+						"male":"rosso",
+						"female":"rossa",
+					},
+					"of3_water":{
+						"male":"blu",
+						"female":"blu",
 					},
 				},
 			},
@@ -1940,13 +2049,13 @@ const
 				"printMode":"Print mode",
 				"printModes":{
 					"default":{
-						label:"Default",
-						description:"The PDF must be printed on 2 different A4 sheets, cut, and constructed using 9 card sleeves and 9 poker cards or cardboard rectangles following the game manual instructions. This way the cards are nicer, solid, and easier to shuffle but they need more work to be assembled."
+						"label":"Default",
+						"description":"The PDF must be printed on 2 different A4 sheets, cut, and constructed using 9 card sleeves and 9 poker cards or cardboard rectangles following the game manual instructions. This way the cards are nicer, solid, and easier to shuffle but they need more work to be assembled.",
 					},
 					"doublesided":{
-						label:"Double-sided",
-						description:"The PDF must be printed on 2 sides of the same A4 sheet on the long edge and just cut following the dashed lines. This way the cards may not be exactly centered, less solid, and a little harder to shuffle but they are way faster to assemble."
-					}
+						"label":"Double-sided",
+						"description":"The PDF must be printed on 2 sides of the same A4 sheet on the long edge and just cut following the dashed lines. This way the cards may not be exactly centered, less solid, and a little harder to shuffle but they are way faster to assemble.",
+					},
 				},
 				"learnHowToPlayTheGame":"Learn how to play {title}!",
 				"theGameManual":"The Game Manual",
@@ -2016,6 +2125,10 @@ const
 					"{value} card",
 					"{value} cards",
 				],
+				"used":[
+					"used",
+					"used",
+				],
 				"times":[
 					"{value} time",
 					"{value} times",
@@ -2047,14 +2160,18 @@ const
 						],
 					},
 					"subjects":{
-						"inPlay":"played",
+						"inPlay":"in play",
 						"previousCard":"the previous card is",
+					},
+					"checkConstellation":{
+						"inPlay":"{constellation} in play",
+						"inHand":"{constellation} in hand",
 					},
 					"check":{
 						"playedCardsCount":{
-							"lessEqualThan":"{subject} {value} cards or less",
-							"greaterEqualThan":"{subject} {value} cards or more",
-							"equal":"{subject} {value} cards",
+							"lessEqualThan":"{value} cards or less {subject}",
+							"greaterEqualThan":"{value} cards or more {subject}",
+							"equal":"{value} cards {subject}",
 						},
 						"defense":{
 							"lessEqualThan":"{symbol heroCardDefenseSmallSymbol} is {value} or less",
@@ -2067,39 +2184,39 @@ const
 							"equal":"{symbol heroCardAttackSmallSymbol} is {value}",
 						},
 						"banner1":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardBanner1SmallSymbol} or less",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardBanner1SmallSymbol} or more",
-							"equal":"{subject} {value} {symbol heroCardBanner1SmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardBanner1SmallSymbol} or less {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardBanner1SmallSymbol} or more {subject}",
+							"equal":"{value} {symbol heroCardBanner1SmallSymbol} {subject}",
 						},
 						"banner2":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardBanner2SmallSymbol} or less",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardBanner2SmallSymbol} or more",
-							"equal":"{subject} {value} {symbol heroCardBanner2SmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardBanner2SmallSymbol} or less {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardBanner2SmallSymbol} or more {subject}",
+							"equal":"{value} {symbol heroCardBanner2SmallSymbol} {subject}",
 						},
 						"fire":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardFireSmallSymbol} or less",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardFireSmallSymbol} or more",
-							"equal":"{subject} {value} {symbol heroCardFireSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardFireSmallSymbol} or less {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardFireSmallSymbol} or more {subject}",
+							"equal":"{value} {symbol heroCardFireSmallSymbol} {subject}",
 						},
 						"water":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardWaterSmallSymbol} or less",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardWaterSmallSymbol} or more",
-							"equal":"{subject} {value} {symbol heroCardWaterSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardWaterSmallSymbol} or less {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardWaterSmallSymbol} or more {subject}",
+							"equal":"{value} {symbol heroCardWaterSmallSymbol} {subject}",
 						},
 						"earth":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardEarthSmallSymbol} or less",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardEarthSmallSymbol} or more",
-							"equal":"{subject} {value} {symbol heroCardEarthSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardEarthSmallSymbol} or less {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardEarthSmallSymbol} or more {subject}",
+							"equal":"{value} {symbol heroCardEarthSmallSymbol} {subject}",
 						},
 						"air":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardAirSmallSymbol} or less",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardAirSmallSymbol} or more",
-							"equal":"{subject} {value} {symbol heroCardAirSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardAirSmallSymbol} or less {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardAirSmallSymbol} or more {subject}",
+							"equal":"{value} {symbol heroCardAirSmallSymbol} {subject}",
 						},
 						"stars":{
-							"lessEqualThan":"{subject} {formattedValue} or less",
-							"greaterEqualThan":"{subject} {formattedValue} or more",
-							"equal":"{subject} {formattedValue}",
+							"lessEqualThan":"{formattedValue} or less {subject}",
+							"greaterEqualThan":"{formattedValue} or more {subject}",
+							"equal":"{formattedValue} {subject}",
 						},
 					},
 				},
@@ -2148,6 +2265,9 @@ const
 						"attack":"{symbol heroCardAttackSmallSymbol} {symbol heroCardMultiplyTinySymbol} {value}",
 						"defense":"{symbol heroCardDefenseSmallSymbol} {symbol heroCardMultiplyTinySymbol} {value}",
 						"mana":"{symbol heroCardManaSmallSymbol} {symbol heroCardMultiplyTinySymbol} {value}",
+					},
+					"pickFrom":{
+						"infuse":"take back up to {cards} {used} to Infuse",
 					},
 					"transfer":{
 						"attack":{
@@ -2311,6 +2431,88 @@ const
 							},
 						},
 					},
+					"stargazer":{
+						"name":[
+							"The Stargazer",
+						],
+						"description":[
+							"Search the stars for resources",
+						],
+						"skills":{
+							"baseAttack1":{
+								"label":"{value} ray",
+								"valueGenre":"male",
+							},
+							"baseDefense1":{
+								"label":"{value} ring",
+								"valueGenre":"male",
+							},
+							"strongAttack1":{
+								"label":"{value} meteor",
+								"valueGenre":"male",
+							},
+							"strongDefense1":{
+								"label":"{value} atmosphere",
+								"valueGenre":"male",
+							},
+							"baseAttack2":{
+								"label":"{value} light",
+								"valueGenre":"male",
+							},
+							"baseDefense2":{
+								"label":"{value} mirror",
+								"valueGenre":"male",
+							},
+							"strongAttack2":{
+								"label":"{value} sun",
+								"valueGenre":"male",
+							},
+							"strongDefense2":{
+								"label":"{value} moon",
+								"valueGenre":"male",
+							},
+							"glare":{
+								"label":"{value} glare",
+								"valueGenre":"male",
+							},
+							"gaze":{
+								"label":"{value} gaze",
+								"valueGenre":"male",
+							},
+							"reduction":{
+								"label":"{value} reduction",
+								"valueGenre":"male",
+							},
+							"zoomin":{
+								"label":"{value} zoom in",
+								"valueGenre":"male",
+							},
+							"zoomout":{
+								"label":"{value} zoom out",
+								"valueGenre":"male",
+							},
+							"erasing":{
+								"label":"{value} erasing",
+								"valueGenre":"male",
+							},
+							"tracing":{
+								"label":"{value} tracing",
+								"valueGenre":"male",
+							},
+							"blackHole":{
+								"label":"{value} black hole",
+								"valueGenre":"male",
+							},
+							"nebula":{
+								"label":"{value} nebula",
+								"valueGenre":"male",
+							},
+							"legacyAttack":{
+								"label":"the way of the stargazer",
+								"valueGenre":"male",
+							},
+						},
+					},
 				},
 				"perks":{
 					"safe":{
@@ -2376,6 +2578,22 @@ const
 					"of2_water":{
 						"male":"of water",
 						"female":"of water",
+					},
+					"of3_earth":{
+						"male":"brown",
+						"female":"brown",
+					},
+					"of3_air":{
+						"male":"white",
+						"female":"white",
+					},
+					"of3_fire":{
+						"male":"red",
+						"female":"red",
+					},
+					"of3_water":{
+						"male":"blue",
+						"female":"blue",
 					},
 				},
 			},

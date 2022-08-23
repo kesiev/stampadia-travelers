@@ -18,7 +18,8 @@ function PackGenerator(timestamp) {
         ],
         HEROCLASSES=[
             "swordsman",
-            "elementalist"
+            "elementalist",
+            "stargazer",
         ];
     
     if (!timestamp) {
