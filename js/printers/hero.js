@@ -129,6 +129,13 @@ function HeroPrinter(modifiers) {
                                     } else console.warn("Missing attribute",condition);
                                     break;
                                 }
+                                case "checkConstellation":{
+                                    branch=branch[condition.place];
+                                    textConditions.push(replacePlaceholders(branch,{
+                                        constellation:formatSimpleSequence(language,condition.constellation,labels.condition.valueFormatters.stars)
+                                    }));
+                                    break;
+                                }
                                 default:{
                                     console.warn("Unsupported condition action",condition);
                                 }
@@ -169,6 +176,16 @@ function HeroPrinter(modifiers) {
                                             textEffects.push(replacePlaceholders(branch,action));
                                         else
                                             console.warn("Missing action toattribute",action);
+                                    } else console.warn("Missing action attribute",action);
+                                    break;
+                                }
+                                case "pickFrom":{
+                                    branch=branch[action.from];
+                                    if (branch) {
+                                        textEffects.push(replacePlaceholders(branch,{
+                                            cards:getEntityLabel(language,"cards",action.cards),
+                                            used:getEntityLabel(language,"used",action.cards),
+                                        }));
                                     } else console.warn("Missing action attribute",action);
                                     break;
                                 }
