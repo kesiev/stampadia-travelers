@@ -90,7 +90,7 @@ SELECT {
     width:90px;
     height:90px;
     transform: scale(0);
-    font-family: Ferrum;
+    font-family: Seshat;
 }
 
 #unwrappedmessage, #unwrappingmessage, #settingsmessage {
