@@ -3,11 +3,12 @@ function loadHeroElementalistClassSkills(MOD) {
         { model:"baseElemental", id:"concentration", item1:"attack", item2:"defense" },
         { model:"baseElemental", id:"concentration", item1:"defense", item2:"attack" },
         { model:"comboElements", id:"balance", item:"attack" },
-        { model:"fullTransferElement", id:"compression", from:"defense", to:"attack" },
-        { model:"fullTransferElement", id:"decompression", from:"attack", to:"defense" },
         { model:"criticalElement", id:"excess", item:"attack" },
         { model:"noElement", id:"emptiness", item:"attack" },
-        { model:"base", id:"quiet", item1:"defense", item2:"attack" }
+        { model:"base", id:"quiet", item1:"defense", item2:"attack" },
+        // Transfer skills are gained on lower levels
+        { level:[1,5], model:"fullTransferElement", id:"compression", from:"defense", to:"attack" },
+        { level:[1,5], model:"fullTransferElement", id:"decompression", from:"attack", to:"defense" },
     ];
 }
 
@@ -51,6 +52,7 @@ function loadHeroElementalistClass(MOD) {
             { action:"addSkill", toSide:1, type:"tier4", times:1 },
             { action:"addSkill", toSide:1, type:"legacy", times:1 },
             { action:"addPerks", times:2 },
+            { action:"addExhaustModel", model:MOD.random.getFromBag(MOD.exhaustModelsBag), toCard:MOD.random.getFromBag(MOD.cardsBag) }
         ],
         skills:[
 
@@ -66,14 +68,14 @@ function loadHeroElementalistClass(MOD) {
 
             // Basic attacks
 
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier1",3,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier1",4,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier2",5,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier2",6,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier3",8,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craft(MOD.random.getFromBag(legacySkillsBag),"legacy",9,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",3,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",4,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",5,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",6,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",8,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,legacySkillsBag,"legacy",9,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
 
         ]
     }

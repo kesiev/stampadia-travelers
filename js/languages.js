@@ -730,16 +730,22 @@ const
 				"exhaust":{
 					"label":"Esaurire",
 					"top":{
+						"shield":"Se non in mano: gira. Scarta.",
+						"deflect":"+2 {symbol heroCardAttackTinySymbol}. Gira e scarta.",
+						"tenacity":"+2 {symbol heroCardDefenseTinySymbol}. Gira e scarta.",
 						"cost":{
-							"mana":"-{value} {symbol heroCardManaTinySymbol} o gira, scarta",
+							"mana":"Paga {value} {symbol heroCardManaTinySymbol} o gira. Scarta.",
 						},
-						"nocost":"gira e scarta",
+						"nocost":"Gira e scarta.",
 					},
 					"bottom":{
+						"shield":"Gira. Se non in mano: rimuovi.",
+						"deflect":"+3 {symbol heroCardAttackTinySymbol}. Rimuovi.",
+						"tenacity":"+3 {symbol heroCardDefenseTinySymbol}. Rimuovi.",
 						"cost":{
-							"mana":"-{value} {symbol heroCardManaTinySymbol} per scartare o rimuovi",
+							"mana":"Paga {value} {symbol heroCardManaTinySymbol} per scartare o rimuovi.",
 						},
-						"nocost":"rimuovi",
+						"nocost":"Rimuovi.",
 					},
 				},
 				"condition":{
@@ -911,7 +917,7 @@ const
 								"valueGenre":"male",
 							},
 							"advancedAttack1":{
-								"label":"attacco stordente {value}",
+								"label":"stordimento {value}",
 								"valueGenre":"male",
 							},
 							"advancedAttack2":{
@@ -1090,6 +1096,18 @@ const
 					},
 				},
 				"perks":{
+					"defensive":{
+						"male":"difensivo",
+						"female":"difensiva"
+					},
+					"deflecting":{
+						"male":"deviante",
+						"female":"deviante"
+					},
+					"tenacious":{
+						"male":"tenace",
+						"female":"tenace"
+					},
 					"safe":{
 						"male":"sicuro",
 						"female":"sicura",
@@ -2225,16 +2243,22 @@ const
 				"exhaust":{
 					"label":"Exhaust",
 					"top":{
+						"shield":"If not in hand: turn. Discard.",
+						"deflect":"+2 {symbol heroCardAttackTinySymbol}. Turn and discard.",
+						"tenacity":"+2 {symbol heroCardDefenseTinySymbol}. Turn and discard.",
 						"cost":{
-							"mana":"-{value} {symbol heroCardManaTinySymbol} or turn, discard",
+							"mana":"Pay {value} {symbol heroCardManaTinySymbol} or turn. Discard.",
 						},
-						"nocost":"turn and discard",
+						"nocost":"Turn and discard.",
 					},
 					"bottom":{
+						"shield":"Turn. If not in hand: remove.",
+						"deflect":"+3 {symbol heroCardAttackTinySymbol}. Remove.",
+						"tenacity":"+3 {symbol heroCardDefenseTinySymbol}. Remove.",
 						"cost":{
-							"mana":"-{value} {symbol heroCardManaTinySymbol} to discard or remove",
+							"mana":"Pay {value} {symbol heroCardManaTinySymbol} to discard else remove.",
 						},
-						"nocost":"remove",
+						"nocost":"Remove.",
 					},
 				},
 				"effect":{
@@ -2336,7 +2360,7 @@ const
 								"valueGenre":"male",
 							},
 							"advancedAttack1":{
-								"label":"{value} stunning attack",
+								"label":"{value} daze",
 								"valueGenre":"male",
 							},
 							"advancedAttack2":{
@@ -2515,6 +2539,18 @@ const
 					},
 				},
 				"perks":{
+					"defensive":{
+						"male":"defensive",
+						"female":"defensive"
+					},
+					"deflecting":{
+						"male":"deflecting",
+						"female":"deflecting"
+					},
+					"tenacious":{
+						"male":"tenacious",
+						"female":"tenacious"
+					},
 					"safe":{
 						"male":"sure",
 						"female":"sure",

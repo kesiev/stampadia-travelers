@@ -3,11 +3,12 @@ function loadHeroSwordsmanClassSkills(MOD) {
         { model:"singleTransfer", id:"basicAttack2", from:"defense", to:"attack" },
         { model:"startingMana", id:"basicSpecial1", asItem:"attack" },
         { model:"combined", id:"advancedAttack1", item1:"attack", item2:"defense" },
-        { model:"fullTransfer", id:"advancedSpecial2", from:"attack", to:"defense" },
         { model:"finalAction", id:"advancedSpecial1", item:"attack" },
         { model:"bannerConditioned", id:"advancedAttack2", item:"attack" },
-        { model:"zeroTransfer", id:"basicAttack1", from:"defense", to:"attack" },
-        { model:"fullTransfer", id:"basicSpecial2", from:"defense", to:"attack" },
+        // Transfer skills are gained on lower levels
+        { level:[1,5], model:"fullTransfer", id:"advancedSpecial2", from:"attack", to:"defense" },
+        { level:[1,5], model:"zeroTransfer", id:"basicAttack1", from:"defense", to:"attack" },
+        { level:[1,5], model:"fullTransfer", id:"basicSpecial2", from:"defense", to:"attack" },
     ];
 }
 
@@ -29,7 +30,7 @@ function loadHeroSwordsmanClass(MOD) {
         }),
         skillsBag=MOD.random.createBag(loadHeroSwordsmanClassSkills(MOD),true),
         legacySkillsBag=MOD.random.createBag(loadHeroSwordsmanClassLegacySkills(MOD),true);
-
+        
     return {
         id:"swordsman",
         cards:[
@@ -50,6 +51,7 @@ function loadHeroSwordsmanClass(MOD) {
             { action:"addSkill", toSide:1, type:"legacy", times:1 },
             { action:"addPerks", times:2 },
             { action:"addElement", toCards:[4,5,6,7] },
+            { action:"addExhaustModel", model:MOD.random.getFromBag(MOD.exhaustModelsBag), toCard:MOD.random.getFromBag(MOD.cardsBag) }
         ],
         skills:[
 
@@ -63,15 +65,15 @@ function loadHeroSwordsmanClass(MOD) {
             skillCrafter.base("strongAttack2","basic","attack","defense",4),
             skillCrafter.base("strongDefense2","basic","defense","attack",4),
 
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier1",3),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier1",4),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier2",5),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier2",6),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier3",7),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier3",8),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier4",9),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier4",9),
-            skillCrafter.craft(MOD.random.getFromBag(legacySkillsBag),"legacy",9),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",3),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",4),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",5),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",6),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",7),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",8),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier4",9),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier4",9),
+            skillCrafter.craftFromBag(MOD.random,legacySkillsBag,"legacy",9),
 
         ]
     }

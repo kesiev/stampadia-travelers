@@ -2,6 +2,7 @@
     <meta charset="UTF-8">
     <script src="../js/consts/action/models.js"></script>
     <script src="../js/consts/avatar/models.js"></script>
+    <script src="../js/consts/hero/models.js"></script>
 
     <script src="../js/databases/narrative/villains.js"></script>
     <script src="../js/databases/narrative/enemies.js"></script>
@@ -105,6 +106,7 @@ const
             title:"Hero - All",
             items:[
                 { key:"Hero", subkey:"Perks", target:PERCARDTARGET },
+                { key:"Hero", subkey:"Exhaust models", target:EXTRASTUFFTARGET },
             ]
         },
         {
@@ -189,6 +191,7 @@ function onl() {
     addToIndex("Enemy","Level 5",loadNarrativeEnemies(MOD).lvl5);
     addToIndex("Enemy","Villains",loadNarrativeVillains(MOD));
     addToIndex("Hero","Perks",loadHeroPerks(MOD));
+    addToIndex("Hero","Exhaust models",EXHAUSTMODELS);
     countToIndex("Hero - Elementalist","Skills",loadHeroElementalistClassSkills(MOD));
     countToIndex("Hero - Elementalist","Legacy Skills",loadHeroElementalistClassLegacySkills(MOD));
     countToIndex("Hero - Swordsman","Skills",loadHeroSwordsmanClassSkills(MOD));

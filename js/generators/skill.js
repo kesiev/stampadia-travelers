@@ -628,6 +628,16 @@ let SkillCrafter=function(settings) {
         return skill;
     }
 
+    this.craftFromBag=(random,bag,type,level,extraconfig)=>{
+        let config=random.getFromBagHaving(bag,{
+            level:{
+                none:true,
+                inRange:level
+            }
+        });
+        return this.craft(config,type,level,extraconfig);
+    }
+
 }
 
 if (typeof module != "undefined")

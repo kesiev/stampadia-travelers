@@ -6,8 +6,9 @@ function loadHeroStargazerClassSkills(MOD) {
         { model:"showConstellation", id:"tracing", place:"inHand", to:"defense" },
         { model:"showConstellationElement", id:"blackHole", place:"inPlay", to:"attack" },
         { model:"showConstellationElement", id:"nebula", place:"inPlay", to:"defense" },
-        { model:"fullTransferConstellation", id:"zoomout", place:"inPlay", from:"attack", to:"defense" },
-        { model:"fullTransferConstellation", id:"zoomin", place:"inPlay", from:"defense", to:"attack" }
+        // Transfer skills are gained on lower levels
+        { level:[1,5], model:"fullTransferConstellation", id:"zoomout", place:"inPlay", from:"attack", to:"defense" },
+        { level:[1,5], model:"fullTransferConstellation", id:"zoomin", place:"inPlay", from:"defense", to:"attack" },
     ];
 }
 
@@ -53,6 +54,7 @@ function loadHeroStargazerClass(MOD) {
             { action:"addPerks", times:2 },
             { action:"addElement", toCards:[4,5,6,7] },
             { action:"addLowerElement", toCards:[0,1,2,3] },
+            { action:"addExhaustModel", model:MOD.random.getFromBag(MOD.exhaustModelsBag), toCard:MOD.random.getFromBag(MOD.cardsBag) }
         ],
         skills:[
 
@@ -66,15 +68,15 @@ function loadHeroStargazerClass(MOD) {
             skillCrafter.base("strongAttack2","basic","attack","defense",4),
             skillCrafter.base("strongDefense2","basic","defense","attack",4),
 
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier1",3,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.easyConstellationsBag), cards:1 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier1",4,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.easyConstellationsBag), cards:1 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier2",5,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.easyConstellationsBag), cards:1 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier2",6,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:2 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:2 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier3",8,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:2 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:1 }),
-            skillCrafter.craft(MOD.random.getFromBag(skillsBag),"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:1 }),
-            skillCrafter.craft(MOD.random.getFromBag(legacySkillsBag),"legacy",9,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag)}),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",3,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.easyConstellationsBag), cards:1 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",4,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.easyConstellationsBag), cards:1 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",5,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.easyConstellationsBag), cards:1 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",6,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:2 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:2 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",8,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:2 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:1 }),
+            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag), cards:1 }),
+            skillCrafter.craftFromBag(MOD.random,legacySkillsBag,"legacy",9,{ element:MOD.random.getFromBag(MOD.elementsBag), constellation:MOD.random.getFromBag(MOD.normalConstellationsBag)}),
 
         ]
     }

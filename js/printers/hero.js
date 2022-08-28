@@ -235,7 +235,9 @@ function HeroPrinter(modifiers) {
                     exhaustSide=istop?"top":"bottom";
                 text+=labels.exhaust.label+": ";
     
-                if (side.exhaustCost) {
+                if (side.exhaustModel)
+                    text+=replacePlaceholders(labels.exhaust[exhaustSide][side.exhaustModel.label], side.exhaustModel);
+                else if (side.exhaustCost) {
                     if (side.exhaustCost.mana)
                         text+=replaceValue(labels.exhaust[exhaustSide].cost.mana,side.exhaustCost.mana);
                     else

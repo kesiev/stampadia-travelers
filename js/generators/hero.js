@@ -69,6 +69,12 @@ function generateHero(modifiers) {
         applyHigherElement(cards,card,element);
     }
 
+    function applyExhaustModel(cards,card,type) {
+        let side = random.getBoolean() ? 1 : 0;
+        cards[card].sides[side].exhaustModel = type;
+        if (!cards[card].sides[side].perkId) cards[card].sides[side].perkId=type.perkId;
+    }
+
     function createConstellations(len) {
         let out=[], cnt=Math.pow(2,len);
         for (let i=0;i<cnt;i++) {
@@ -102,6 +108,8 @@ function generateHero(modifiers) {
         easyConstellationsBag=random.createBag(EASYCONSTELLATIONS,true),
         normalConstellationsBag=random.createBag(NORMALCONSTELLATIONS,true),
         hardConstellationsBag=random.createBag(HARDCONSTELLATIONS,true),
+        cardsBag=random.createBag([4,5,6,7]),
+        exhaustModelsBag=random.createBag(EXHAUSTMODELS,true),
         MODIFIERS = {
 
             // -- Costs
@@ -123,8 +131,9 @@ function generateHero(modifiers) {
             elementsBag:elementsBag,
             easyConstellationsBag:easyConstellationsBag,
             normalConstellationsBag:normalConstellationsBag,
-            hardConstellationsBag:hardConstellationsBag
-            
+            hardConstellationsBag:hardConstellationsBag,
+            cardsBag:cardsBag,
+            exhaustModelsBag:exhaustModelsBag
         },
         perks=loadHeroPerks(MODIFIERS),
         perksBag = random.createBag(perks),
@@ -205,6 +214,10 @@ function generateHero(modifiers) {
                 step.toCards.forEach(cardid=>{
                     applyHigherElement(cards,cardid,random.getFromBag(elementsBag).element);
                 })
+                break;
+            }
+            case "addExhaustModel":{
+                applyExhaustModel(cards,step.toCard,step.model);
                 break;
             }
         }
