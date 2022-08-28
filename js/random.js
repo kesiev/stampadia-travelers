@@ -99,9 +99,41 @@ function Random(modifiers) {
         } else return false;
     }
 
+    this.getFromBagHaving=function(bag,having) {
+        if (bag.indexes.length) {
+            if (having) {
+                let list=this.getBagIndexesExcept(bag);
+                if (list.length) {
+                    list = list.filter(id=>{
+                        let item = bag.list[id];
+                        for (let k in having) {
+                            if (having[k].none && !item[k]) return true;
+                            if (having[k].inRange && ((item[k][0]<=having[k].inRange) && (item[k][1]>=having[k].inRange))) return true;
+                        }
+                        return false;
+                    });
+                    if (list.length) {
+                        let pick=this.getElement(list);
+                        bag.indexes.splice(bag.indexes.indexOf(pick),1);
+                        return bag.list[pick];
+                    } else {
+                        this.resetBag(bag);
+                        return this.getFromBagHaving(bag,having);
+                    }
+                } else if (bag.looping) {
+                    this.resetBag(bag);
+                    return this.getFromBagHaving(bag,having);
+                } else return false;
+            } else return bag.list[this.removeElement(bag.indexes)];
+        } else if (bag.looping) {
+            this.resetBag(bag);
+            return this.getFromBagHaving(bag,having);
+        } else return false;
+    }
+
     this.getBagIndexesExcept=function(bag,except) {
-        let indexes=except.map(item=>this.getBagId(bag,item));
-        return bag.indexes.filter(id=>indexes.indexOf(id)==-1);
+        let indexes=except ? except.map(item=>this.getBagId(bag,item)) : 0;
+        return bag.indexes.filter(id=>!indexes || (indexes.indexOf(id)==-1));
     }
 
     this.getBagId=function(bag,item) {
