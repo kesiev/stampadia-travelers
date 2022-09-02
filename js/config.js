@@ -1,7 +1,7 @@
 const
     CONFIG={
         title:"Travelers Of Stampadia",
-        version:"0.1b",
+        version:"0.2b",
         author:"KesieV",
         startYear:2022,
         endYear:2022,
