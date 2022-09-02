@@ -52,6 +52,8 @@ function HeroPrinter(modifiers) {
             "heroHelpBorder"
         ]);
 
+        cardPrinter.addLargeSymbol(playerClass.id+"Symbol",rulers.classSymbol);
+
         if (settings.noBorder)
             cardPrinter.delete([
                 "heroHelpCutout"
@@ -136,6 +138,11 @@ function HeroPrinter(modifiers) {
                                     }));
                                     break;
                                 }
+                                case "may":
+                                case "or":{
+                                    textConditions.push(branch);
+                                    break;
+                                }
                                 default:{
                                     console.warn("Unsupported condition action",condition);
                                 }
@@ -177,6 +184,11 @@ function HeroPrinter(modifiers) {
                                         else
                                             console.warn("Missing action toattribute",action);
                                     } else console.warn("Missing action attribute",action);
+                                    break;
+                                }
+                                case "repeatSkill":
+                                case "ignoreModifier":{
+                                    textEffects.push(branch);
                                     break;
                                 }
                                 case "pickFrom":{
@@ -225,23 +237,26 @@ function HeroPrinter(modifiers) {
     
                     cardTitle = capitalize(cardTitle.trim());
                 }
-    
+                
+                if (side.debug) cardTitle="[[ "+cardTitle+" ]]";
                 cardPrinter.addText(titleSettings,titleBox,cardTitle);
     
                 let
                     smallText=[];
                     text="",
                     condition="",
-                    exhaustSide=istop?"top":"bottom";
-                text+=labels.exhaust.label+": ";
+                    drainSide=istop?"top":"bottom";
+                text+=labels.drain.label+": ";
     
-                if (side.exhaustModel)
-                    text+=replacePlaceholders(labels.exhaust[exhaustSide][side.exhaustModel.label], side.exhaustModel);
-                else if (side.exhaustCost) {
-                    if (side.exhaustCost.mana)
-                        text+=replaceValue(labels.exhaust[exhaustSide].cost.mana,side.exhaustCost.mana);
+                if (side.drainModel)
+                    text+=replacePlaceholders(labels.drain[drainSide][side.drainModel.label],{
+                        value:side.drainCost.mana
+                    });
+                else if (side.drainCost) {
+                    if (side.drainCost.mana)
+                        text+=replaceValue(labels.drain[drainSide].cost.mana,side.drainCost.mana);
                     else
-                        text+=labels.exhaust[exhaustSide].noCost;
+                        text+=labels.drain[drainSide].noCost;
                 }
                 smallText.push(text);
     
@@ -290,7 +305,8 @@ function HeroPrinter(modifiers) {
                     cardPrinter.addLargeSymbol(symbol,rulers.element);
                 }
                
-            } else rulers=cardPrinter.getSingleActionCardRulers(areaSettings);
+            } else
+                rulers=cardPrinter.getSingleActionCardRulers(areaSettings);
              
             if (istop) {
                 cardPrinter.delete(["heroCardRibbon2"]);
@@ -300,6 +316,8 @@ function HeroPrinter(modifiers) {
             } else {
                 cardPrinter.delete(["heroCardRibbon1"]);
             }
+
+            cardPrinter.addLargeSymbol(playerClass.id+"Symbol",rulers.classSymbol);
     
         }
     
