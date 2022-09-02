@@ -586,7 +586,6 @@ const
 				"inHandOrDiscard":"",
 			},
 			"conditions":{
-				"if":"se",
 				"separator":" e ",
 				"effectSeparator":": ",
 				"actionSeparator":", ",
@@ -624,8 +623,8 @@ const
 				},
 				"bannerChallenge":{
 					"comparison":{
-						"may":"{optionalityrepeating} controllare se hai {comparison} {cards} {bannerType} {cardsPlace}: se si, gira {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, se no esaurisci {punishmentCards} {punishmentPlace} a tua scelta",
-						"must":"{optionalityrepeating} controlla se hai {comparison} {cards} {bannerType} {cardsPlace}: se si, gira {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, altrimenti esaurisci {punishmentCards} {punishmentPlace} a tua scelta",
+						"may":"{optionalityrepeating} controllare se hai {comparison} {cards} {bannerType} {cardsPlace}: se si, gira {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, se no scarica {punishmentCards} {punishmentPlace} a tua scelta",
+						"must":"{optionalityrepeating} controlla se hai {comparison} {cards} {bannerType} {cardsPlace}: se si, gira {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, altrimenti scarica {punishmentCards} {punishmentPlace} a tua scelta",
 					},
 				},
 				"swapSequence":{
@@ -647,9 +646,9 @@ const
 					},
 				},
 				"sacrifice":{
-					"exhaust":{
-						"may":"{optionalityrepeating} esaurire {cards} {place} per {buff}",
-						"must":"{optionalityrepeating} esaurisci {cards} {place} e {buff}",
+					"drain":{
+						"may":"{optionalityrepeating} scaricare {cards} {place} per {buff}",
+						"must":"{optionalityrepeating} scarica {cards} {place} e {buff}",
 					},
 				},
 				"loot":{
@@ -688,8 +687,8 @@ const
 				},
 				"gambling":{
 					"drawCard":{
-						"may":"{optionalityrepeating} scegliere una carta dalla mano e pescarne una: se questa ha valore {comparison} prendile, altrimenti scartale",
-						"must":"{optionalityrepeating} scegli una carta dalla mano e pescane una: se questa ha valore {comparison} prendile, altrimenti scartale",
+						"may":"{optionalityrepeating} scegliere una carta dalla mano, pescarne una e se questa ha valore {comparison} prendile, altrimenti scartale",
+						"must":"{optionalityrepeating} scegli una carta dalla mano, pescane una e se questa ha valore {comparison} prendile, altrimenti scartale",
 					},
 				},
 			},
@@ -727,23 +726,23 @@ const
 			"heroCard":{
 				"smallTextSeparator":" - ",
 				"optionsSeparator":" ",
-				"exhaust":{
-					"label":"Esaurire",
+				"drain":{
+					"label":"Scarica",
 					"top":{
-						"shield":"Se non in mano: gira. Scarta.",
-						"deflect":"+2 {symbol heroCardAttackTinySymbol}. Gira e scarta.",
-						"tenacity":"+2 {symbol heroCardDefenseTinySymbol}. Gira e scarta.",
+						"shield":"Sul tavolo e non paga {value} {symbol heroCardManaTinySymbol}: gira. Scarta.",
+						"deflect":"Non paga {value} {symbol heroCardManaTinySymbol}: +2 {symbol heroCardAttackTinySymbol}, gira. Scarta.",
+						"tenacity":"Non paga {value} {symbol heroCardManaTinySymbol}: +2 {symbol heroCardDefenseTinySymbol}, gira. Scarta.",
 						"cost":{
-							"mana":"Paga {value} {symbol heroCardManaTinySymbol} o gira. Scarta.",
+							"mana":"Non paga {value} {symbol heroCardManaTinySymbol}: gira. Scarta.",
 						},
-						"nocost":"Gira e scarta.",
+						"nocost":"Gira, scarta.",
 					},
 					"bottom":{
-						"shield":"Gira. Se non in mano: rimuovi.",
-						"deflect":"+3 {symbol heroCardAttackTinySymbol}. Rimuovi.",
-						"tenacity":"+3 {symbol heroCardDefenseTinySymbol}. Rimuovi.",
+						"shield":"In mano o paga {value} {symbol heroCardManaTinySymbol}: scarta. O: rimuovi.",
+						"deflect":"Paga {value} {symbol heroCardManaTinySymbol}: scarta. O: +3 {symbol heroCardAttackTinySymbol}, rimuovi.",
+						"tenacity":"Paga {value} {symbol heroCardManaTinySymbol}: scarta. O: +3 {symbol heroCardDefenseTinySymbol}, rimuovi.",
 						"cost":{
-							"mana":"Paga {value} {symbol heroCardManaTinySymbol} per scartare o rimuovi.",
+							"mana":"Paga {value} {symbol heroCardManaTinySymbol}: scarta. O: rimuovi.",
 						},
 						"nocost":"Rimuovi.",
 					},
@@ -758,14 +757,17 @@ const
 						],
 					},
 					"subjects":{
-						"inPlay":"hai in gioco",
-						"previousCard":"la carta precedente &egrave;",
+						"inPlay":"in gioco",
+						"inHand":"in mano",
+						"previousCard":"sulla carta precedente",
 					},
+					"may":"puoi",
+					"or":"o",
 					"check":{
-						"playedCardsCount":{
-							"lessEqualThan":"{subject} {value} carte o meno",
-							"greaterEqualThan":"{subject} {value} carte o pi&ugrave;",
-							"equal":"{subject} {value} carte",
+						"cardsCount":{
+							"lessEqualThan":"{value} carte o meno {subject}",
+							"greaterEqualThan":"{value} carte o pi&ugrave; {subject}",
+							"equal":"{value} carte {subject}",
 						},
 						"defense":{
 							"lessEqualThan":"{symbol heroCardDefenseSmallSymbol} è {value} o meno",
@@ -778,44 +780,46 @@ const
 							"equal":"{symbol heroCardAttackSmallSymbol} è {value}",
 						},
 						"banner1":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardBanner1SmallSymbol} o meno",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardBanner1SmallSymbol} o pi&ugrave;",
-							"equal":"{subject} {value} {symbol heroCardBanner1SmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardBanner1SmallSymbol} o meno {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardBanner1SmallSymbol} o pi&ugrave; {subject}",
+							"equal":"{value} {symbol heroCardBanner1SmallSymbol} {subject}",
 						},
 						"banner2":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardBanner2SmallSymbol} o meno",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardBanner2SmallSymbol} o pi&ugrave;",
-							"equal":"{subject} {value} {symbol heroCardBanner2SmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardBanner2SmallSymbol} o meno {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardBanner2SmallSymbol} o pi&ugrave; {subject}",
+							"equal":"{value} {symbol heroCardBanner2SmallSymbol} {subject}",
 						},
 						"fire":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardFireSmallSymbol} o meno",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardFireSmallSymbol} o pi&ugrave;",
-							"equal":"{subject} {value} {symbol heroCardFireSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardFireSmallSymbol} o meno {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardFireSmallSymbol} o pi&ugrave; {subject}",
+							"equal":"{value} {symbol heroCardFireSmallSymbol} {subject}",
 						},
 						"water":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardWaterSmallSymbol} o meno",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardWaterSmallSymbol} o pi&ugrave;",
-							"equal":"{subject} {value} {symbol heroCardWaterSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardWaterSmallSymbol} o meno {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardWaterSmallSymbol} o pi&ugrave; {subject}",
+							"equal":"{value} {symbol heroCardWaterSmallSymbol} {subject}",
 						},
 						"earth":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardEarthSmallSymbol} o meno",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardEarthSmallSymbol} o pi&ugrave;",
-							"equal":"{subject} {value} {symbol heroCardEarthSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardEarthSmallSymbol} o meno {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardEarthSmallSymbol} o pi&ugrave; {subject}",
+							"equal":"{value} {symbol heroCardEarthSmallSymbol} {subject}",
 						},
 						"air":{
-							"lessEqualThan":"{subject} {value} {symbol heroCardAirSmallSymbol} o meno",
-							"greaterEqualThan":"{subject} {value} {symbol heroCardAirSmallSymbol} o pi&ugrave;",
-							"equal":"{subject} {value} {symbol heroCardAirSmallSymbol}",
+							"lessEqualThan":"{value} {symbol heroCardAirSmallSymbol} o meno {subject}",
+							"greaterEqualThan":"{value} {symbol heroCardAirSmallSymbol} o pi&ugrave; {subject}",
+							"equal":"{value} {symbol heroCardAirSmallSymbol} {subject}",
 						},
 						"stars":{
-							"lessEqualThan":"{subject} {formattedValue} o meno",
-							"greaterEqualThan":"{subject} {formattedValue} o pi&ugrave;",
-							"equal":"{subject} {formattedValue}",
+							"lessEqualThan":"{formattedValue} o meno {subject}",
+							"greaterEqualThan":"{formattedValue} o pi&ugrave; {subject}",
+							"equal":"{formattedValue} {subject}",
 						},
 					},
 					"checkConstellation":{
-						"inPlay":"hai in gioco {constellation}",
-						"inHand":"hai in mano {constellation}",
+						"inPlay":"{constellation} in gioco",
+						"inHand":"{constellation} in mano",
+						"notInPlay":"non {constellation} in gioco",
+						"notInHand":"non {constellation} in mano",
 					},
 				},
 				"effect":{
@@ -832,6 +836,8 @@ const
 						"defense":"+{value} {symbol heroCardDefenseSmallSymbol}",
 						"mana":"+{value} {symbol heroCardManaSmallSymbol}",
 					},
+					"ignoreModifier":"Puoi ignorare qualsiasi Modificatore del Nemico per questo Turno di Combattimento",
+					"repeatSkill":"Puoi ripetere l'abilità precedente pagandone il costo.",
 					"set":{
 						"attack":"{symbol heroCardAttackSmallSymbol} = {value}",
 						"defense":"{symbol heroCardDefenseSmallSymbol} = {value}",
@@ -856,7 +862,7 @@ const
 						},
 					},
 					"pickFrom":{
-						"infuse":"riprendi in mano fino a {cards} {used} per Infondere",
+						"infuse":"prendi fino a {cards} {used} per Infondere",
 					},
 				},
 				"classes":{
@@ -900,35 +906,71 @@ const
 								"label":"difesa critica {value}",
 								"valueGenre":"female",
 							},
-							"basicAttack1":{
+							"momentum":{
 								"label":"slancio {value}",
 								"valueGenre":"male",
 							},
-							"basicAttack2":{
+							"charge":{
 								"label":"carica {value}",
 								"valueGenre":"female",
 							},
-							"basicSpecial1":{
+							"preparation":{
 								"label":"preparazione {value}",
 								"valueGenre":"female",
 							},
-							"basicSpecial2":{
+							"hate":{
 								"label":"odio {value}",
 								"valueGenre":"male",
 							},
-							"advancedAttack1":{
+							"daze":{
 								"label":"stordimento {value}",
 								"valueGenre":"male",
 							},
-							"advancedAttack2":{
+							"agility":{
 								"label":"agilita' {value}",
 								"valueGenre":"female",
 							},
-							"advancedSpecial1":{
+							"strategy":{
+								"label":"strategia {value}",
+								"valueGenre":"female",
+							},
+							"blitz":{
+								"label":"blitz {value}",
+								"valueGenre":"male",
+							},
+							"lunge":{
+								"label":"affondo {value}",
+								"valueGenre":"male",
+							},
+							"frenzy":{
 								"label":"frenesia {value}",
 								"valueGenre":"female",
 							},
-							"advancedSpecial2":{
+							"patience":{
+								"label":"pazienza {value}",
+								"valueGenre":"female",
+							},
+							"thought":{
+								"label":"pensiero {value}",
+								"valueGenre":"male",
+							},
+							"growl":{
+								"label":"ringhio {value}",
+								"valueGenre":"male",
+							},
+							"shout":{
+								"label":"grido {value}",
+								"valueGenre":"male",
+							},
+							"instinct":{
+								"label":"istinto {value}",
+								"valueGenre":"male",
+							},
+							"impulse":{
+								"label":"impulso {value}",
+								"valueGenre":"male",
+							},
+							"protection":{
 								"label":"protezione {value}",
 								"valueGenre":"female",
 							},
@@ -963,8 +1005,8 @@ const
 								"valueGenre":"male",
 							},
 							"baseAttack2":{
-								"label":"fascio {value}",
-								"valueGenre":"male",
+								"label":"radiazione {value}",
+								"valueGenre":"female",
 							},
 							"baseDefense2":{
 								"label":"muro {value}",
@@ -982,15 +1024,43 @@ const
 								"label":"concentrazione {value}",
 								"valueGenre":"female",
 							},
-							"balance":{
+							"forge":{
+								"label":"forgia {value}",
+								"valueGenre":"female",
+							},
+							"hardening":{
+								"label":"tempra {value}",
+								"valueGenre":"female",
+							},
+							"yin":{
+								"label":"yin {value}",
+								"valueGenre":"male",
+							},
+							"yang":{
+								"label":"yang {value}",
+								"valueGenre":"male",
+							},
+							"scale":{
 								"label":"bilancia {value}",
+								"valueGenre":"female",
+							},
+							"mixture":{
+								"label":"miscela {value}",
+								"valueGenre":"female",
+							},
+							"absorption":{
+								"label":"assorbimento {value}",
+								"valueGenre":"male",
+							},
+							"purity":{
+								"label":"purezza {value}",
 								"valueGenre":"female",
 							},
 							"compression":{
 								"label":"compressione {value}",
 								"valueGenre":"female",
 							},
-							"decompression":{
+							"expansion":{
 								"label":"espansione {value}",
 								"valueGenre":"female",
 							},
@@ -998,12 +1068,20 @@ const
 								"label":"eccesso {value}",
 								"valueGenre":"male",
 							},
-							"emptiness":{
+							"void":{
 								"label":"vuoto {value}",
 								"valueGenre":"male",
 							},
 							"quiet":{
 								"label":"quiete {value}",
+								"valueGenre":"female",
+							},
+							"ascent":{
+								"label":"ascesa {value}",
+								"valueGenre":"female",
+							},
+							"descent":{
+								"label":"discesa {value}",
 								"valueGenre":"female",
 							},
 							"legacyElemental":{
@@ -1060,6 +1138,30 @@ const
 								"label":"sguardo {value}",
 								"valueGenre":"male",
 							},
+							"comet":{
+								"label":"cometa {value}",
+								"valueGenre":"female",
+							},
+							"asteroid":{
+								"label":"asteroide {value}",
+								"valueGenre":"male",
+							},
+							"darkness":{
+								"label":"oscurita' {value}",
+								"valueGenre":"female",
+							},
+							"pact":{
+								"label":"patto {value}",
+								"valueGenre":"male",
+							},
+							"bond":{
+								"label":"legame {value}",
+								"valueGenre":"male",
+							},
+							"blindness":{
+								"label":"cecita' {value}",
+								"valueGenre":"female",
+							},
 							"reduction":{
 								"label":"riduzione {value}",
 								"valueGenre":"female",
@@ -1086,6 +1188,14 @@ const
 							},
 							"nebula":{
 								"label":"nebula {value}",
+								"valueGenre":"female",
+							},
+							"day":{
+								"label":"giorno {value}",
+								"valueGenre":"male",
+							},
+							"night":{
+								"label":"notte {value}",
 								"valueGenre":"female",
 							},
 							"legacyAttack":{
@@ -1116,9 +1226,29 @@ const
 						"male":"ardente",
 						"female":"ardente",
 					},
+					"boiling":{
+						"male":"bollente",
+						"female":"bollente",
+					},
 					"overwhelming":{
 						"male":"travolgente",
 						"female":"travolgente",
+					},
+					"trembling":{
+						"male":"tremante",
+						"female":"tremante",
+					},
+					"swollen":{
+						"male":"rigonfio",
+						"female":"rigonfia",
+					},
+					"lacustrine":{
+						"male":"lacustre",
+						"female":"lacustre",
+					},
+					"blessed":{
+						"male":"benedetto",
+						"female":"benedetta",
 					},
 					"cutting":{
 						"male":"tagliente",
@@ -1173,8 +1303,8 @@ const
 						"female":"dell'acqua",
 					},
 					"of3_earth":{
-						"male":"marrone",
-						"female":"marrone",
+						"male":"bruno",
+						"female":"bruna",
 					},
 					"of3_air":{
 						"male":"bianco",
@@ -1221,14 +1351,14 @@ const
 					},
 				},
 				"pick":{
-					"may":"{optionalityrepeating} aggiungere il retro di questa carta sul lato {bannerType} alla tua pila degli scarti",
-					"must":"aggiungi il retro di questa carta sul lato {bannerType} alla tua pila degli scarti",
+					"may":"{optionalityrepeating} aggiungere il retro di questa carta sul lato {bannerType} al mazzo degli scarti",
+					"must":"aggiungi il retro di questa carta sul lato {bannerType} al mazzo degli scarti",
 				},
 				"actions":{
 					"forge":{
 						"elements":{
-							"may":"{optionalityrepeating} scartare {sequence} per aggiungere il retro di questa carta sul lato {bannerType} alla tua pila degli scarti",
-							"must":"scarta {sequence} per aggiungere il retro di questa carta sul lato {bannerType} nella tua pila degli scarti",
+							"may":"{optionalityrepeating} scartare {sequence} per aggiungere il retro di questa carta sul lato {bannerType} al mazzo degli scarti",
+							"must":"scarta {sequence} per aggiungere il retro di questa carta sul lato {bannerType} al mazzo degli scarti",
 						},
 					},
 				},
@@ -1243,14 +1373,14 @@ const
 				},
 				"roomIsEmpty":"la stanza &egrave; vuota",
 				"pick":{
-					"may":"{optionalityrepeating} aggiungere il retro della carta {card} sul lato {bannerType} nella tua pila degli scarti",
-					"must":"aggiungi il retro della carta {card} sul lato {bannerType} nella tua pila degli scarti",
+					"may":"{optionalityrepeating} aggiungere il retro della carta {card} sul lato {bannerType} al mazzo degli scarti",
+					"must":"aggiungi il retro della carta {card} sul lato {bannerType} al mazzo degli scarti",
 				},
 				"actions":{
 					"forge":{
 						"elements":{
-							"may":"{optionalityrepeating} scartare {sequence} per aggiungere il retro della carta {card} sul lato {bannerType} alla tua pila degli scarti",
-							"must":"scarta {sequence} per aggiungere il retro della carta {card} sul lato {bannerType} nella tua pila degli scarti",
+							"may":"{optionalityrepeating} scartare {sequence} per aggiungere il retro della carta {card} sul lato {bannerType} al mazzo degli scarti",
+							"must":"scarta {sequence} per aggiungere il retro della carta {card} sul lato {bannerType} al mazzo degli scarti",
 						},
 					},
 				},
@@ -1258,7 +1388,7 @@ const
 			"enemiesDescriptions":{
 				"weakToElement":{
 					"title":"Debolezza elementale",
-					"label":"Se hai {elementLimit} {element} o pi&ugrave; in gioco: -1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{elementLimit} {element} o pi&ugrave; in gioco: -1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -1270,7 +1400,7 @@ const
 				},
 				"strongToElement":{
 					"title":"Difesa elementale",
-					"label":"Se hai {elementLimit} {element} o pi&ugrave; in gioco: +1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{elementLimit} {element} o pi&ugrave; in gioco: +1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -1282,7 +1412,7 @@ const
 				},
 				"affinityElement":{
 					"title":"Affinita' elementale",
-					"label":"Se hai {elementLimit} {element} o pi&ugrave; in gioco: +1{symbol heroCardAttackSmallSymbol}",
+					"label":"{elementLimit} {element} o pi&ugrave; in gioco: +1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -1294,7 +1424,7 @@ const
 				},
 				"fearElement":{
 					"title":"Timore elementale",
-					"label":"Se hai {elementLimit} {element} o pi&ugrave; in gioco: -1{symbol heroCardAttackSmallSymbol}",
+					"label":"{elementLimit} {element} o pi&ugrave; in gioco: -1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -1306,7 +1436,7 @@ const
 				},
 				"unsecure":{
 					"title":"Insicurezza",
-					"label":"Se hai {cardsLimit} {banner} o pi&ugrave; in gioco: -1{symbol heroCardAttackSmallSymbol}",
+					"label":"{cardsLimit} {banner} o pi&ugrave; in gioco: -1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -1316,7 +1446,7 @@ const
 				},
 				"envy":{
 					"title":"Invidia",
-					"label":"Se hai {cardsLimit} {banner} o pi&ugrave; in gioco: +1{symbol heroCardAttackSmallSymbol}",
+					"label":"{cardsLimit} {banner} o pi&ugrave; in gioco: +1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -1326,31 +1456,31 @@ const
 				},
 				"ranged":{
 					"title":"A distanza",
-					"label":"Se hai {actionsLimit} carte eroe o pi&ugrave; in gioco: +1{symbol heroCardAttackSmallSymbol}",
+					"label":"{actionsLimit} carte eroe o pi&ugrave; in gioco: +1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"close":{
 					"title":"Ravvicinato",
-					"label":"Se hai {actionsLimit} carte eroe meno in gioco: -1{symbol heroCardAttackSmallSymbol}",
+					"label":"{actionsLimit} carte eroe meno in gioco: -1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"rapidity":{
 					"title":"Rapidit&agrave;",
-					"label":"Se hai {actionsLimit} carte eroe o pi&ugrave; in gioco: +1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{actionsLimit} carte eroe o pi&ugrave; in gioco: +1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"slowness":{
 					"title":"Lentezza",
-					"label":"Se hai {actionsLimit} carte eroe o meno in gioco: -1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{actionsLimit} carte eroe o meno in gioco: -1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"charmed":{
 					"title":"Affascinato",
-					"label":"Se hai {cardsLimit} {banner} o pi&ugrave; in gioco: -1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{cardsLimit} {banner} o pi&ugrave; in gioco: -1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -1360,7 +1490,7 @@ const
 				},
 				"cautious":{
 					"title":"Cautela",
-					"label":"Se hai {cardsLimit} {banner} o pi&ugrave; in gioco: +1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{cardsLimit} {banner} o pi&ugrave; in gioco: +1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -2117,7 +2247,7 @@ const
 					"bannerAny":"",
 					"banner1":"{symbol heroCardBanner1SmallSymbol}",
 					"banner2":"{symbol heroCardBanner2SmallSymbol}",
-					"bannerChoice":"you choose",
+					"bannerChoice":"any chosen",
 				},
 				"resources":{
 					"attack":"{symbol heroCardAttackSmallSymbol}",
@@ -2179,14 +2309,19 @@ const
 					},
 					"subjects":{
 						"inPlay":"in play",
-						"previousCard":"the previous card is",
+						"inHand":"in hand",
+						"previousCard":"on previous card",
 					},
 					"checkConstellation":{
 						"inPlay":"{constellation} in play",
 						"inHand":"{constellation} in hand",
+						"notInPlay":"not {constellation} in play",
+						"notInHand":"not {constellation} in hand",
 					},
+					"may":"May",
+					"or":"Or",
 					"check":{
-						"playedCardsCount":{
+						"cardsCount":{
 							"lessEqualThan":"{value} cards or less {subject}",
 							"greaterEqualThan":"{value} cards or more {subject}",
 							"equal":"{value} cards {subject}",
@@ -2240,27 +2375,28 @@ const
 				},
 				"smallTextSeparator":" - ",
 				"optionsSeparator":" ",
-				"exhaust":{
-					"label":"Exhaust",
+				"drain":{
+					"label":"Drain",
 					"top":{
-						"shield":"If not in hand: turn. Discard.",
-						"deflect":"+2 {symbol heroCardAttackTinySymbol}. Turn and discard.",
-						"tenacity":"+2 {symbol heroCardDefenseTinySymbol}. Turn and discard.",
+						"shield":"On table and not pay {value} {symbol heroCardManaTinySymbol}: turn. Discard.",
+						"deflect":"Not pay {value} {symbol heroCardManaTinySymbol}: +2 {symbol heroCardAttackTinySymbol}, turn. Discard.",
+						"tenacity":"Not pay {value} {symbol heroCardManaTinySymbol}: +2 {symbol heroCardDefenseTinySymbol}, turn. Discard.",
 						"cost":{
-							"mana":"Pay {value} {symbol heroCardManaTinySymbol} or turn. Discard.",
+							"mana":"Not pay {value} {symbol heroCardManaTinySymbol}: turn. Discard.",
 						},
-						"nocost":"Turn and discard.",
+						"nocost":"Turn, discard.",
 					},
 					"bottom":{
-						"shield":"Turn. If not in hand: remove.",
-						"deflect":"+3 {symbol heroCardAttackTinySymbol}. Remove.",
-						"tenacity":"+3 {symbol heroCardDefenseTinySymbol}. Remove.",
+						"shield":"In hand or pay {value} {symbol heroCardManaTinySymbol}: discard. Or: remove.",
+						"deflect":"Pay {value} {symbol heroCardManaTinySymbol}: discard. Or: +3 {symbol heroCardAttackTinySymbol}, remove.",
+						"tenacity":"Pay {value} {symbol heroCardManaTinySymbol}: discard. Or: +3 {symbol heroCardDefenseTinySymbol}, remove.",
 						"cost":{
-							"mana":"Pay {value} {symbol heroCardManaTinySymbol} to discard else remove.",
+							"mana":"Pay {value} {symbol heroCardManaTinySymbol}: discard. Or: remove.",
 						},
 						"nocost":"Remove.",
 					},
 				},
+
 				"effect":{
 					"gainTick":{
 						"action":"if possible, fill the leftmost box",
@@ -2275,6 +2411,8 @@ const
 						"defense":"+{value} {symbol heroCardDefenseSmallSymbol}",
 						"mana":"+{value} {symbol heroCardManaSmallSymbol}",
 					},
+					"ignoreModifier":"You may ignore any Enemy Modifier for this Combat Turn",
+					"repeatSkill":"You may perform the previous ability paying its cost.",
 					"set":{
 						"attack":"{symbol heroCardAttackSmallSymbol} = {value}",
 						"defense":"{symbol heroCardDefenseSmallSymbol} = {value}",
@@ -2291,7 +2429,7 @@ const
 						"mana":"{symbol heroCardManaSmallSymbol} {symbol heroCardMultiplyTinySymbol} {value}",
 					},
 					"pickFrom":{
-						"infuse":"take back up to {cards} {used} to Infuse",
+						"infuse":"take up to {cards} {used} to Infuse",
 					},
 					"transfer":{
 						"attack":{
@@ -2343,35 +2481,71 @@ const
 								"label":"{value} critical defense",
 								"valueGenre":"male",
 							},
-							"basicAttack1":{
+							"momentum":{
 								"label":"{value} momentum",
 								"valueGenre":"male",
 							},
-							"basicAttack2":{
+							"charge":{
 								"label":"{value} charge",
 								"valueGenre":"male",
 							},
-							"basicSpecial1":{
+							"preparation":{
 								"label":"{value} preparation",
 								"valueGenre":"male",
 							},
-							"basicSpecial2":{
+							"hate":{
 								"label":"{value} hate",
 								"valueGenre":"male",
 							},
-							"advancedAttack1":{
+							"daze":{
 								"label":"{value} daze",
 								"valueGenre":"male",
 							},
-							"advancedAttack2":{
+							"agility":{
 								"label":"{value} agility",
 								"valueGenre":"male",
 							},
-							"advancedSpecial1":{
+							"strategy":{
+								"label":"{value} strategy",
+								"valueGenre":"male",
+							},
+							"blitz":{
+								"label":"{value} blitz",
+								"valueGenre":"male",
+							},
+							"lunge":{
+								"label":"{value} lunge",
+								"valueGenre":"male",
+							},
+							"frenzy":{
 								"label":"{value} frenzy",
 								"valueGenre":"male",
 							},
-							"advancedSpecial2":{
+							"patience":{
+								"label":"{value} patience",
+								"valueGenre":"male",
+							},
+							"thought":{
+								"label":"{value} thought",
+								"valueGenre":"male",
+							},
+							"growl":{
+								"label":"{value} growl",
+								"valueGenre":"male",
+							},
+							"shout":{
+								"label":"{value} shout",
+								"valueGenre":"male",
+							},
+							"instinct":{
+								"label":"{value} instinct",
+								"valueGenre":"male",
+							},
+							"impulse":{
+								"label":"{value} impulse",
+								"valueGenre":"male",
+							},
+							"protection":{
 								"label":"{value} protection",
 								"valueGenre":"male",
 							},
@@ -2406,7 +2580,7 @@ const
 								"valueGenre":"male",
 							},
 							"baseAttack2":{
-								"label":"{value} stream",
+								"label":"{value} radiation",
 								"valueGenre":"male",
 							},
 							"baseDefense2":{
@@ -2425,15 +2599,43 @@ const
 								"label":"{value} concentration",
 								"valueGenre":"male",
 							},
-							"balance":{
+							"forge":{
+								"label":"{value} forge",
+								"valueGenre":"male",
+							},
+							"hardening":{
+								"label":"{value} hardening",
+								"valueGenre":"male",
+							},
+							"yin":{
+								"label":"{value} yin",
+								"valueGenre":"male",
+							},
+							"yang":{
+								"label":"{value} yang",
+								"valueGenre":"male",
+							},
+							"scale":{
 								"label":"{value} scale",
+								"valueGenre":"male",
+							},
+							"mixture":{
+								"label":"{value} mixture",
+								"valueGenre":"male",
+							},
+							"absorption":{
+								"label":"{value} absorption",
+								"valueGenre":"male",
+							},
+							"purity":{
+								"label":"{value} purity",
 								"valueGenre":"male",
 							},
 							"compression":{
 								"label":"{value} compression",
 								"valueGenre":"male",
 							},
-							"decompression":{
+							"expansion":{
 								"label":"{value} expansion",
 								"valueGenre":"male",
 							},
@@ -2441,12 +2643,20 @@ const
 								"label":"{value} excess",
 								"valueGenre":"male",
 							},
-							"emptiness":{
+							"void":{
 								"label":"{value} void",
 								"valueGenre":"male",
 							},
 							"quiet":{
 								"label":"{value} quiet",
+								"valueGenre":"male",
+							},
+							"ascent":{
+								"label":"{value} ascent",
+								"valueGenre":"male",
+							},
+							"descent":{
+								"label":"{value} descent",
 								"valueGenre":"male",
 							},
 							"legacyElemental":{
@@ -2503,6 +2713,30 @@ const
 								"label":"{value} gaze",
 								"valueGenre":"male",
 							},
+							"comet":{
+								"label":"{value} comet",
+								"valueGenre":"male",
+							},
+							"asteroid":{
+								"label":"{value} asteroid",
+								"valueGenre":"male",
+							},
+							"darkness":{
+								"label":"{value} darkness",
+								"valueGenre":"male",
+							},
+							"pact":{
+								"label":"{value} pact",
+								"valueGenre":"male",
+							},
+							"bond":{
+								"label":"{value} bond",
+								"valueGenre":"male",
+							},
+							"blindness":{
+								"label":"{value} blindness",
+								"valueGenre":"male",
+							},
 							"reduction":{
 								"label":"{value} reduction",
 								"valueGenre":"male",
@@ -2529,6 +2763,14 @@ const
 							},
 							"nebula":{
 								"label":"{value} nebula",
+								"valueGenre":"male",
+							},
+							"day":{
+								"label":"{value} day",
+								"valueGenre":"male",
+							},
+							"night":{
+								"label":"{value} night",
 								"valueGenre":"male",
 							},
 							"legacyAttack":{
@@ -2559,9 +2801,29 @@ const
 						"male":"burning",
 						"female":"burning",
 					},
+					"boiling":{
+						"male":"boiling",
+						"female":"boiling",
+					},
 					"overwhelming":{
 						"male":"overwhelming",
 						"female":"overwhelming",
+					},
+					"trembling":{
+						"male":"trembling",
+						"female":"trembling",
+					},
+					"swollen":{
+						"male":"swollen",
+						"female":"swollen",
+					},
+					"lacustrine":{
+						"male":"lacustrine",
+						"female":"lacustrine",
+					},
+					"blessed":{
+						"male":"blessed",
+						"female":"blessed",
 					},
 					"cutting":{
 						"male":"cutting",
@@ -3105,7 +3367,6 @@ const
 				},
 			},
 			"conditions":{
-				"if":"if",
 				"separator":" and ",
 				"effectSeparator":": ",
 				"actionSeparator":", ",
@@ -3125,8 +3386,8 @@ const
 				},
 				"swap":{
 					"upTo":{
-						"may":"{optionalityrepeating} swap up to {cards} {bannerType} from hand with as many {bannerTypeTo} in discard pile",
-						"must":"{optionalityrepeating} swap up to {cards} {bannerType} from hand with as many {bannerTypeTo} in discard pile",
+						"may":"{optionalityrepeating} swap up to {cards} {bannerType} from hand with as many {bannerTypeTo} in discard deck",
+						"must":"{optionalityrepeating} swap up to {cards} {bannerType} from hand with as many {bannerTypeTo} in discard deck",
 					},
 				},
 				"recover":{
@@ -3143,8 +3404,8 @@ const
 				},
 				"bannerChallenge":{
 					"comparison":{
-						"may":"{optionalityrepeating} check if you've {comparison} {cards} {bannerType} {cardsPlace}: if yes, turn {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, else exhaust {punishmentCards} of your choice {punishmentPlace}",
-						"must":"{optionalityrepeating} check if you've {comparison} {cards} {bannerType} {cardsPlace}: if yes, turn {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, else exhaust {punishmentCards} of your choice {punishmentPlace}",
+						"may":"{optionalityrepeating} check if you've {comparison} {cards} {bannerType} {cardsPlace}: if yes, turn {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, else drain {punishmentCards} of your choice {punishmentPlace}",
+						"must":"{optionalityrepeating} check if you've {comparison} {cards} {bannerType} {cardsPlace}: if yes, turn {prizeCards} {symbol heroCardBanner2SmallSymbol} {prizePlace}, else drain {punishmentCards} of your choice {punishmentPlace}",
 					},
 				},
 				"swapSequence":{
@@ -3166,9 +3427,9 @@ const
 					},
 				},
 				"sacrifice":{
-					"exhaust":{
-						"may":"{optionalityrepeating} exhaust {cards} {place} to {buff}",
-						"must":"{optionalityrepeating} exhaust {cards} {place} to {buff}",
+					"drain":{
+						"may":"{optionalityrepeating} drain {cards} {place} to {buff}",
+						"must":"{optionalityrepeating} drain {cards} {place} to {buff}",
 					},
 				},
 				"loot":{
@@ -3191,8 +3452,8 @@ const
 				},
 				"discardHand":{
 					"flip":{
-						"may":"{optionalityrepeating} discard hand, turn the discard pile and draw a new hand",
-						"must":"{optionalityrepeating} discard hand, turn the discard pile and draw a new hand",
+						"may":"{optionalityrepeating} discard hand, turn the discard deck and draw a new hand",
+						"must":"{optionalityrepeating} discard hand, turn the discard deck and draw a new hand",
 					},
 					"normal":{
 						"may":"{optionalityrepeating} discard hand and draw a new hand",
@@ -3207,8 +3468,8 @@ const
 				},
 				"gambling":{
 					"drawCard":{
-						"may":"{optionalityrepeating} choose a card in hand and draw one: if it has {comparison} value keep both, else discard both",
-						"must":"{optionalityrepeating} choose a card in hand and draw one: if it has {comparison} value keep both, else discard both",
+						"may":"{optionalityrepeating} choose a card in hand, draw one, and if it has {comparison} value keep both, else discard both",
+						"must":"{optionalityrepeating} choose a card in hand, draw one, and if it has {comparison} value keep both, else discard both",
 					},
 				},
 			},
@@ -3264,14 +3525,14 @@ const
 					},
 				},
 				"pick":{
-					"may":"{optionalityrepeating} add the back of this card on the {bannerType} side to discard pile",
-					"must":"add the back of this card on the {bannerType} side to discard pile",
+					"may":"{optionalityrepeating} add the back of this card on the {bannerType} side to discard deck",
+					"must":"add the back of this card on the {bannerType} side to discard deck",
 				},
 				"actions":{
 					"forge":{
 						"elements":{
-							"may":"{optionalityrepeating} discard {sequence} to add the back of this card on the {bannerType} side to discard pile",
-							"must":"discard {sequence} to add the back of this card on the {bannerType} side to discard pile",
+							"may":"{optionalityrepeating} discard {sequence} to add the back of this card on the {bannerType} side to discard deck",
+							"must":"discard {sequence} to add the back of this card on the {bannerType} side to discard deck",
 						},
 					},
 				},
@@ -3286,14 +3547,14 @@ const
 				},
 				"roomIsEmpty":"the room is empty",
 				"pick":{
-					"may":"{optionalityrepeating} add the back of the {card} card on the {bannerType} side to discard pile",
-					"must":"add the back of the {card} card on the {bannerType} side to discard pile",
+					"may":"{optionalityrepeating} add the back of the {card} card on the {bannerType} side to discard deck",
+					"must":"add the back of the {card} card on the {bannerType} side to discard deck",
 				},
 				"actions":{
 					"forge":{
 						"elements":{
-							"may":"{optionalityrepeating} discard {sequence} to add the back of the {card} card on the {bannerType} side to discard pile",
-							"must":"discard {sequence} to add the back of the {card} card on the {bannerType} side to discard pile",
+							"may":"{optionalityrepeating} discard {sequence} to add the back of the {card} card on the {bannerType} side to discard deck",
+							"must":"discard {sequence} to add the back of the {card} card on the {bannerType} side to discard deck",
 						},
 					},
 				},
@@ -3301,7 +3562,7 @@ const
 			"enemiesDescriptions":{
 				"weakToElement":{
 					"title":"Elemental weakness",
-					"label":"If you've {elementLimit} {element} or more in play: -1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{elementLimit} {element} or more in play: -1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -3313,7 +3574,7 @@ const
 				},
 				"strongToElement":{
 					"title":"Elemental defense",
-					"label":"If you've {elementLimit} {element} or more in play: +1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{elementLimit} {element} or more in play: +1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -3325,7 +3586,7 @@ const
 				},
 				"affinityElement":{
 					"title":"Elemental affinity",
-					"label":"If you've {elementLimit} {element} or more in play: +1{symbol heroCardAttackSmallSymbol}",
+					"label":"{elementLimit} {element} or more in play: +1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -3337,7 +3598,7 @@ const
 				},
 				"fearElement":{
 					"title":"Elemental fear",
-					"label":"If you've {elementLimit} {element} or more in play: -1{symbol heroCardAttackSmallSymbol}",
+					"label":"{elementLimit} {element} or more in play: -1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"element":{
 							"earth":"{symbol heroCardEarthSmallSymbol}",
@@ -3349,7 +3610,7 @@ const
 				},
 				"unsecure":{
 					"title":"Insecurity",
-					"label":"If you've {cardsLimit} {banner} or more in play: -1{symbol heroCardAttackSmallSymbol}",
+					"label":"{cardsLimit} {banner} or more in play: -1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -3359,7 +3620,7 @@ const
 				},
 				"envy":{
 					"title":"Envy",
-					"label":"If you've {cardsLimit} {banner}or more in play: +1{symbol heroCardAttackSmallSymbol}",
+					"label":"{cardsLimit} {banner} or more in play: +1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -3369,31 +3630,31 @@ const
 				},
 				"ranged":{
 					"title":"Ranged",
-					"label":"If you've {actionsLimit} hero cards or more in play: +1{symbol heroCardAttackSmallSymbol}",
+					"label":"{actionsLimit} hero cards or more in play: +1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"close":{
 					"title":"Close",
-					"label":"If you've {actionsLimit} hero cards or less in play: -1{symbol heroCardAttackSmallSymbol}",
+					"label":"{actionsLimit} hero cards or less in play: -1{symbol heroCardAttackSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"rapidity":{
 					"title":"Rapidity",
-					"label":"If you've {actionsLimit} hero cards or more in play: +1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{actionsLimit} hero cards or more in play: +1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"slowness":{
 					"title":"Slowness",
-					"label":"If you've {actionsLimit} hero cards or less in play: -1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{actionsLimit} hero cards or less in play: -1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 					},
 				},
 				"charmed":{
 					"title":"Charmed",
-					"label":"If you've {cardsLimit} {banner} or more in play: -1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{cardsLimit} {banner} or more in play: -1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -3403,7 +3664,7 @@ const
 				},
 				"cautious":{
 					"title":"Safety",
-					"label":"If you've {cardsLimit} {banner} or more in play: +1{symbol heroCardDefenseSmallSymbol}",
+					"label":"{cardsLimit} {banner} or more in play: +1{symbol heroCardDefenseSmallSymbol}",
 					"placeholders":{
 						"banner":{
 							"banner1":"{symbol heroCardBanner1SmallSymbol}",
@@ -3527,7 +3788,7 @@ const
 					"missionEndingText":[
 						"You defeated {villain-name} and {villainHelper-name}!",
 						"{villain-name} and {villainHelper-name} are just a memory. You did it!",
-						"{villainHelper-name} has been arrested... but {villain-name} managed to escape. Will come back?",
+						"{villainHelper-name} has been arrested... but {villain-name} managed to escape. Will they come back?",
 					],
 				},
 				"mainTheFinalForm":{
