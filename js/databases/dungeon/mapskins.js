@@ -1,7 +1,7 @@
 function loadMapSkins(MOD) {
     const
-        RANDOMWALKABLE1=["floor","tiles","horizontalWood","horizontalBricks","horizontalGrass","temple"],
-        RANDOMWALKABLE2=["floor","tiles","verticalWood","verticalBricks","verticalGrass"],
+        RANDOMWALKABLE1=["floor","tiles","horizontalWood","horizontalBricks","horizontalGrass","temple","rocky"],
+        RANDOMWALKABLE2=["floor","tiles","verticalWood","verticalBricks","verticalGrass","checkers","rattan"],
         RANDOMWALL=["wall","squaredColumn","roundedColumn","spikedColumn"];
     return {
         cells:{
@@ -109,6 +109,28 @@ function loadMapSkins(MOD) {
                 images:[
                     { id: "dungeonWood0", angles:[90, 270], tilt:[0] },
                     { id: "dungeonWood1", angles:[90, 270], tilt:[0] }
+                ]
+            },
+            checkers:{
+                codex:"The Checkers: a checkered floor.",
+                unwalkable:false,
+                images:[
+                    { id: "dungeonCheckers0", angles:[0], tilt:[0] },
+                    { id: "dungeonCheckers1", angles:[0], tilt:[0] }
+                ]
+            },
+            rocky:{
+                codex:"The Rocky: a rocky floor.",
+                unwalkable:false,
+                images:[
+                    { id: "dungeonRocky0", angles:[0,90,180,270], tilt:[-2,2] },
+                ]
+            },
+            rattan:{
+                codex:"The Rattan: a rattan floor.",
+                unwalkable:false,
+                images:[
+                    { id: "dungeonRattan0", angles:[0,90,180,270], tilt:[0,0] },
                 ]
             }
         },
@@ -287,6 +309,86 @@ function loadMapSkins(MOD) {
                     "2001",
                     "2002",
                     "2222",
+                ]
+            },
+            {
+                codex:"The Plain: an area with no walls.",
+                pens:[
+                    RANDOMWALL,
+                    RANDOMWALKABLE1,
+                    RANDOMWALKABLE2
+                ],
+                map:[
+                    "1111",
+                    "1111",
+                    "1211",
+                    "2212",
+                    "2222",
+                    "2222",
+                ]
+            },
+            {
+                codex:"The S-Tunnel: a small S-shaped tunnel.",
+                pens:[
+                    RANDOMWALL,
+                    RANDOMWALKABLE1,
+                    RANDOMWALKABLE2
+                ],
+                map:[
+                    "1111",
+                    "1111",
+                    "0200",
+                    "0220",
+                    "0020",
+                    "1111",
+                ]
+            },
+            {
+                codex:"The I-Tunnel: a small I-shaped tunnel.",
+                pens:[
+                    RANDOMWALL,
+                    RANDOMWALKABLE1,
+                    RANDOMWALKABLE2
+                ],
+                map:[
+                    "1111",
+                    "1020",
+                    "1020",
+                    "1020",
+                    "1111",
+                    "1111",
+                ]
+            },
+            {
+                codex:"The Double Room: a room with two openings.",
+                pens:[
+                    RANDOMWALL,
+                    RANDOMWALKABLE1,
+                    RANDOMWALKABLE2
+                ],
+                map:[
+                    "1111",
+                    "1111",
+                    "1020",
+                    "1000",
+                    "1020",
+                    "1111",
+                ]
+            },
+            {
+                codex:"The Mountain: a huge block to move around.",
+                pens:[
+                    RANDOMWALL,
+                    RANDOMWALKABLE1,
+                    RANDOMWALKABLE2
+                ],
+                map:[
+                    "1111",
+                    "1001",
+                    "0001",
+                    "0001",
+                    "1001",
+                    "1111",
                 ]
             }
         ]
