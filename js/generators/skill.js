@@ -8,7 +8,7 @@ let SkillCrafter=function(settings) {
                 COMBODISCOUNT:[   0,   1,   0,   1,   0,   1,   0,   1,   0,   1 ],
                   RESOURCEBUY:[   1,   1,   1,   1,   1,   1,   1,   1,   1,   1 ],
                  GIFTRESOURCE:[ 2.5, 2.5, 2.5, 2.5, 2.5, 2.5,   2, 1.5, 0.5,   0 ],
-                  EXHAUSTCOST:[   1,   1,   1,   2,   2,   3,   3,   3,   4,   4 ]
+                  DRAINCOST:[   1,   1,   1,   2,   2,   3,   3,   3,   4,   4 ]
             }
         };
 
@@ -100,7 +100,7 @@ let SkillCrafter=function(settings) {
         return {
             level:level,
             gain:{ mana:mana },
-            exhaustCost: { mana: MARKET.EXHAUSTCOST[level] },
+            drainCost: { mana: MARKET.DRAINCOST[level] },
             effects:effects
         }
 
@@ -145,7 +145,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
@@ -163,7 +163,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             options:[
                 {
                     cost:base.effects[0].cost,
@@ -183,18 +183,18 @@ let SkillCrafter=function(settings) {
         });
     }
 
-    this.finalAction=(id,type,itm,level)=>{
+    this.cardsCountConditioned=(id,type,count,subject,itm,level)=>{
         let base=getBase(level,[{sell:[level,itm]}]);
         return finalize({
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
                 effects:[ {
-                    if: [ { action:"check", attribute:"playedCardsCount", operator:"greaterEqualThan", value:4 } ],
+                    if: [ { action:"check", attribute:"cardsCount", operator:"greaterEqualThan", subject:subject, value:count } ],
                     then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources) ]
                 } ]
             }]
@@ -207,7 +207,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
@@ -222,13 +222,107 @@ let SkillCrafter=function(settings) {
         });
     }
 
-    this.showConstellationElement=(id,type,constellation,element,place,to,cards,level)=>{
+    this.noShowConstellation=(id,type,constellation,place1,place2,item,level)=>{
+        let 
+            base=getBase(level,[{buy:[[constellation.length,"constellation"]],sell:[level,item]}]),
+            gainResourcesPart=Math.ceil(base.effects[0].gainResources/2);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            drainCost:base.drainCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[ {
+                    if: [ { action:"checkConstellation", constellation:constellation, place:place1 } ],
+                    then: [
+                        gain(base.effects[0].gainResourceType,gainResourcesPart)
+                    ]
+                },{
+                    if: [ { action:"checkConstellation", constellation:constellation, place:place2 } ],
+                    then: [
+                        gain(base.effects[0].gainResourceType,gainResourcesPart)
+                    ]
+                } ]
+            }]
+        });
+    }
+
+    this.flowConstellation=(id,type,constellation,place,item1,item2,level)=>{
+        let
+            base=getBase(level,[{sell:[level,item1]}]),
+            secondConstellation=Tools.clone(constellation);
+        secondConstellation[0]=secondConstellation[0]==1?2:1;
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            drainCost:base.drainCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[  
+                    {
+                        if: [
+                            { action:"checkConstellation", constellation:constellation, place:place }
+                        ],
+                        then: [ gain(item1,base.effects[0].gainResources ) ]
+                    },{
+                        if: [
+                            { action:"checkConstellation", constellation:secondConstellation, place:place }
+                        ],
+                        then: [ gain(item2,Math.ceil(base.effects[0].gainResources/3)) ]
+                    }
+                ]
+            }]
+        });
+    }
+
+    this.tierConstellation=(id,type,constellation,place,tiers,item,level)=>{
+        
+        let
+            constellationFrom=Math.max(1,constellation.length-tiers),
+            constellationTo=constellation.length,
+            constellations=constellationTo-constellationFrom,
+            base=getBase(level,[{buy:[[constellation.length,"constellation"]],sell:[level,item]}]),
+            gainResourcesPart=Math.max(1,Math.floor((base.effects[0].gainResources)/(constellations+1))),
+            effects=[
+                {
+                    then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources-gainResourcesPart*tiers) ]
+                }
+            ];
+
+        for (let i=constellationFrom;i<constellationTo;i++)
+            effects.push({
+                if: [
+                    { action:"checkConstellation", constellation:constellation.slice(0,i+1), place:place }
+                ],
+                then: [ gain(item, gainResourcesPart) ]
+            });
+
+        effects.push({ then:[ pickFrom("infuse",constellation.length-1) ] });
+
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            drainCost:base.drainCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:effects
+            }]
+        });
+    }
+
+    this.showConstellationElement=(id,type,constellation,element,elementSubject,place,to,cards,level)=>{
         let base=getBase(level,[{buy:[[1,"element"],[constellation.length,"constellation"]],sell:[level,to]}]);
         return finalize({
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             perkId:"of3_"+element.element,
             acceptPerks:true,
             options:[{
@@ -236,7 +330,7 @@ let SkillCrafter=function(settings) {
                 effects:[ {
                     if: [
                         { action:"checkConstellation", constellation:constellation, place:place },
-                        { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements },
+                        { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements, subject:elementSubject },
                     ],
                     then: [
                         gain(base.effects[0].gainResourceType,base.effects[0].gainResources),
@@ -253,7 +347,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
@@ -275,7 +369,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
@@ -292,7 +386,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             options:[
                 { cost:base.effects[0].cost, effects:[ { then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources ) ] } ] },
                 { cost:base.effects[1].cost, effects:[ { then: [ gain(base.effects[1].gainResourceType,base.effects[1].gainResources ) ] } ] },
@@ -300,61 +394,178 @@ let SkillCrafter=function(settings) {
         });
     }
 
-    this.bannerConditioned=(id,type,itm,level)=>{
+    this.bannerConditioned=(id,type,bannertype,subject,itm,level)=>{
         let base=getBase(level,[{sell:[level,itm]}]);
         return finalize({
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
                 effects:[ {
-                    if: [ { action:"check", attribute:"banner2", operator:"greaterEqualThan", value:base.effects[0].payBanners } ],
+                    if: [ { action:"check", attribute:bannertype, operator:"greaterEqualThan", value:base.effects[0].payBanners, subject:subject } ],
                     then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources) ]
                 } ]
             }]
         });
     }
 
-    this.startingMana=(id,type,asitm,level)=>{
+    this.tierBanner=(id,type,bannertype,subject,tiers,item,level)=>{
+        let
+            base=getBase(level,[{sell:[level,item]}]),
+            gainResourcesPart=Math.max(1,Math.floor((base.effects[0].gainResources)/(tiers+1))),
+            effects=[
+                {
+                    then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources-gainResourcesPart*tiers) ]
+                }
+            ];
+        for (let i=0;i<tiers;i++)
+            effects.push({
+                if: [ { action:"check", attribute:bannertype, operator:"greaterEqualThan", value:i+1, subject:subject } ],
+                then: [ gain(base.effects[0].gainResourceType,gainResourcesPart) ]
+            });
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            drainCost:base.drainCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:effects
+            }]
+        });
+    }
+
+    this.flowBanner=(id,type,bannertype,item1,subject1,item2,subject2,level)=>{
+        let
+            base=getBase(level,[{sell:[level,item1]}]),
+            secondBannerType=bannertype=="banner1"?"banner2":"banner1";
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            drainCost:base.drainCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[  
+                    {
+                        if: [
+                            { action:"check", attribute:bannertype, operator:"greaterEqualThan", value:base.effects[0].payBanners, subject:subject1 }
+                        ],
+                        then: [ gain(item1,base.effects[0].gainResources ) ]
+                    },{
+                        if: [
+                            { action:"check", attribute:secondBannerType, operator:"greaterEqualThan", value:base.effects[0].payBanners, subject:subject2 }
+                        ],
+                        then: [ gain(item2,Math.ceil(base.effects[0].gainResources/3)) ]
+                    }
+                ]
+            }]
+        });
+    }
+
+    this.wish=(id,type,item1,item2,level)=>{
+        let
+            loweredLevel=Math.max(1,level-2),
+            base=getBase(level,[{sell:[level,item1]}]),
+            base2=getBase(loweredLevel,[{sell:[loweredLevel,item2]}]);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            drainCost:base.drainCost,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[  
+                    {
+                        if: [
+                            { action:"may" }
+                        ],
+                        then: [ gain(item1,base.effects[0].gainResources ) ]
+                    },{
+                        if: [
+                            { action:"or" }
+                        ],
+                        then: [ gain(item2,base2.effects[0].gainResources ) ]
+                    }
+                ]
+            }]
+        });
+    }
+
+    this.cardsCountConditionedMana=(id,type,subject,count,asitm,level)=>{
         let base=getBase(level,[{sell:[1,asitm]}]);
         return finalize({
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
                 effects:[ {
-                    if: [ { action:"check", attribute:"playedCardsCount", operator:"lessEqualThan", value:3 } ],
+                    if: [ { action:"check", attribute:"cardsCount", operator:"lessEqualThan", subject:subject, value:count } ],
                     then: [ gain("mana",base.effects[0].gainMana) ]
                 } ]
             }]
         });
     }
 
-    this.comboElements=(id,type,element,item,level)=>{
-        let base=getBase(level,[{buy:[[2,"element"]],sell:[level,item]}]);
+    this.comboElements=(id,type,subject1,subject2,element,item,level)=>{
+        let
+            base=getBase(level,[{buy:[[2,"element"]],sell:[level,item]}]),
+            payElements=Math.min(1,Math.floor(base.effects[0].payElements/2));
         return finalize({
             id:id,
             type:type,
             gain:base.gain,
             element:element.element,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             perkId:"of1_"+element.element,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
                 effects:[ {
                     if: [
-                        { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements },
-                        { action:"check", attribute:element.consumedBy, operator:"greaterEqualThan", value:base.effects[0].payElements }
+                        { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:payElements, subject:subject1 },
+                        { action:"check", attribute:element.consumedBy, operator:"greaterEqualThan", value:payElements, subject:subject2 }
                     ],
                     then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources ) ]
                 } ]
+            }]
+        });
+    }
+
+    this.tierElement=(id,type,element,subject,tiers,item,level)=>{
+        let
+            base=getBase(level,[{buy:[[Math.ceil(tiers/2),"element"]],sell:[level,item]}]),
+            gainResourcesPart=Math.max(1,Math.floor((base.effects[0].gainResources)/(tiers+1))),
+            effects=[
+                {
+                    then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources-gainResourcesPart*tiers) ]
+                }
+            ];
+        for (let i=0;i<tiers;i++)
+            effects.push({
+                if: [ { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:i+1, subject:subject } ],
+                then: [ gain(base.effects[0].gainResourceType,gainResourcesPart) ]
+            });
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            element:element.element,
+            drainCost:base.drainCost,
+            perkId:"of1_"+element.element,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:effects
             }]
         });
     }
@@ -366,7 +577,7 @@ let SkillCrafter=function(settings) {
             type:type,
             gain:base.gain,
             element:element.element,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             perkId:"of1_"+element.element,
             acceptPerks:true,
             options:[{
@@ -381,7 +592,7 @@ let SkillCrafter=function(settings) {
         });
     }
 
-    this.criticalElement=(id,type,element,item,level)=>{
+    this.criticalElement=(id,type,element,subject,item,level)=>{
         let
             base=getBase(level,[{buy:[[1,"element"]],sell:[level,item]}]),
             halfGainResources = Math.ceil(base.effects[0].gainResources/2);
@@ -390,7 +601,7 @@ let SkillCrafter=function(settings) {
             type:type,
             gain:base.gain,
             element:element.element,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             perkId:"of1_"+element.element,
             acceptPerks:true,
             options:[{
@@ -401,7 +612,7 @@ let SkillCrafter=function(settings) {
                     },
                     {
                         if: [
-                            { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements },
+                            { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements, subject:subject },
                         ],
                         then: [ gain(base.effects[0].gainResourceType,halfGainResources ) ]
                     }
@@ -410,22 +621,51 @@ let SkillCrafter=function(settings) {
         });
     }
 
-    this.noElement=(id,type,element,item,level)=>{
+    this.flowElement=(id,type,element,item1,subject1,item2,subject2,level)=>{
+        let base=getBase(level,[{sell:[level,item1]}]);
+        return finalize({
+            id:id,
+            type:type,
+            gain:base.gain,
+            element:element.element,
+            drainCost:base.drainCost,
+            perkId:"of1_"+element.element,
+            acceptPerks:true,
+            options:[{
+                cost:base.effects[0].cost,
+                effects:[  
+                    {
+                        if: [
+                            { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[0].payElements, subject:subject1 },
+                        ],
+                        then: [ gain(item1,base.effects[0].gainResources ) ]
+                    },{
+                        if: [
+                            { action:"check", attribute:element.element, operator:"greaterEqualThan", value:base.effects[0].payElements, subject:subject2 },
+                        ],
+                        then: [ gain(item2,Math.ceil(base.effects[0].gainResources/3) ) ]
+                    }
+                ]
+            }]
+        });
+    }
+
+    this.noElement=(id,type,cardscount,cardssubject,element,subject,item,level)=>{
         let base=getBase(level,[{buy:[[1,"element"]],sell:[level,item]}]);
         return finalize({
             id:id,
             type:type,
             gain:base.gain,
             element:element.element,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             perkId:"of1_"+element.element,
             acceptPerks:true,
             options:[{
                 cost:base.effects[0].cost,
                 effects:[ {
                     if: [
-                        { action:"check", attribute:"playedCardsCount", operator:"greaterEqualThan", value:2 },
-                        { action:"check", attribute:element.consumedBy, operator:"equal", value:0 }
+                        { action:"check", attribute:"cardsCount", operator:"greaterEqualThan", subject:cardssubject, value:cardscount },
+                        { action:"check", attribute:element.consumedBy, subject:subject, operator:"equal", value:0 }
                     ],
                     then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources ) ]
                 } ]
@@ -441,7 +681,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             options:[
                 { cost:base.effects[0].cost, effects:[ {
                     then: [
@@ -460,7 +700,7 @@ let SkillCrafter=function(settings) {
             type:type,
             gain:base.gain,
             element:element.element,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             perkId:"of2_"+element.element,
             options:[
                 { cost:base.effects[0].cost, effects:[ {
@@ -482,7 +722,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             options:[
                 { cost:base.effects[0].cost, effects:[ {
                     if: [ { action:"checkConstellation", constellation:constellation, place:place } ],
@@ -504,7 +744,7 @@ let SkillCrafter=function(settings) {
             id:id,
             type:type,
             gain:base.gain,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             options:[
                 { cost:base.effects[0].cost, effects:[ { then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources ) ] } ] },
                 { cost:base.effects[1].cost, effects:[ { then: [ gain(base.effects[1].gainResourceType,base.effects[1].gainResources ) ] } ] },
@@ -520,7 +760,7 @@ let SkillCrafter=function(settings) {
             gain:base.gain,
             element:element.element,
             perkId:"of1_"+element.element,
-            exhaustCost:base.exhaustCost,
+            drainCost:base.drainCost,
             options:[
                 { cost:base.effects[0].cost, effects:[ { then: [ gain(base.effects[0].gainResourceType,base.effects[0].gainResources ) ] } ] },
                 { cost:base.effects[1].cost, effects:[ { if: [ { action:"check", attribute:element.consumes, operator:"greaterEqualThan", value:base.effects[1].payElements } ], then: [ gain(base.effects[1].gainResourceType,base.effects[1].gainResources ) ] } ] },
@@ -564,15 +804,23 @@ let SkillCrafter=function(settings) {
                 break;
             }
             case "comboElements":{
-                skill = this.comboElements(fullconfig.id,type,fullconfig.element,fullconfig.item,level);
+                skill = this.comboElements(fullconfig.id,type,fullconfig.subject1,fullconfig.subject2,fullconfig.element,fullconfig.item,level);
                 break;
             }
             case "criticalElement":{
-                skill = this.criticalElement(fullconfig.id,type,fullconfig.element,fullconfig.item,level);
+                skill = this.criticalElement(fullconfig.id,type,fullconfig.element,fullconfig.subject,fullconfig.item,level);
+                break;
+            }
+            case "tierElement":{
+                skill = this.tierElement(fullconfig.id,type,fullconfig.element,fullconfig.subject,fullconfig.tiers,fullconfig.item,level);
+                break;
+            }
+            case "flowElement":{
+                skill = this.flowElement(fullconfig.id,type,fullconfig.element,fullconfig.item1,fullconfig.subject1,fullconfig.item2,fullconfig.subject2,level);
                 break;
             }
             case "noElement":{
-                skill = this.noElement(fullconfig.id,type,fullconfig.element,fullconfig.item,level);
+                skill = this.noElement(fullconfig.id,type,fullconfig.cardsCount,fullconfig.cardsSubject,fullconfig.element,fullconfig.subject,fullconfig.item,level);
                 break;
             }
             case "fullTransferElement":{
@@ -587,8 +835,8 @@ let SkillCrafter=function(settings) {
                 skill = this.singleTransfer(fullconfig.id,type,fullconfig.from,fullconfig.to,level);
                 break;
             }
-            case "startingMana":{
-                skill = this.startingMana(fullconfig.id,type,fullconfig.asItem,level);
+            case "cardsCountConditionedMana":{
+                skill = this.cardsCountConditionedMana(fullconfig.id,type,fullconfig.subject,fullconfig.count,fullconfig.asItem,level);
                 break;
             }
             case "combined":{
@@ -596,11 +844,19 @@ let SkillCrafter=function(settings) {
                 break;
             }
             case "bannerConditioned":{
-                skill = this.bannerConditioned(fullconfig.id,type,fullconfig.item,level);
+                skill = this.bannerConditioned(fullconfig.id,type,fullconfig.bannerType,fullconfig.subject,fullconfig.item,level);
                 break;
             }
-            case "finalAction":{
-                skill = this.finalAction(fullconfig.id,type,fullconfig.item,level);
+            case "flowBanner":{
+                skill = this.flowBanner(fullconfig.id,type,fullconfig.bannerType,fullconfig.item1,fullconfig.subject1,fullconfig.item2,fullconfig.subject2,level);
+                break;
+            }
+            case "tierBanner":{
+                skill = this.tierBanner(fullconfig.id,type,fullconfig.bannerType,fullconfig.subject,fullconfig.tiers,fullconfig.item,level);
+                break;
+            }
+            case "cardsCountConditioned":{
+                skill = this.cardsCountConditioned(fullconfig.id,type,fullconfig.cardsCount,fullconfig.subject,fullconfig.item,level);
                 break;
             }
             case "fullTransfer":{
@@ -611,12 +867,28 @@ let SkillCrafter=function(settings) {
                 skill = this.showConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.to,fullconfig.cards,level);
                 break;
             }
+            case "noShowConstellation":{
+                skill = this.noShowConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place1,fullconfig.place2,fullconfig.item,level);
+                break;
+            }
+            case "flowConstellation":{
+                skill = this.flowConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.item1,fullconfig.item2,fullconfig.cards,level);
+                break;
+            }
             case "showConstellationElement":{
-                skill = this.showConstellationElement(fullconfig.id,type,fullconfig.constellation,fullconfig.element,fullconfig.place,fullconfig.to,fullconfig.cards,level);
+                skill = this.showConstellationElement(fullconfig.id,type,fullconfig.constellation,fullconfig.element,fullconfig.elementSubject,fullconfig.place,fullconfig.to,fullconfig.cards,level);
                 break;
             }
             case "fullTransferConstellation":{
                 skill = this.fullTransferConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.from,fullconfig.to,fullconfig.cards,level);
+                break;
+            }
+            case "tierConstellation":{
+                skill = this.tierConstellation(fullconfig.id,type,fullconfig.constellation,fullconfig.place,fullconfig.tiers,fullconfig.item,level);
+                break;
+            }
+            case "wish":{
+                skill = this.wish(fullconfig.id,type,fullconfig.item1,fullconfig.item2,level);
                 break;
             }
             default:{
