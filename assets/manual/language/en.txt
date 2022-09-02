@@ -1,6 +1,6 @@
 {
   "placeholders":{
-    "manualVersion":"0.1b",
+    "manualVersion":"0.2b",
     "gameShortTitle":"TOS",
     "place":"Stampadia",
     "thanks":"**Bianca** and the **Discord** and **BGG** travelers of Stampadia for sharing their efforts and ideas",
@@ -47,7 +47,7 @@
     "action-add":"Add",
     "action-add-to":"Add",
     "action-strain":"Strain",
-    "phase-exhaust":"Exhaust",
+    "phase-drain":"Drain",
     "phase-execute":"Execute",
     "phase-restore":"Restore",
 
@@ -67,6 +67,10 @@
     "inplay-put-self":"entering play",
     "inplay-put":"put in play",
     "inplay-have":"have in play",
+
+    "enemy-modifier":"Enemy Modifier",
+
+    "table-on":"on table",
 
     "map-on":"mapped",
 
@@ -110,11 +114,11 @@
     "movement-that-female":"move",
     "movement-doing":"moving",
     
-    "exhaust":"Exhaust",
-    "exhaust-to":"Exhaust",
+    "drain":"Drain",
+    "drain-to":"Drain",
 
-    "effect-exhaust":"Exhaust Effect",
-    "effect-exhaust-plural":"Exhaust Effects",
+    "effect-drain":"Drain Effect",
+    "effect-drain-plural":"Drain Effects",
 
     "earn":"earn",
 
@@ -175,7 +179,7 @@ You can find an updated digital version of this manual, FAQs, and more informati
 
 The reign of {place} had thousands of years of dangerous places and brave mercenaries before disappearing mysteriously from our globe.
 
-But {place} Central Administration, generation after generation, managed to relentlessly archive the ID cards of every single inhabitant, the combat license of every single reckless hero, the maps of every single dungeon, and the papers hidden in them in a dossier called **{config-title}**.
+But {place} Central Administration, generation after generation, managed to relentlessly archive the ID cards of every single inhabitant, the combat license of every single reckless {hero}, the maps of every single dungeon, and the papers hidden in them in a dossier called **{config-title}**.
 
 {image dossier}
 
@@ -217,7 +221,7 @@ Take one of the 9 slip pairs you formed before and sleeve them so both are facin
 
 {image sleeving}
 
-Repeat these last 2 steps for every slips pair. Once done, **your first set of {gameShortTitle} will be ready**: 9 cards, with a {hero} on one side and an adventure on the other one!
+Repeat these last 2 steps for every slip pair. Once done, **your first set of {gameShortTitle} will be ready**: 9 cards, with a {hero} on one side and an adventure on the other one!
 
 # Hints
 
@@ -269,13 +273,13 @@ Before starting let's have a look at the {card-hero-plural}. Place your first 5-
 
 {image herocardparts}
 
-The valid part of a {card-hero} is always the upper and straight one: the lower and upside-down part has always no effect. We're going to ignore everything that's on the card lower part.
+The valid part of a {card-hero} is always the upper and straight one: the lower and upside-down part has always no effect. We're going to ignore everything that's on the card's lower part.
 
-During setup, you've already seen that there is a {banner} starting from the upper right corner of each {card-hero} {symbol 1} that ends at the card half. The {banner-plural} of the {hand} cards all have a single tip {symbol heroCardBanner1SmallSymbol} but, as you can see, the upside-down part of each card shows a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} instead. The number of {banner} tips represents the {card-hero}'s power and difficulty: {card-hero-plural} with a single-tipped {banner} {symbol heroCardBanner1SmallSymbol} are less powerful and easier to use while those with the double-tipped {banner} {symbol heroCardBanner2SmallSymbol} have devastating {ability-plural} but are harder to use. Different {banner-plural} {inplay} may also be used to {activate-to} some {ability-plural}. Finally, during the game, you will have several opportunities to flip the cards and switch from one {banner} to another: on some occasions, it will be vital to do so, on some others it will be a disaster.
+During setup, you've already seen that there is a {banner} starting from the upper right corner of each {card-hero} {symbol 1} that ends at the card half. The {banner-plural} of your current {hand} cards all have a single tip {symbol heroCardBanner1SmallSymbol} but, as you can see, the upside-down part of each card shows a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} instead. The number of {banner} tips represents the {card-hero}'s power and difficulty: {card-hero-plural} with a single-tipped {banner} {symbol heroCardBanner1SmallSymbol} are less powerful and easier to use while those with a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} have devastating {ability-plural} but are harder to use. Different {banner-plural} {inplay} may also be used to {activate-to} some {ability-plural}. Finally, during the game, you will have several opportunities to flip the cards and switch from one {banner} to another: on some occasions, it will be vital to do so, on some others it will be a disaster. The symbol at the end of the {banner} represents your {hero} class.
 
 {card-hero-plural:capital} have a sphere in the upper right part {symbol 2}, just near the {banner} beginning, with a number inside: that's the **{card-value}**. When cards are played as {card-open} or used for {action-load-to}, the {card-hero-plural} will let you {earn} as many {mana} as its {card-value} that you can spend to {activate-to} card {ability-plural}. We will discover {action-load-to} later.
 
-On the upper side in the middle of the card {symbol 3}, there is its name and, just below, its {effect-exhaust}. The {effect-exhaust} describes what you've to do with some cards during the {turn-combat} {phase-exhaust} phase, or when the game will ask you to {exhaust-to} a card - we'll learn that better later. 
+On the upper side in the middle of the card {symbol 3}, there is its name and, just below, its {effect-drain}. The {effect-drain} describes what you've to do with some cards during the {turn-combat} {phase-drain} phase, or when the game will ask you to {drain-to} a card - we'll learn that better later. 
 
 On the card upper left {symbol 4}, some cards show a triangle: that's the card {element}. There are 4 {element-plural} in {gameShortTitle}: {element-air}, {element-water}, {element-earth}, and {element-fire}.
 
@@ -312,7 +316,7 @@ In {gameShortTitle} combat is made of a series of {turn-combat-plural} in which 
 Every {turn-combat} is split into these phases:
 
 {listStart}
-**{phase-prepare}**: At the beginning of the first {turn-combat} against an enemy you'll shuffle the {deck-discard} ad {draw-do} cards from the bottom until you've 5 cards in {hand} or the {deck-discard} is empty.
+**{phase-prepare}**: At the beginning of the first {turn-combat} against an {enemy} you'll shuffle the {deck-discard} ad {draw-do} cards from the bottom until you've 5 cards in {hand} or the {deck-discard} is empty.
 {listItemNext}
 **{phase-open}**: You'll choose your first card from the {hand}, collecting {mana} and {inplay-put-ofthat} its {banner}, {element}, and {constellation}. The {card-open} will start the {banner-main}.
 {listItemNext}
@@ -327,10 +331,10 @@ Every {turn-combat} is split into these phases:
   {listItemNext}
   **{action-add}**: You'll play a {card-hero} from {hand} to add new {ability-plural} to the {card-open}, {inplay-put} {element-plural}, and change the {banner-main}.
   {listItemNext}
-  **{action-strain}**: You'll play one {card-hero} from the {hand} to perform a simple {attack} or a simple {defense} defense paying 1 {mana}.
+  **{action-strain}**: You'll play one {card-hero} from the {hand} to perform a simple {attack} or a simple {defense} defense for free.
   {listSubEnd}
 {listItemNext}
-**{phase-exhaust}**: You'll perform all the visible {effect-exhaust-plural} from the cards {inplay} and {discard} the other cards on the {deck-discard} top.
+**{phase-drain}**: You'll perform all the visible {effect-drain-plural} from the cards {inplay} and {discard} the other cards on the {deck-discard} top.
 {listItemNext}
 **{phase-execute}**: You'll use your collected {point-attack-plural} and {point-defense-plural} to {defeat} or block the {enemy}.
 {listItemNext}
@@ -339,9 +343,9 @@ Every {turn-combat} is split into these phases:
 
 # {phase-prepare}
 
-This phase is performed **just once per fight**, at the first {turn-combat} beginning against an enemy. Shuffle the {deck-discard} and {draw-do} cards from the bottom until you've 5 cards in {hand}. The {deck-discard} may end: in that case, you'll play with fewer cards in {hand}.
+This phase is performed **just once per fight**, at the first {turn-combat} beginning against an {enemy}. Shuffle the {deck-discard} and {draw-do} cards from the bottom until you've 5 cards in {hand}. The {deck-discard} may end: in that case, you'll play with fewer cards in {hand}.
 
-In {gameShortTitle} you may meet old enemies thirsting for revenge, so you may find yourself battling them multiple times. If you meet them again, that fight **will start with a new {phase-prepare} phase** since you start **a new fight against an enemy**.
+In {gameShortTitle} you may meet old {enemy-plural} thirsting for revenge, so you may find yourself battling them multiple times. If you meet them again, that fight **will start with a new {phase-prepare} phase** since you start **a new fight against an {enemy}**.
 
 # {phase-open}
 
@@ -349,7 +353,7 @@ In {gameShortTitle} you may meet old enemies thirsting for revenge, so you may f
 
 To start combat you've to choose one opening card from your {hand} and play it in front of you. The {card-open} gives you these advantages:
 
-{listStart}s
+{listStart}
 **{earn:capital} {mana}**: increase the {card-status} {mana} {track} by the played {card-value} {symbol 1} (the number in the sphere on the top right). Remember that {your-hero} can never have more {mana} than its {level}.
 {listItemNext}
 **Put the first {element} {inplay}**: if there is an {element} symbol on the top left, that {element} is {inplay} {symbol 2}.
@@ -417,7 +421,7 @@ You can make {activation-plural} easier using a {token}: when the first {ability
 
 {image add}
 
-You can cover part of the {card-open} and the other cards added with the {action-add} action using one {card-hero} from your {hand}, forming a line down, and placing the new card upper side on the last {activate-past-singular} {ability} lower side (or just under the {card-open} {effect-exhaust} if no {card-open} {ability} has been {activate-past-singular}), aligning the {banner} symbol with the covered cards' same symbol to "stretch" it.
+You can cover part of the {card-open} and the other cards added with the {action-add} action using one {card-hero} from your {hand}, forming a line down, and placing the new card upper side on the last {activate-past-singular} {ability} lower side (or just under the {card-open} {effect-drain} if no {card-open} {ability} has been {activate-past-singular}), aligning the {banner} symbol with the covered cards' same symbol to "stretch" it.
 
 This action will let you:
 
@@ -437,34 +441,34 @@ This action will let you:
 
 {image force}
 
-You may pay 1 {mana} to slide one {card-hero} from your {hand} under the first free side on the {card-open} top {symbol 1} to form a line to the top and just show the card name and its {effect-exhaust}. Then you may choose to {earn} 1 {point-attack} or 1 {point-defense}.
+You may slide one {card-hero} from your {hand} under the first free side on the {card-open} top {symbol 1} to form a line to the top and just show the card name and its {effect-drain} for free. Then you may choose to {earn} 1 {point-attack} or 1 {point-defense}.
 
 {boxOpen}
 **Training**: Choose one card from your {hand} and use it for {action-strain}. Then decide to {earn} 1 {point-attack} or {earn} 1 {point-defense} by moving the matching {card-status} {token} {track}.
 {boxClose}
 
-# {phase-exhaust}
+# {phase-drain}
 
-You may perform any number of {phase-plan} actions you want or can. When you're OK with {your-hero}'s {point-attack-plural} and {point-defense-plural} the {phase-exhaust} phase starts.
+You may perform any number of {phase-plan} actions you want or can. When you're OK with {your-hero}'s {point-attack-plural} and {point-defense-plural} the {phase-drain} phase starts.
 
-In the {phase-exhaust} phase, all of the {card-hero-plural} {inplay} are {discard-done} on the {deck-discard} top but some conditions are applied to them.
+In the {phase-drain} phase, all of the {card-hero-plural} {inplay} are {discard-done} on the {deck-discard} top but some conditions are applied to them.
 
-{image exhaust1}
+{image drain1}
 
 {listStart}
-The cards used to {action-infuse} and {action-load} (on the {card-open} left and right) don't have any visible {effect-exhaust} and they are {discard-done} in the {deck-discard} with no condition. {discard-them:capital} them face up on the {deck-discard} **top** in any order and without turning them.
+The cards used to {action-infuse} and {action-load} (on the {card-open} left and right) don't have any visible {effect-drain} and they are {discard-done} in the {deck-discard} with no condition. {discard-them:capital} them face up on the {deck-discard} **top** in any order and without turning them.
 {listEnd}
 
-{image exhaust2}
+{image drain2}
 
 {listStart}
-The {card-open}, the cards you used for the {action-add} actions, and the cards used for the {action-strain} actions have a visible {effect-exhaust} {symbol 1}: you must follow the {instruction-plural} on each card one by one in any order to remove them from play. They usually ask you to spend {mana} to {discard} them face up on the {deck-discard} top: you must have the required {mana} full amount on the {card-status} {mana} {track} and reduce it by the required cost {symbol 2}. If you can't or you don't want to do that, cards will ask you to perform a different action often depending on their {banner} tips: cards with a one-tip {banner} {symbol heroCardBanner1SmallSymbol} will ask you to turn them and then {discard} {symbol 3} and the cards with a two tips {banner} {symbol heroCardBanner2SmallSymbol} will ask you to be {eliminate-past} {symbol 4}.
+The {card-open}, the cards you used for the {action-add} actions, and the cards used for the {action-strain} actions have a visible {effect-drain} {symbol 1}: you must follow the {instruction-plural} on each card one by one in any order to remove them from play. They usually ask you to spend {mana} to {discard} them face up on the {deck-discard} top: you must have the required {mana} full amount on the {card-status} {mana} {track} and reduce it by the required cost {symbol 2}. If you can't or you don't want to do that, cards will ask you to perform a different action often depending on their {banner} tips: cards with a one-tip {banner} {symbol heroCardBanner1SmallSymbol} will ask you to turn and {discard} them {symbol 3} and the cards with a two tips {banner} {symbol heroCardBanner2SmallSymbol} will ask you to be {eliminate-past} {symbol 4}.
 {listEnd}
 
 To {eliminate-to} a card you've to move that card to the {card-removed-plural}: turn the card horizontally on any side and place it on the {card-status} left side. {card-removed-plural} are no longer part of the {deck-discard} reducing the available cards and pushing {your-hero} to his {defeat}. During the game, some events will let you trade the {deck-discard} {card-hero-plural} with {eliminate-past} {card-hero-plural} or move them to the {deck-discard}. Choose the cards to sacrifice wisely...
 
 {boxOpen}
-**Training**: Did you keep some spare {mana} to {exhaust-to} the cards {inplay}? If you still have some cards in {hand} you may perform some {action-load} actions before passing to the {phase-exhaust} phase. Then move all the cards you used to {action-infuse} and {action-load} (the cards on the left and the {card-open} right) on the {deck-discard} top. Check if you can pay the {mana} required by the remaining cards {effect-exhaust-plural}: if yes, {discard-do} the card as you did for the other ones. If not, turn the card and discard it.
+**Training**: Did you keep some spare {mana} to {drain-to} the cards {inplay}? If you still have some cards in {hand} you may perform some {action-load} actions before passing to the {phase-drain} phase. Then move all the cards you used to {action-infuse} and {action-load} (the cards on the left and the {card-open} right) on the {deck-discard} top. Check if you can pay the {mana} required by the remaining cards {effect-drain-plural}: if yes, {discard-do} the card as you did for the other ones. If not, turn the card and discard it.
 {boxClose}
 
 # {phase-execute}
@@ -478,16 +482,16 @@ You'll usually use them to fight the {enemy-plural} that will appear on the {car
 {listStart}
 **{defense}**: if the {card-status} {tracked-plural} {point-attack-plural} reach or surpass this value, the {enemy} is {defeated}.
 {listItemNext}
-**{attack}**: if the {enemy} is not {defeated} and the {card-status} {tracked-plural} {point-defense-plural} don't reach or surpass the {enemy} {attack}, the difference between the {enemy} {attack} and the collected {point-defense-plural} will decide how many times you've to choose any {card-hero} from the {deck-discard} or from the {hand} to perform its "{exhaust}" text just below the card name **but you won't be able to pay with any resource, {mana} included**. When you've to {discard} a {deck-discard} card move it to the top of the {deck-discard} as you usually do when you {discard} any {card-hero}.
+**{attack}**: if the {enemy} is not {defeated} and the {card-status} {tracked-plural} {point-defense-plural} don't reach or surpass the {enemy} {attack}, the difference between the {enemy} {attack} and the collected {point-defense-plural} will decide how many times you've to choose any {card-hero} from the {deck-discard} or from the {hand} to perform its "{drain}" text just below the card name **but you won't be able to pay with any resource, {mana} included**. When you've to {discard} a {deck-discard} card move it to the top of the {deck-discard} as you usually do when you {discard} any {card-hero}.
 
 {listItemNext}
 **{level}**: if the {enemy} is {defeated} and his {level} is equal to or greater than the one {tracked} by the {card-status}, move the {token} one square forward on the {level} {track}. From now you'll be able to {action-load} 1 more {mana} and perform more powerful actions but remember that {your-hero} level can never surpass {level} 9.
 {listEnd}
 
-Some {enemy-plural} may have **Modifiers**: they are special rules applied during the whole combat and they can get in your way or help you. You have to read them at the combat beginning and consider them throughout the {turn-combat}. Remember that their effect **always refers to the enemy itself** unless specifically stated.
+Some {enemy-plural} may have **{enemy-modifier}**: they are special rules applied during the whole combat and they can get in your way or help you. You have to read them at the combat beginning and consider them throughout the {turn-combat}. Remember that their effect **always refers to the {enemy} itself** unless specifically stated.
 
 {boxOpen}
-**Training**: Look at the {point-attack-plural} marked by the {card-status} {attack} {track}. Can you {defeat-doing} a {defense} 5 {enemy}? If yes, you {defeated} the {enemy}! Increase by 1 the {card-status} {level} {track}. You didn't make it? Try defending: look at the {point-defense-plural} on the {card-status} {defense} {track}. Can you block the {enemy} {attack} 3 with the {point-defense-plural} you collected? If yes, you're safe! Maybe you'll be able to {defeat-that} the next {turn-combat}! If you didn't manage to block the whole attack, subtract the collected {point-defense-plural} by the {enemy} {attack} (3). The result will decide how many times you've to select a {card-hero} from the {deck-discard} or the {hand} and follow the {exhaust} action without paying any {mana}. You had to take a hard hit but, in the next {turn-combat}...
+**Training**: Look at the {point-attack-plural} marked by the {card-status} {attack} {track}. Can you {defeat-doing} a {defense} 5 {enemy}? If yes, you {defeated} the {enemy}! Increase by 1 the {card-status} {level} {track}. You didn't make it? Try defending: look at the {point-defense-plural} on the {card-status} {defense} {track}. Can you block the {enemy} {attack} 3 with the {point-defense-plural} you collected? If yes, you're safe! Maybe you'll be able to {defeat-that} the next {turn-combat}! If you didn't manage to block the whole attack, subtract the collected {point-defense-plural} by the {enemy} {attack} (3). The result will decide how many times you've to select a {card-hero} from the {deck-discard} or the {hand} and follow the {drain} action without paying any {mana}. You had to take a hard hit but, in the next {turn-combat}...
 {boxClose}
 
 # {phase-restore}
@@ -499,38 +503,81 @@ The {turn-combat} ended. Set the {attack}, {defense}, and {mana} {card-status} {
 Depending on the adventure and the {phase-execute} outcome you may be able to travel to other places, keep fighting, and so on.
 
 {boxOpen}
-**Training**: Our training ends here and we are ready to go adventuring! If you prefer to train some more, follow the {phase-restore} phase (set the {attack}, {defense}, and {mana} {track-plural} to 0 and {draw-do} until you've 5 cards in {hand}) and repeat the {turn-combat} from the beginning. Since the fight is still on and you're beginning a new {turn-combat} against the same enemy remember **not to perform** the {phase-prepare}! Leveling up, your {enemy} will become easier to {defeat-doing}.
+**Training**: Our training ends here and we are ready to go adventuring! If you prefer to train some more, follow the {phase-restore} phase (set the {attack}, {defense}, and {mana} {track-plural} to 0 and {draw-do} until you've 5 cards in {hand}) and repeat the {turn-combat} from the beginning. Since the fight is still on and you're beginning a new {turn-combat} against the same {enemy} remember **not to perform** the {phase-prepare}! Leveling up, your {enemy} will become easier to {defeat-doing}.
 {boxClose}
 
 # Reading the cards
 
 In your adventures, both {card-hero-plural} and {card-adventure-plural} will offer you choices and actions. You usually have to read all of the sentences one by one and follow their {instruction-plural}. Unless the sentence begins with the word "**If**" o "**You may**", the actions described by the sentence are to be considered mandatory.
 
-**The sentences starting with "If"** are split into two parts divided by a colon symbol (:). If the entire condition explained **before** the colon symbol is true then you've to apply what's explained **after** the colon symbol to the sentence end. You've to ignore the entire sentence entirely otherwise.
+**Some sentences are split into two parts divided by a colon symbol** (:). If the entire condition explained **before** the colon symbol is true then you've to apply what's explained **after** the colon symbol to the sentence end. You've to ignore the entire sentence entirely otherwise.
 
-Even **sentences starting with "You may"** are split into two parts but the part after the colon symbol is applied **only if you decide** to perform **all** of the {instruction-plural} described **before** the semicolon. You've to ignore the entire sentence otherwise.
+**The conditions starting with "You may"** are verified **only if you decide** to perform **all** of the {instruction-plural} described **before** the semicolon. You've to ignore the entire sentence otherwise. For example the sentence "Pay 1 {symbol heroCardManaSmallSymbol}: {discard-do}. **Or: remove.**" asks you to pay 1 {mana} to {discard} a card. Then, if you decided not to pay, you've to {eliminate-to} that card.
 
-Some sentences may start with **Pay**: to execute the rest of the sentence you must   reduce the respective {track} of the {card-status} by the requested value. If you don't have enough resources to pay the price, ignore the rest of the sentence.
+**The conditions starting with "Or"** are verified **only if none of the {instruction-plural} of the previous conditions has been verified**. You've to ignore the entire sentence otherwise.
+
+Some conditions may contain the word **Pay**: to validate the condition you must reduce the respective {track} of the {card-status} by the requested value. If you don't have enough resources to pay the price the entire condition is not verified.
+
+Some conditions may contain the word **Not**: to validate the condition, the requirement following the word "not" must be **not verified**. For example, "Not pay 3 {symbol heroCardManaSmallSymbol}: remove" explains that if you decide not to pay, you will have to {eliminate-to} the card.
 
 Finally, any condition **must be satisfied just when it's {activate-past-singular}** and is not needed to be satisfied after: for example, if a card requires you to have a specific {constellation} {inplay} to perform an action, that action may change the cards {inplay} so that {constellation} is no longer {inplay}. This behavior is legit.
 
-# {constellation-plural}, {element-plural} and {banner-plural}
+# {card-hero-plural} Places
+
+{image places}
+
+Some conditions and actions may refer to {card-hero-plural} on a specific position.
+
+{listStart}
+**In {hand}**: they are the {card-hero-plural} in your current {hand} of cards. {symbol 1}
+{listItemNext}
+**{inplay:capital}**: they are the {card-hero-plural} you played from your {hand} during the {phase-plan} phase. {symbol 2}
+{listItemNext}
+**{deck-discard} or Discard**: they are the {card-hero-plural} in the {deck-discard}, placed vertically on the {card-status} right. {symbol 3}
+{listItemNext}
+**{eliminate-past:capital}**: they are the {card-hero-plural} in the {eliminate-past} cards deck, placed horizontally on the {card-status} left. {symbol 4}
+{listItemNext}
+**{table-on:capital}**: they are the {card-hero-plural} in the {deck-discard} or {inplay}. Cards in {hand} and {eliminate-past} are excluded. {symbol 5}
+{listEnd}
+
+# {constellation-plural}, {element-plural}, and {banner-plural}
 
 Some cards may ask you to have specific {constellation-plural}, {element-plural}, and {banner-plural} {inplay}. You can usually tell that by looking at the symbols on the cards {inplay} ignoring the cards used to {action-strain}. That's what you've to do:
 
 {image symbols}
 
 {listStart}
-**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} and 1 {constellation} with the length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the rightmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
+**{constellation-plural}** {symbol 1}: any sphere sequence from left to right to the {card-open} are {inplay}. In the example, there are 3 {constellation-plural} {inplay}: the {constellation} with a length of 3 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol}, the {constellation} with length 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar2SmallSymbol} and the {constellation} with a length of 2 {symbol heroCardStar1SmallSymbol}, {symbol heroCardStar1SmallSymbol}. The game may refer to one-card {constellation-plural}, so there also are 2 {constellation-plural} with a length of 1 {symbol heroCardStar1SmallSymbol} and 1 {constellation} with a length of 1 {symbol heroCardStar2SmallSymbol}. Finally, the rightmost {constellation} element is identified by the spheres **printed on the {card-open}**, regardless their {ability} has been {activate-past-female} or it was fully or partially covered by another card.
 {listItemNext}
-**{element-plural}** {symbol 2}: the {element-plural} {inplay} are all of the elements on the left and below the {card-open}. In the example, there are 2 {element-plural} {symbol heroCardWaterSmallSymbol} and 2 {element-plural} {symbol heroCardFireSmallSymbol} {inplay}.
+**{element-plural}** {symbol 2}: the {element-plural} {inplay} are all of the {element-plural} on the left and below the {card-open}. In the example, there are 2 {element-plural} {symbol heroCardWaterSmallSymbol} and 2 {element-plural} {symbol heroCardFireSmallSymbol} {inplay}.
 {listItemNext}
 **{banner-plural}** {symbol 3}: the {banner-plural} {inplay} are the {banner-main} (the one that starts from the {card-open}) and the ones on the cards used to {action-load}. Consider the {card-open} row {banner} **as a single {banner}** with the lowest card {banner} tip. In the example, there is 1 {banner} {symbol heroCardBanner1SmallSymbol} that starts from the {card-open} and 1 {banner} {symbol heroCardBanner2SmallSymbol} {inplay}.
 {listEnd}
 
+# Calculating the score
+
+{image scoring}
+
+At the end of each adventure you can calculate the score of your game **by counting how many points the not {eliminate-past} {card-hero-plural} {banner-plural} have**.
+
+Let's calculate it step by step:
+
+{listStart}
+Set aside the {eliminate-past} {card-hero-plural} {symbol 1}: they won't give you any points.
+{listItemNext}
+Divide the remaining {card-hero-plural} by {banner} {symbol 2}
+{listSubStart}
+Cards with a 1-tip {banner} will give you 1 point each. {symbol 3}
+{listItemNext}
+Cards with a 2-tips {banner} will give you 2 points each. {symbol 4}
+{listSubEnd}
+{listItemNext}
+Add these scores together to get the total score! {symbol 5} How did it go?
+{listEnd}
+
 # Let's Go Adventuring!
 
-Now it's the time to start a complete {gameShortTitle} game! Follow the steps explained in the Setup chapter and then flip the deck you put away: this new deck will be the Adventure Deck and will guide {your-hero} around the dangerous places of {place}.
+Now it's time to start a complete {gameShortTitle} game! Follow the steps explained in the Setup chapter and then flip the deck you put away: this new deck will be the Adventure Deck and will guide {your-hero} around the dangerous places of {place}.
 
 {image adventure}
 
@@ -543,6 +590,8 @@ Skip to the manual part named as your adventure type. See you there!
 {place} is in danger and you're the only one that can save the day! The {adventure-world-plural} will bring {your-hero} around the lands of {place}, meeting precious allies and terrible {enemy-plural}.
 
 {enemy-plural:capital} and places will change a little every time you play the same {adventure-world}!
+
+At the end of the main mission you can follow the instructions in the "Calculating the Score" section of this manual to find out how it went!
 
 # {adventure-world}: Notes
 
@@ -576,7 +625,7 @@ Some cards will contain an {enemy} to {defeat-doing}: you'll have to fight!
 
 Read the text on the card top and start a {turn-combat} against the {enemy} described in the middle.
 
-Standard combat rules apply: the {enemy} {level}, {attack}, and {defense} {attribute-plural} are on the 3 spaces on the card's right side {symbol 1} while any Modifier is explained by the scroll on the {enemy} illustration right {symbol 2}. Grid's first or second rows {enemy-plural} may change their {level}, {attack}, and {defense} {attribute-plural} depending on the bonus given by the card on their right. You can get the bonuses matching the **opened spaces** on the enemy card right with the ones of the card on its right.
+Standard combat rules apply: the {enemy} {level}, {attack}, and {defense} {attribute-plural} are on the 3 spaces on the card's right side {symbol 1} while any {enemy-modifier} is explained by the scroll on the {enemy} illustration right {symbol 2}. Grid's first or second rows {enemy-plural} may change their {level}, {attack}, and {defense} {attribute-plural} depending on the bonus given by the card on their right. You can get the bonuses matching the **opened spaces** on the {enemy} card right with the ones of the card on its right.
 
 After the {phase-restore} phase:
 
@@ -605,6 +654,8 @@ Some cards will show the wording: "**For 1 time**". The following action must (o
 Something suspicious is happening in the dungeons... It's time to investigate and settle the matter once and for all!
 
 {adventure-dungeon-plural:capital} are set in dangerous and intricate mazes in which {your-hero} will lose the way... but luckily they stay the same every game. Play the same {adventure-dungeon} multiple times and learn the best routes to win!
+
+At the end of the main mission you can follow the instructions in the "Calculating the Score" section of this manual to find out how it went!
 
 # {adventure-dungeon}: Setup
 
@@ -654,7 +705,7 @@ Symbols descriptions start with an icon telling you when its {instruction} will 
 
 Some {instruction-plural} will describe {enemy-plural}: you've to fight them!
 
-They're described as symbol and number sequences, with {level}, {attack}, and {defense} {enemy} {attribute-plural} displayed one after another and followed by a possible modifier name in bold with its description in brackets. {enemy-plural:capital} must be {defeated-plural} before reading the rest of the {instruction}.
+They're described as symbol and number sequences, with {level}, {attack}, and {defense} {enemy} {attribute-plural} displayed one after another and followed by a possible {enemy-modifier} name in bold with its description in brackets. {enemy-plural:capital} must be {defeated-plural} before reading the rest of the {instruction}.
 
 Standard combat rules apply, except for the {phase-execute} phase.
 
@@ -727,7 +778,7 @@ Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol
 
 # Quick Reference: {turn-combat}
 {listStart}
-**{phase-prepare}**: At the beginning of the first {turn-combat} against an enemy shuffle the {deck-discard} and {draw-do} from the bottom until you've 5 cards in {hand}.
+**{phase-prepare}**: At the beginning of the first {turn-combat} against an {enemy} shuffle the {deck-discard} and {draw-do} from the bottom until you've 5 cards in {hand}.
 {listItemNext}
 **{phase-open}**: Play your first card from {hand}. +{symbol heroCardManaSmallSymbol}. +{symbol heroCardBanner1SmallSymbol}/{symbol heroCardBanner2SmallSymbol}.  +{symbol heroCardAirSmallSymbol}/{symbol heroCardEarthSmallSymbol}/{symbol heroCardFireSmallSymbol}/{symbol heroCardWaterSmallSymbol}. +{symbol heroCardStar1SmallSymbol}/{symbol heroCardStar1SmallSymbol}.
 {listItemNext}
@@ -744,7 +795,7 @@ Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol
   **{action-strain}**: Add a card to the top. +1{symbol heroCardAttackSmallSymbol}/{symbol heroCardDefenseSmallSymbol}.
   {listSubEnd}
 {listItemNext}
-**{phase-exhaust}**: {discard-do:capital} cards on the left and right of the {card-open}. Perform visible {exhaust}. 
+**{phase-drain}**: {discard-do:capital} cards on the left and right of the {card-open}. Perform visible {drain}. 
 **{phase-execute}**:
 {listEnd}
 {boxOpen}
@@ -757,7 +808,7 @@ Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol
        {listSubStart}
        >= 0: {enemy:capital} {defeated}.
        {listItemNext}
-       < 0: If {attack} {enemy} - {point-defense-plural} > 0: {exhaust} as many {card-hero-plural} as the difference.
+       < 0: If {attack} {enemy} - {point-defense-plural} > 0: {drain} as many {card-hero-plural} as the difference.
        {listSubEnd}
     {listSubEnd}
 {listEnd}
@@ -772,7 +823,7 @@ Anyway, after a teleport, **you must read the {pawn-hero} new {card-room} symbol
        {listSubStart}
        >= 0: {enemy:capital} {defeated}
        {listItemNext}
-       < 0: Use {enemy} {attack} to {movement-do} the {pawn-hero} to the {enemy} symbol. If {pawn-hero} is not on the symbol: {enemy} {attack} = 0. If {enemy} {attack} - {point-defense-plural} > 0: {exhaust} as many {card-hero-plural} as the difference.
+       < 0: Use {enemy} {attack} to {movement-do} the {pawn-hero} to the {enemy} symbol. If {pawn-hero} is not on the symbol: {enemy} {attack} = 0. If {enemy} {attack} - {point-defense-plural} > 0: {drain} as many {card-hero-plural} as the difference.
        {listSubEnd}
     {listSubEnd}
 {listEnd}

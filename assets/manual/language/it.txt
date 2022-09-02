@@ -1,6 +1,6 @@
 {
   "placeholders":{
-    "manualVersion":"0.1b",
+    "manualVersion":"0.2b",
     "gameShortTitle":"TOS",
     "place":"Stampadia",
     "thanks":"**Bianca** e i viaggiatori del **Discord** e **BGG** di Stampadia per aver condiviso i loro sforzi e le loro idee",
@@ -48,7 +48,7 @@
     "action-add":"Aggiungere",
     "action-add-to":"Aggiungi",
     "action-strain":"Sforzare",
-    "phase-exhaust":"Esaurire",
+    "phase-drain":"Scaricare",
     "phase-execute":"Eseguire",
     "phase-restore":"Ripristinare",
 
@@ -68,6 +68,10 @@
     "inplay-put-self":"entrando in gioco",
     "inplay-put":"mettere in gioco",
     "inplay-have":"avere in gioco",
+
+    "enemy-modifier":"Modificatore del Nemico",
+
+    "table-on":"sul tavolo",
 
     "map-on":"in mappa",
 
@@ -110,11 +114,11 @@
     "movement-perform":"muovi",
     "movement-that-female":"muovila",
     
-    "exhaust":"Esaurisci",
-    "exhaust-to":"Esaurire",
+    "drain":"Scarica",
+    "drain-to":"Scaricare",
 
-    "effect-exhaust":"Effetto di Esaurimento",
-    "effect-exhaust-plural":"Effetti di Esaurimento",
+    "effect-drain":"Effetto di Scaricamento",
+    "effect-drain-plural":"Effetti di Scaricamento",
 
     "earn":"guadagnare",
 
@@ -271,11 +275,11 @@ Prima di iniziare diamo un'occhiata alle {card-hero-plural}. Poggia pure la tua 
 
 La parte valida di una {card-hero} è sempre quella superiore e dritta: la parte inferiore e sottosopra non ha mai alcun effetto. Ignoreremo quindi tutto quello che si trova nella parte inferiore della carta.
 
-Durante la preparazione hai visto che dall'angolo in alto a destra di ogni {card-hero} parte uno {banner} {symbol 1} che arriva sino a metà dell'altezza della carta. I {banner-plural} delle carte della {hand} hanno tutte una singola punta {symbol heroCardBanner1SmallSymbol} ma, come puoi vedere, la parte sottosopra di ogni carta mostra invece uno {banner} a due punte {symbol heroCardBanner2SmallSymbol}. Il numero di punte di uno {banner} rappresenta la potenza e la difficoltà di una {card-hero}: le {card-hero-plural} con uno {banner} a punta singola {symbol heroCardBanner1SmallSymbol} sono meno potenti e più facili da usare mentre quelle con lo {banner} a 2 punte {symbol heroCardBanner2SmallSymbol} hanno {ability-plural} devastanti ma sono più difficili da usare. I diversi {banner-plural} {inplay} potranno anche usati per {activate-to} alcune {ability-plural}. Infine, durante la partita, avrai diverse occasioni per girare le carte e passare da uno {banner} all'altro: in alcune occasioni sarà vitale farlo, in altre sarà una sciagura.
+Durante la preparazione hai visto che dall'angolo in alto a destra di ogni {card-hero} parte uno {banner} {symbol 1} che arriva sino a metà dell'altezza della carta. I {banner-plural} delle carte della tua {hand} corrente hanno tutte una singola punta {symbol heroCardBanner1SmallSymbol} ma, come puoi vedere, la parte sottosopra di ogni carta mostra invece uno {banner} a due punte {symbol heroCardBanner2SmallSymbol}. Il numero di punte di uno {banner} rappresenta la potenza e la difficoltà di una {card-hero}: le {card-hero-plural} con uno {banner} a punta singola {symbol heroCardBanner1SmallSymbol} sono meno potenti e più facili da usare mentre quelle con lo {banner} a 2 punte {symbol heroCardBanner2SmallSymbol} hanno {ability-plural} devastanti ma sono più difficili da usare. I diversi {banner-plural} {inplay} potranno anche usati per {activate-to} alcune {ability-plural}. Infine, durante la partita, avrai diverse occasioni per girare le carte e passare da uno {banner} all'altro: in alcune occasioni sarà vitale farlo, in altre sarà una sciagura. Il simbolo in fondo allo {banner} rappresenta la classe di appartenza del tuo {hero}.
 
 Le {card-hero-plural} hanno una sfera in alto a destra {symbol 2}, proprio all'inizio dello {banner}, con un numero nel centro: quello rappresenta il **{card-value}**. Quando vengono giocate come {card-open} o usate per {action-load}, le {card-hero-plural} permettono di {earn} {mana} pari al {card-value}, spendibile per {activate-to} le {ability-plural} delle carte. Ma scopriremo come {action-load-to} più avanti.
 
-In alto al centro {symbol 3} c'è il nome della carta e, subito sotto, l'{effect-exhaust}. L'{effect-exhaust} descrive cosa dovrai fare con alcune carte durante la fase {phase-exhaust} del {turn-combat} o quando il gioco ti chiederà di {exhaust-to} una {card-hero} - ma anche questo lo scopriremo meglio in seguito.
+In alto al centro {symbol 3} c'è il nome della carta e, subito sotto, l'{effect-drain}. L'{effect-drain} descrive cosa dovrai fare con alcune carte durante la fase {phase-drain} del {turn-combat} o quando il gioco ti chiederà di {drain-to} una {card-hero} - ma anche questo lo scopriremo meglio in seguito.
 
 In alto a sinistra {symbol 4} alcune carte mostrano un triangolo: rappresenta l'{element} della carta. In {gameShortTitle} esistono 4 {element-plural}: {element-air}, {element-water}, {element-earth} e {element-fire}.
 
@@ -312,7 +316,7 @@ In {gameShortTitle} un combattimento consiste in una serie di {turn-combat-plura
 Ogni {turn-combat} è strutturato nelle seguenti fasi:
 
 {listStart}
-**{phase-prepare}**: solo all'inizio del primo {turn-combat} contro un nemico dovrai mescolare il {deck-discard} e {draw-doing} carte dal fondo fino ad averne 5 in {hand} o fin quando il {deck-discard} non terminerà.
+**{phase-prepare}**: solo all'inizio del primo {turn-combat} contro un {enemy} dovrai mescolare il {deck-discard} e {draw-doing} carte dal fondo fino ad averne 5 in {hand} o fin quando il {deck-discard} non terminerà.
 {listItemNext}
 **{phase-open}**: dovrai scegliere la tua prima carta dalla {hand}, raccogliendone il {mana} e {inplay-put-ofthat} lo {banner}, l'{element} e la {constellation}. Dalla {card-open} partirà lo {banner-main}.
 {listItemNext}
@@ -327,10 +331,10 @@ Ogni {turn-combat} è strutturato nelle seguenti fasi:
   {listItemNext}
   **{action-add}**: potrai giocare una {card-hero} dalla {hand} per nuove {ability-plural} alla {card-open}, {inplay-put} {element-plural} e modificare lo {banner-main}.
   {listItemNext}
-  **{action-strain}**: potrai, pagando 1 {mana}, giocare una {card-hero} dalla {hand} per compiere un {attack} semplice o una {defense} semplice.
+  **{action-strain}**: potrai giocare gratuitamente una {card-hero} dalla {hand} per compiere un {attack} semplice o una {defense} semplice.
   {listSubEnd}
 {listItemNext}
-**{phase-exhaust}**: dovrai compiere tutti gli {effect-exhaust-plural} visibili sulle carte {inplay} e {discard} in cima al {deck-discard} tutte le altre.
+**{phase-drain}**: dovrai compiere tutti gli {effect-drain-plural} visibili sulle carte {inplay} e {discard} in cima al {deck-discard} tutte le altre.
 {listItemNext}
 **{phase-execute}**: dovrai usare i {point-attack-plural} e i {point-defense-plural} accumulati per {defeat-doing} o evitare il {enemy}.
 {listItemNext}
@@ -339,9 +343,9 @@ Ogni {turn-combat} è strutturato nelle seguenti fasi:
 
 # {phase-prepare}
 
-Questa fase viene eseguita **una sola volta per scontro**, all'inizio del primo {turn-combat} contro un nemico. Mescola il {deck-discard} e {draw-do} carte dal fondo fino ad averne 5 in {hand}. Il {deck-discard} potrebbe esaurirsi prima: in tal caso giocherai con meno carte in {hand}.
+Questa fase viene eseguita **una sola volta per scontro**, all'inizio del primo {turn-combat} contro un {enemy}. Mescola il {deck-discard} e {draw-do} carte dal fondo fino ad averne 5 in {hand}. Il {deck-discard} potrebbe esaurirsi prima: in tal caso giocherai con meno carte in {hand}.
 
-In {gameShortTitle} potresti incontrare vecchi nemici assetati di vendetta, per cui potresti trovarti a combatterli più volte. Rincontrandoli, visto che inizierai **un nuovo combattimento contro un nemico**, quel combattimento **inizierà comunque con una nuova fase {phase-prepare}**.
+In {gameShortTitle} potresti incontrare vecchi {enemy-plural} assetati di vendetta, per cui potresti trovarti a combatterli più volte. Rincontrandoli, visto che inizierai **un nuovo combattimento contro un {enemy}**, quel combattimento **inizierà comunque con una nuova fase {phase-prepare}**.
 
 # {phase-open}
 
@@ -349,7 +353,7 @@ In {gameShortTitle} potresti incontrare vecchi nemici assetati di vendetta, per 
 
 Per iniziare il combattimento dovrai scegliere una carta qualsiasi dalla {hand} e giocarla davanti a te. La {card-open} di darà tutti questi vantaggi:
 
-{listStart}s
+{listStart}
 **{earn:capital} {mana}**: aumenta il {track} {mana} sulla {card-status} del {card-value} giocata {symbol 1} (il numero nella sfera in alto a destra). Ricorda che il {your-hero} non può avere mai più {mana} del suo {level}.
 {listItemNext}
 **{inplay-put:capital} il primo {element}**: se è presente il simbolo di un {element} in alto a sinistra, quell'{element} è considerato {inplay} {symbol 2}.
@@ -417,7 +421,7 @@ Puoi rendere le {activation-plural} più semplici usando un {token}: quando {act
 
 {image add}
 
-Puoi coprire con una {card-hero} della {hand} parte della {card-open} e di quelle usate in precedenti azioni {action-add} a formare una fila verso il basso, piazzando il lato superiore della nuova carta sul lato inferiore dell'ultima {ability} {activate-past-singular} (o appena sotto l'{effect-exhaust} della {card-open} se nessuna {ability} della {card-open} è stata {activate-past-singular}), allineando il simbolo dello {banner} con quello della carta coperta in modo tale da "allungarlo".
+Puoi coprire con una {card-hero} della {hand} parte della {card-open} e di quelle usate in precedenti azioni {action-add} a formare una fila verso il basso, piazzando il lato superiore della nuova carta sul lato inferiore dell'ultima {ability} {activate-past-singular} (o appena sotto l'{effect-drain} della {card-open} se nessuna {ability} della {card-open} è stata {activate-past-singular}), allineando il simbolo dello {banner} con quello della carta coperta in modo tale da "allungarlo".
 
 Questa nuova carta ti farà:
 
@@ -437,34 +441,34 @@ Questa nuova carta ti farà:
 
 {image force}
 
-Pagando 1 {mana} puoi far scivolare una {card-hero} dalla {hand} sotto il primo lato libero in alto rispetto alla {card-open} {symbol 1} a formare una fila verso l'alto, mostrando soltanto il nome della carta e il suo {effect-exhaust}. Se lo fai puoi scegliere se {earn} 1 {point-attack} o 1 {point-defense}.
+Gratuitamente, puoi far scivolare una {card-hero} dalla {hand} sotto il primo lato libero in alto rispetto alla {card-open} {symbol 1} a formare una fila verso l'alto, mostrando soltanto il nome della carta e il suo {effect-drain}. Se lo fai puoi scegliere se {earn} 1 {point-attack} o 1 {point-defense}.
 
 {boxOpen}
 **Allenamento**: Scegli una carta dalla {hand} e usala per {action-strain}. Poi decidi se {earn} 1 {point-attack} o {earn} 1 {point-defense} spostando in avanti di una casella il {token} del {track} corrispondente sulla {card-status}.
 {boxClose}
 
-# {phase-exhaust}
+# {phase-drain}
 
-Puoi compiere tutte le azioni della fase {phase-plan} che preferisci tutte le volte che vuoi e fin quando ti è possibile. Quando sei soddisfatto dei {point-attack-plural} e {point-defense-plural} del {your-hero} inizia la fase {phase-exhaust}.
+Puoi compiere tutte le azioni della fase {phase-plan} che preferisci tutte le volte che vuoi e fin quando ti è possibile. Quando sei soddisfatto dei {point-attack-plural} e {point-defense-plural} del {your-hero} inizia la fase {phase-drain}.
 
-Nella fase {phase-exhaust} tutte le {card-hero-plural} {inplay} vengono {discard-done} in cima al {deck-discard} ma, su alcune di esse, si applicheranno delle condizioni.
+Nella fase {phase-drain} tutte le {card-hero-plural} {inplay} vengono {discard-done} in cima al {deck-discard} ma, su alcune di esse, si applicheranno delle condizioni.
 
-{image exhaust1}
+{image drain1}
 
 {listStart}
-Le carte usate per {action-infuse} e {action-load}  (a destra e sinistra della {card-open})  non hanno alcun {effect-exhaust} visibile e vengono {discard-done} nel {deck-discard} senza alcuna condizione. {discard-them:capital} mettendole **in cima** al {deck-discard} a faccia in su in qualsiasi ordine e senza girarle.
+Le carte usate per {action-infuse} e {action-load}  (a destra e sinistra della {card-open})  non hanno alcun {effect-drain} visibile e vengono {discard-done} nel {deck-discard} senza alcuna condizione. {discard-them:capital} mettendole **in cima** al {deck-discard} a faccia in su in qualsiasi ordine e senza girarle.
 {listEnd}
 
-{image exhaust2}
+{image drain2}
 
 {listStart}
-La {card-open}, le carte aggiunte con l'azione {action-add} e le carte usate per {action-strain} avranno il loro {effect-exhaust} visibile {symbol 1}: dovrai seguire le {instruction-plural} di ogni carta una ad una ed in qualsiasi ordine per poterle toglierle dal gioco. Solitamente ti verrà chiesto di pagare del {mana} per poterle {discard} a faccia in su nel {deck-discard}: devi disporre di tutto il {mana} richiesto nel {track} {mana} della {card-status} e ridurlo del costo specificato {symbol 2}. Se non vuoi o non puoi farlo, le carte ti chiederanno di compiere un'azione diversa, spesso in base alle punte del loro {banner}: le carte con uno {banner} a una punta {symbol heroCardBanner1SmallSymbol} ti chiederanno di essere girate prima di poterle {discard} {symbol 3} mentre quelle con un {banner} a due punte {symbol heroCardBanner2SmallSymbol} ti chiederanno di essere {eliminate-past} {symbol 4}.
+La {card-open}, le carte aggiunte con l'azione {action-add} e le carte usate per {action-strain} avranno il loro {effect-drain} visibile {symbol 1}: dovrai seguire le {instruction-plural} di ogni carta una ad una ed in qualsiasi ordine per poterle toglierle dal gioco. Solitamente ti verrà chiesto di pagare del {mana} per poterle {discard} a faccia in su nel {deck-discard}: devi disporre di tutto il {mana} richiesto nel {track} {mana} della {card-status} e ridurlo del costo specificato {symbol 2}. Se non vuoi o non puoi farlo, le carte ti chiederanno di compiere un'azione diversa, spesso in base alle punte del loro {banner}: le carte con uno {banner} a una punta {symbol heroCardBanner1SmallSymbol} ti chiederanno di essere girate prima di poterle {discard} {symbol 3} mentre quelle con un {banner} a due punte {symbol heroCardBanner2SmallSymbol} ti chiederanno di essere {eliminate-past} {symbol 4}.
 {listEnd}
 
 Per {eliminate-to} una carta devi spostarla nel mazzo delle {card-removed-plural}: girala in orizzontale su qualsiasi lato e mettila a sinistra della {card-status}. Le {card-removed-plural} non fanno più parte del {deck-discard}, riducono la varietà di carte a tua disposizione e avvicinano il {your-hero} alla sua {defeat}. Durante il gioco alcuni eventi ti permetteranno di scambiare le {card-hero-plural} del {deck-discard} con quelle {eliminate-past} o di spostarle nuovamente nel {deck-discard}. Cerca sempre di scegliere saggiamente quali carte sacrificare...
 
 {boxOpen}
-**Allenamento**: Hai tenuto del {mana} da parte per {exhaust-to} le carte {inplay}? Se hai ancora qualche carta in {hand} puoi {action-load} prima di passare alla fase {phase-exhaust}. Poi sposta tutte le carte usate per {action-infuse} e per {action-load} in cima al {deck-discard} (sono quella destra e sinistra della {card-open}). Per tutte le altre controlla se puoi pagare il {mana} richiesto dal loro {effect-exhaust}: se ci riesci, {discard-do} la carta come hai fatto per le altre. In caso contrario girala e scartala.
+**Allenamento**: Hai tenuto del {mana} da parte per {drain-to} le carte {inplay}? Se hai ancora qualche carta in {hand} puoi {action-load} prima di passare alla fase {phase-drain}. Poi sposta tutte le carte usate per {action-infuse} e per {action-load} in cima al {deck-discard} (sono quella destra e sinistra della {card-open}). Per tutte le altre controlla se puoi pagare il {mana} richiesto dal loro {effect-drain}: se ci riesci, {discard-do} la carta come hai fatto per le altre. In caso contrario girala e scartala.
 {boxClose}
 
 # {phase-execute}
@@ -478,15 +482,15 @@ Solitamente li userai per combattere i {enemy-plural} che appariranno sulle {car
 {listStart}
 **{defense}**: se i {point-attack-plural} che hai {tracked} sulla {card-status} raggiungono o superano questo valore, il {enemy} è considerato {defeated}.
 {listItemNext}
-**{attack}**: se il {enemy} non è {defeated} ed i {point-defense-plural} {tracked-plural} sulla {card-status} non raggiungono o superano il valore di {attack} del {enemy}, la differenza tra {attack} del {enemy} e i {point-defense-plural} accumulati stabilirà per quante volte dovrai scegliere una {card-hero} qualsiasi dal {deck-discard} o dalla {hand} per eseguirne il testo "{exhaust}" appena sotto il nome della carta **ma non potrai spendere alcuna risorsa, {mana} incluso**. Quando devi {discard} una carta nel {deck-discard} spostala in cima al {deck-discard}, come solitamente fai quando devi {discard} una qualsiasi {card-hero}.
+**{attack}**: se il {enemy} non è {defeated} ed i {point-defense-plural} {tracked-plural} sulla {card-status} non raggiungono o superano il valore di {attack} del {enemy}, la differenza tra {attack} del {enemy} e i {point-defense-plural} accumulati stabilirà per quante volte dovrai scegliere una {card-hero} qualsiasi dal {deck-discard} o dalla {hand} per eseguirne il testo "{drain}" appena sotto il nome della carta **ma non potrai spendere alcuna risorsa, {mana} incluso**. Quando devi {discard} una carta nel {deck-discard} spostala in cima al {deck-discard}, come solitamente fai quando devi {discard} una qualsiasi {card-hero}.
 {listItemNext}
 **{level}**: se il {enemy} è {defeated} ed il suo {level} è uguale o superiore a quello {tracked} sulla {card-status}, sposta di una casella in avanti il {token} sul {track} {level}. D'ora in poi potrai {action-load} 1 {mana} in più e compiere azioni più potenti ma ricorda che il {your-hero} non può mai sorpassare il {level} 9.
 {listEnd}
 
-Alcuni {enemy-plural} possono avere dei **Modificatori**: sono regole speciali che si applicano per tutto lo svolgimento dello scontro e che possono esserti di intralcio o renderti lo scontro più facile. Dovrai leggerle all'inizio dello scontro e considerarle durante tutto il {turn-combat}. Ricorda che il loro effetto **è sempre riferito al nemico stesso** eccetto se specificatamente indicato.
+Alcuni {enemy-plural} possono avere un **{enemy-modifier}**: sono regole speciali che si applicano per tutto lo svolgimento dello scontro e che possono esserti di intralcio o renderti lo scontro più facile. Dovrai leggerle all'inizio dello scontro e considerarle durante tutto il {turn-combat}. Ricorda che il loro effetto **è sempre riferito al {enemy} stesso** eccetto se specificatamente indicato.
 
 {boxOpen}
-**Allenamento**: Guarda i {point-attack-plural} segnati dal {track} {attack} sulla {card-status}. Usando quei {point-attack-plural} riusciresti a {defeat-doing} un {enemy} con {defense} 5? Se si, hai {defeated} il {enemy}! Aumenta di 1 il {track} {level} sulla {card-status}. Non ci sei riuscito? Prova a difenderti: guarda i {point-defense-plural} sul {track} {defense} della {card-status}. Riesci a parare un {attack} 3 con i {point-defense-plural} che hai accumulato? Se si, sei salvo! Magari potrai {defeat-that} nel prossimo {turn-combat}! Se invece non sei riuscito a parare il colpo per intero, sottrai i {point-defense-plural} accumulati al valore di {attack} del {enemy} (3). Il risultato stabilisce per quante volte dovrai scegliere una {card-hero} dal {deck-discard} o dalla {hand} e seguire l'azione {exhaust} senza però poter pagare alcun {mana}. Hai dovuto incassare un duro colpo ma, nel prossimo {turn-combat}...
+**Allenamento**: Guarda i {point-attack-plural} segnati dal {track} {attack} sulla {card-status}. Usando quei {point-attack-plural} riusciresti a {defeat-doing} un {enemy} con {defense} 5? Se si, hai {defeated} il {enemy}! Aumenta di 1 il {track} {level} sulla {card-status}. Non ci sei riuscito? Prova a difenderti: guarda i {point-defense-plural} sul {track} {defense} della {card-status}. Riesci a parare un {attack} 3 con i {point-defense-plural} che hai accumulato? Se si, sei salvo! Magari potrai {defeat-that} nel prossimo {turn-combat}! Se invece non sei riuscito a parare il colpo per intero, sottrai i {point-defense-plural} accumulati al valore di {attack} del {enemy} (3). Il risultato stabilisce per quante volte dovrai scegliere una {card-hero} dal {deck-discard} o dalla {hand} e seguire l'azione {drain} senza però poter pagare alcun {mana}. Hai dovuto incassare un duro colpo ma, nel prossimo {turn-combat}...
 {boxClose}
 
 # {phase-restore}
@@ -498,20 +502,42 @@ Il {turn-combat} è terminato. Riporta i {track-plural} di {attack}, {defense} e
 In base all'avventura e l'esito della fase {phase-execute} potrai viaggiare verso altri luoghi, proseguire il combattimento e così via.
 
 {boxOpen}
-**Allenamento**: Il nostro allenamento termina qui e siamo pronti per partire all'avventura! Se preferisci allenarti ancora un po', esegui la fase {phase-restore} (riporta i {track-plural} di {attack}, {defense} e {mana} a 0 e {draw-do} sino ad avere 5 carte in {hand}) e ripeti il {turn-combat} da capo. Visto che il combattimento è già iniziato e stai per iniziare un nuovo {turn-combat} contro lo stesso nemico ricorda di **non eseguire** la {phase-prepare}! Salendo di {level} il {enemy} sarà sempre più facile da {defeat-doing}.
+**Allenamento**: Il nostro allenamento termina qui e siamo pronti per partire all'avventura! Se preferisci allenarti ancora un po', esegui la fase {phase-restore} (riporta i {track-plural} di {attack}, {defense} e {mana} a 0 e {draw-do} sino ad avere 5 carte in {hand}) e ripeti il {turn-combat} da capo. Visto che il combattimento è già iniziato e stai per iniziare un nuovo {turn-combat} contro lo stesso {enemy} ricorda di **non compiere** la {phase-prepare}! Salendo di {level} il {enemy} sarà sempre più facile da {defeat-doing}.
 {boxClose}
 
 # Leggere le Carte
 
 Nella tua avventura sia le {card-hero-plural} che le {card-adventure-plural} ti offriranno scelte da prendere ed azioni da compiere. Generalmente dovrai leggere tutte le frasi riportate una per una e seguirne le {instruction-plural}. A meno che la frase non inizi con la parola "**Se**" o "**Puoi**", le azioni descritte dalla frase sono da considerarsi obbligatorie.
 
-**Le frasi che iniziano con le parole "Se"** sono divise in due parti separate dal simbolo due punti (:). Se l'intera condizione spiegata **prima** del due punti è verificata dovrai applicare tutto quello che si trova **dopo** il due punti sino al termine della frase, altrimenti dovrai ignorare la frase per intero.
+**Alcune frasi sono divise in due parti separate dal simbolo due punti** (:). Se l'intera condizione spiegata **prima** del due punti è verificata dovrai applicare tutto quello che si trova **dopo** il due punti sino al termine della frase, altrimenti dovrai ignorare la frase per intero.
 
-Anche **le frasi che iniziano con "Puoi"** sono divise in due parti ma, in questo caso, la parte dopo il simbolo due punti si applicherà **solo se deciderai** di compiere **tutte** le {instruction-plural} descritte **prima** del simbolo due punti, altrimenti dovrai ignorare la frase per intero.
+**Le condizioni che iniziano con "Puoi"** sono verificate **solo se deciderai** di compiere **tutte** le {instruction-plural} descritte **prima** del simbolo due punti, altrimenti dovrai ignorare la frase per intero.
 
-Alcune frasi possono iniziare con **Paga**: perché tu possa eseguire il resto della frase devi ridurre il rispettivo {track} della {card-status} del valore di chiesto. Se non possiedi abbastanza risorse per pagarne il prezzo ignora il resto della frase. 
+**Le condizioni che iniziano con "O"** sono verificate **solo se nessuna delle condizioni delle {instruction-plural} precedenti è stata soddisfatta**. In caso contrario dovrai ignorare la frase per intero. Per esempio, la frase "Paga 1 {symbol heroCardManaSmallSymbol}: {discard-do}. **O: rimuovi.**" chiede di pagare 1 {mana} per {discard} la carta. Quindi, se hai deciso di non pagare, dovrai {eliminate-to} la carta.
+
+Alcune condizioni possono contenere la parola **Paga**: per validare la condizione devi ridurre il rispettivo {track} della {card-status} del valore richiesto. Se non possiedi abbastanza risorse per pagarne il prezzo l'intera condizione non è verificata.
+
+Alcune condizioni possono contenere la parola **Non**: per validare la condizione, il requisito successivo alla parola "non" **non deve verificarsi**. Ad esempio, "Non paga 3 {symbol heroCardManaSmallSymbol}: rimuovi" spiega che, se decidi di non pagare, dovrai {eliminate-to} la carta.
 
 Infine ogni eventuale condizione **deve essere soddisfatta solo nel momento in cui viene {activate-past-singular}** e non è necessario debba esserlo durante il resto della partita: ad esempio, se una carta richiede che tu abbia {inplay} una specifica {constellation} per poter compiere un'azione, è possibile che quell'azione modifichi le carte {inplay} e che quella {constellation} non sia più {inplay}. Considera questa azione lecita.
+
+# Posizione delle {card-hero-plural}
+
+{image places}
+
+Alcune condizioni e azioni possono fare riferimento a {card-hero-plural} che si trovano in una specifica posizione.
+
+{listStart}
+**In {hand}**: sono le {card-hero-plural} che si trovano nella tua {hand} di carte corrente. {symbol 1}
+{listItemNext}
+**{inplay:capital}**: sono le {card-hero-plural} che hai giocato dalla tua {hand} durante la fase {phase-plan}. {symbol 2}
+{listItemNext}
+**{deck-discard} o Scarti**: sono le {card-hero-plural} che si trovano nel {deck-discard}, poste in verticale e a destra della {card-status}. {symbol 3}
+{listItemNext}
+**{eliminate-past:capital}**: sono le {card-hero-plural} che si trovano nel mazzo delle carte {eliminate-past}, poste in orizzontale e a sinistra della {card-status}. {symbol 4}
+{listItemNext}
+**{table-on:capital}**: sono le {card-hero-plural} che si trovano nel {deck-discard} o {inplay}. Sono quindi escluse le carte in {hand} e quelle {eliminate-past}. {symbol 5}
+{listEnd}
 
 # {constellation-plural}, {element-plural} e {banner-plural}
 
@@ -525,6 +551,27 @@ Alcune azioni possono chiederti di avere specifiche {constellation-plural}, {ele
 **{element-plural}** {symbol 2}: gli {element-plural} {inplay} sono tutti quelli a sinistra e sotto la {card-open}. Nell'esempio sono {inplay} sia 2 {element-plural} {symbol heroCardWaterSmallSymbol} che 2 {element-plural} {symbol heroCardFireSmallSymbol}.
 {listItemNext}
 **{banner-plural}** {symbol 3}: gli {banner-plural} {inplay} sono lo {banner-main} (quello che parte dalla {card-open}) e quelli sulle carte usate per {action-load}. Considera lo {banner} della fila della {card-open} come **un unico {banner}** avente la punta mostrata sulla carta più in basso. Nell'esempio sono {inplay} 1 {banner} {symbol heroCardBanner1SmallSymbol} che parte dalla {card-open} e 1 {banner} {symbol heroCardBanner2SmallSymbol}.
+{listEnd}
+
+# Calcolare il punteggio
+
+{image scoring}
+
+Al termine di ogni avventura potrai calcolare il punteggio della tua partita **contando quante punte hanno gli {banner-plural} sulle {card-hero-plural} non {eliminate-past}**.
+
+Calcoliamolo passo passo:
+
+{listStart}
+Tieni da parte le {card-hero-plural} {eliminate-past} {symbol 1}: non daranno alcun punto.
+{listItemNext}
+Dividi le {card-hero-plural} rimanenti in base allo {banner} {symbol 2}
+{listSubStart}
+Le carte con uno {banner} a 1 punta ti daranno 1 punto ciascuna. {symbol 3}
+{listItemNext}
+Le carte con uno {banner} a 2 punte ti daranno 2 punti ciascuna. {symbol 4}
+{listSubEnd}
+{listItemNext}
+Somma questi punteggi per ottenere il punteggio totale! {symbol 5} Come te la sei cavata?
 {listEnd}
 
 # Partire All'Avventura!
@@ -542,6 +589,8 @@ Salta alla parte del manuale intitolata come il tipo della tua avventura. Ci ved
 {place} è in pericolo e solo tu puoi salvarla! Le {adventure-world-plural} porteranno il {your-hero} a viaggiare in lungo e in largo per le terre di {place}, incontrando preziosi alleati e terribili {enemy-plural}.
 
 I {enemy-plural} e la disposizione dei luoghi cambieranno un pochino ogni volta che la rigiocherai la stessa {adventure-world}!
+
+Al termine della missione principale potrai seguire le istruzioni della sezione "Calcolare il punteggio" di questo manuale per scoprire come è andata!
 
 # {adventure-world}: Note
 
@@ -575,7 +624,7 @@ Alcune carte conterranno un {enemy} da {defeat-doing}: dovrai batterti!
 
 Leggi il testo in cima alla carta e inizia un {turn-combat} contro il {enemy} descritto nel centro.
 
-Si applicano le regole standard di combattimento: gli {attribute-plural} di {level}, {attack} e {defense} del {enemy} sono mostrati nei 3 spazi del lato destro della carta {symbol 1} mentre l'eventuale Modificatore è spiegato nella pergamena a destra dell'illustrazione del {enemy} {symbol 2}. I {enemy-plural} delle {card-adventure-plural} che si trovano sulla prima e seconda colonna della griglia possono cambiare i loro {attribute-plural} {level}, {attack} e {defense} in base al bonus dato dalla carta che si trova alla loro destra. Puoi verificare i bonus facendo combaciare gli **spazi aperti** sul lato destro della carta del nemico con quelli della carta alla sua destra.
+Si applicano le regole standard di combattimento: gli {attribute-plural} di {level}, {attack} e {defense} del {enemy} sono mostrati nei 3 spazi del lato destro della carta {symbol 1} mentre l'eventuale {enemy-modifier} è spiegato nella pergamena a destra dell'illustrazione del {enemy} {symbol 2}. I {enemy-plural} delle {card-adventure-plural} che si trovano sulla prima e seconda colonna della griglia possono cambiare i loro {attribute-plural} {level}, {attack} e {defense} in base al bonus dato dalla carta che si trova alla loro destra. Puoi verificare i bonus facendo combaciare gli **spazi aperti** sul lato destro della carta del {enemy} con quelli della carta alla sua destra.
 
 Dopo la fase {phase-restore}:
 
@@ -604,6 +653,8 @@ Alcune carte mostreranno la dicitura: "**Per 1 volta**". L'azione che segue può
 Qualcosa di sospetto sta accadendo nelle segrete... è il momento di indagare e risolvere la questione una volta per tutte!
 
 Le {adventure-dungeon-plural} sono ambientate in pericolosi ed intricati labirinti nel quale il {your-hero} perderà spesso la strada... ma fortunatamente rimangono uguali ad ogni partita. Rigioca più volte la stessa {adventure-dungeon} per imparare a conoscerne i percorsi per vincere!
+
+Al termine della missione principale potrai seguire le istruzioni della sezione "Calcolare il punteggio" di questo manuale per scoprire come è andata!
 
 # {adventure-dungeon}: Preparazione
 
@@ -653,7 +704,7 @@ Le descrizioni dei simboli iniziano con un'icona che rappresenta quando l'{instr
 
 Alcune {instruction-plural} descriveranno dei {enemy-plural}: dovrai batterti!
 
-Vengono descritti come una serie di simboli e numeri, con gli {attribute-plural} {level}, {attack} e {defense} del {enemy} mostrati uno dopo l'altro e seguiti da un eventuale modificatore in grassetto con la sua descrizione tra parentesi. I {enemy-plural} devono essere {defeated-plural} prima di poter proseguire nella lettura dell'{instruction}.
+Vengono descritti come una serie di simboli e numeri, con gli {attribute-plural} {level}, {attack} e {defense} del {enemy} mostrati uno dopo l'altro e seguiti da un eventuale {enemy-modifier} in grassetto con la sua descrizione tra parentesi. I {enemy-plural} devono essere {defeated-plural} prima di poter proseguire nella lettura dell'{instruction}.
 
 Si applicano le regole standard del combattimento, eccetto per la fase {phase-execute}, che segue regole leggermente diverse rispetto a quelle del combattimento standard.
 
@@ -726,7 +777,7 @@ In ogni caso, dopo un teletrasporto, **dovrai leggere le {instruction-plural} de
 
 # Guida Rapida: {turn-combat}
 {listStart}
-**{phase-prepare}**: All'inizio del primo {turn-combat} contro un nemico mescola il {deck-discard} e {draw-do} dal fondo sino ad avere 5 carte in {hand}.
+**{phase-prepare}**: All'inizio del primo {turn-combat} contro un {enemy} mescola il {deck-discard} e {draw-do} dal fondo sino ad avere 5 carte in {hand}.
 {listItemNext}
 **{phase-open}**: Gioca la prima carta dalla {hand}. +{symbol heroCardManaSmallSymbol}. +{symbol heroCardBanner1SmallSymbol}/{symbol heroCardBanner2SmallSymbol}.  +{symbol heroCardAirSmallSymbol}/{symbol heroCardEarthSmallSymbol}/{symbol heroCardFireSmallSymbol}/{symbol heroCardWaterSmallSymbol}. +{symbol heroCardStar1SmallSymbol}/{symbol heroCardStar1SmallSymbol}.
 {listItemNext}
@@ -743,7 +794,7 @@ In ogni caso, dopo un teletrasporto, **dovrai leggere le {instruction-plural} de
   **{action-strain}**: Aggiungi una carta sopra. +1{symbol heroCardAttackSmallSymbol}/{symbol heroCardDefenseSmallSymbol}.
   {listSubEnd}
 {listItemNext}
-**{phase-exhaust}**: {discard-do:capital} le carte a destra e sinistra della {card-open}. Esegui {exhaust} visibili.
+**{phase-drain}**: {discard-do:capital} le carte a destra e sinistra della {card-open}. Esegui {drain} visibili.
 {listItemNext}
 **{phase-execute}**:
 {listEnd}
@@ -757,7 +808,7 @@ In ogni caso, dopo un teletrasporto, **dovrai leggere le {instruction-plural} de
        {listSubStart}
        >= 0: {enemy:capital} {defeated}.
        {listItemNext}
-       < 0: Se {attack} {enemy} - {point-defense-plural} > 0: {exhaust} tante {card-hero-plural} pari alla differenza.
+       < 0: Se {attack} {enemy} - {point-defense-plural} > 0: {drain} tante {card-hero-plural} pari alla differenza.
        {listSubEnd}
     {listSubEnd}
 {listEnd}
@@ -772,7 +823,7 @@ In ogni caso, dopo un teletrasporto, **dovrai leggere le {instruction-plural} de
        {listSubStart}
        >= 0: {enemy:capital} {defeated}
        {listItemNext}
-       < 0: Usa {attack} {enemy} per {movement-do} la {pawn-hero} verso il simbolo del {enemy}. Se {pawn-hero} non è sul simbolo: {attack} {enemy} = 0. Se {attack} {enemy} - {point-defense-plural} > 0: {exhaust} tante {card-hero-plural} pari alla differenza.
+       < 0: Usa {attack} {enemy} per {movement-do} la {pawn-hero} verso il simbolo del {enemy}. Se {pawn-hero} non è sul simbolo: {attack} {enemy} = 0. Se {attack} {enemy} - {point-defense-plural} > 0: {drain} tante {card-hero-plural} pari alla differenza.
        {listSubEnd}
     {listSubEnd}
 {listEnd}
@@ -812,6 +863,6 @@ In ogni caso, dopo un teletrasporto, **dovrai leggere le {instruction-plural} de
 {boxClose}
 {listStart}
     {listSubStart}
-    **Se il {enemy} non è {defeated}**: Esegui un nuovo {turn-combat} senza eseguire la fase {phase-prepare}.
+    **Se il {enemy} non è {defeated}**: Esegui un nuovo {turn-combat} senza compiere la fase {phase-prepare}.
     {listSubEnd}
 {listEnd}
