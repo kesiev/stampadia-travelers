@@ -13,8 +13,20 @@ function loadHeroPerks(MOD) {
             codex:"The Cutting Attack: +1 attack if Air element is in play.",
             id:"cutting", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", attribute:"air", operator:"greaterEqualThan", value:1 } ], then: [ MOD.LOWATTACK ] } ] }
         },{
-            codex:"The Erosive Attack: +1 attack if Earth element is in play.",
+            codex:"The Erosive Attack: +1 attack if Water element is in play.",
             id:"erosive", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", attribute:"water", operator:"greaterEqualThan", value:1 } ], then: [ MOD.LOWATTACK ] } ] }
+        },{
+            codex:"The Boiling Attack: +1 attack if Fire element is in hand.",
+            id:"boiling", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", subject:"inHand", attribute:"fire", operator:"greaterEqualThan", value:1 } ], then: [ MOD.LOWATTACK ] } ] }
+        },{
+            codex:"The Trembling Attack: +1 attack if Earth element is in hand.",
+            id:"trembling", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", subject:"inHand", attribute:"earth", operator:"greaterEqualThan", value:1 } ], then: [ MOD.LOWATTACK ] } ] }
+        },{
+            codex:"The Swollen Attack: +1 attack if Air element is in hand.",
+            id:"swollen", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", subject:"inHand", attribute:"air", operator:"greaterEqualThan", value:1 } ], then: [ MOD.LOWATTACK ] } ] }
+        },{
+            codex:"The Lacustrine Attack: +1 attack if Water element is in hand.",
+            id:"lacustrine", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", subject:"inHand", attribute:"water", operator:"greaterEqualThan", value:1 } ], then: [ MOD.LOWATTACK ] } ] }
         },{
             codex:"The Efficient: +1 mana.",
             id:"efficient", option:{ cost:MOD.LOWCOST, effects:[ { then: [ MOD.MIDGAIN ] } ] }
@@ -30,6 +42,12 @@ function loadHeroPerks(MOD) {
         },{
             codex:"The Banner Defense: +1 attack if 2 tier-2 banners are in play.",
             id:"banner", option:{ cost:MOD.LOWCOST, effects:[ {  if: [ { action:"check", attribute:"banner2", operator:"greaterEqualThan", value:2 } ], then: [ MOD.LOWDEFENSE ] } ] }
+        },{
+            codex:"The Blessed: may ignore the enemy modifiers.",
+            id:"blessed", option:{ cost:MOD.LOWCOST, effects:[ {  then: [ MOD.IGNOREMODIFIER ] } ] }
+        },{
+            codex:"The Repeater: may repeat the previous skill.",
+            id:"blessed", option:{ cost:MOD.LOWCOST, effects:[ {  then: [ MOD.REPEATSKILL ] } ] }
         }
     ]
 }
