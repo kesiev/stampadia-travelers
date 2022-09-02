@@ -1,5 +1,5 @@
 let
-    EXHAUSTMODELS=[
+    DRAINMODELS=[
         {
             codex:"The Defensive: absorbs 1 hit.",
             perkId:"defensive",

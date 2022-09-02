@@ -69,9 +69,9 @@ function generateHero(modifiers) {
         applyHigherElement(cards,card,element);
     }
 
-    function applyExhaustModel(cards,card,type) {
+    function applyDrainModel(cards,card,type) {
         let side = random.getBoolean() ? 1 : 0;
-        cards[card].sides[side].exhaustModel = type;
+        cards[card].sides[side].drainModel = type;
         if (!cards[card].sides[side].perkId) cards[card].sides[side].perkId=type.perkId;
     }
 
@@ -109,7 +109,7 @@ function generateHero(modifiers) {
         normalConstellationsBag=random.createBag(NORMALCONSTELLATIONS,true),
         hardConstellationsBag=random.createBag(HARDCONSTELLATIONS,true),
         cardsBag=random.createBag([4,5,6,7]),
-        exhaustModelsBag=random.createBag(EXHAUSTMODELS,true),
+        drainModelsBag=random.createBag(DRAINMODELS,true),
         MODIFIERS = {
 
             // -- Costs
@@ -126,6 +126,10 @@ function generateHero(modifiers) {
             // -- Defense
             LOWDEFENSE:{ action:"gain", attribute:"defense", value: 1 },
 
+            // -- Special
+            IGNOREMODIFIER:{ action:"ignoreModifier" },
+            REPEATSKILL:{ action:"repeatSkill" },
+
             // Proxy randoms
             random:random,
             elementsBag:elementsBag,
@@ -133,7 +137,7 @@ function generateHero(modifiers) {
             normalConstellationsBag:normalConstellationsBag,
             hardConstellationsBag:hardConstellationsBag,
             cardsBag:cardsBag,
-            exhaustModelsBag:exhaustModelsBag
+            drainModelsBag:drainModelsBag
         },
         perks=loadHeroPerks(MODIFIERS),
         perksBag = random.createBag(perks),
@@ -216,8 +220,8 @@ function generateHero(modifiers) {
                 })
                 break;
             }
-            case "addExhaustModel":{
-                applyExhaustModel(cards,step.toCard,step.model);
+            case "addDrainModel":{
+                applyDrainModel(cards,step.toCard,step.model);
                 break;
             }
         }

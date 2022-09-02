@@ -172,7 +172,7 @@ let
             optionality:[{word:"may"}],
             type:"action",
             subtype:"sacrifice",
-            modifier:"exhaust",
+            modifier:"drain",
             cards:[1],
             content:LOOTMODELS.support,
             place:["inHand","inDiscardPile","inHandOrDiscard"],

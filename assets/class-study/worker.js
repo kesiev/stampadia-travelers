@@ -47,7 +47,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
             playedResourcesCards:[],
             playedInfuseCards:[],
             started:false,
-            exhaustCost:{
+            drainCost:{
                 mana:0
             },
             resources:{
@@ -309,11 +309,11 @@ function play(cards,config,data,results,action,card,side,tooption) {
 
     function addActionCard(card,side) {
         let cardSide=cards[card].sides[side];
-        for (let k in cardSide.exhaustCost)
-            if (data.exhaustCost[k] === undefined) {
-                console.warn("Missing exhaust resource",k);
+        for (let k in cardSide.drainCost)
+            if (data.drainCost[k] === undefined) {
+                console.warn("Missing drain resource",k);
                 debugger;
-            } else data.exhaustCost[k]+=cardSide.exhaustCost[k];
+            } else data.drainCost[k]+=cardSide.drainCost[k];
         if (cardSide.element)
             if (data.resources[cardSide.element] === undefined)
                 console.warn("Unsupported element",cardSide.element);
@@ -365,7 +365,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
             }
             case "playCardAsStarter":{
                 let cardSide = cards[card].sides[side];
-                if (DEBUG) data.logs.push(action+"("+card+","+side+"): "+cardSide.id+(cardSide.element?" ["+cardSide.element+"]":"")+(cardSide.exhaustCost.mana?" {-"+cardSide.exhaustCost.mana+"}":""));
+                if (DEBUG) data.logs.push(action+"("+card+","+side+"): "+cardSide.id+(cardSide.element?" ["+cardSide.element+"]":"")+(cardSide.drainCost.mana?" {-"+cardSide.drainCost.mana+"}":""));
                 addActionCard(card,side);
                 addResourceCard(card,side);
                 gainResources(cardSide);
@@ -374,7 +374,7 @@ function play(cards,config,data,results,action,card,side,tooption) {
             }
             case "playCardAsAction":{
                 let cardSide = cards[card].sides[side];
-                if (DEBUG) data.logs.push(action+"("+card+","+side+","+tooption+"): "+cardSide.id+(cardSide.element?" ["+cardSide.element+"]":"")+(cardSide.exhaustCost.mana?" {-"+cardSide.exhaustCost.mana+"}":""));
+                if (DEBUG) data.logs.push(action+"("+card+","+side+","+tooption+"): "+cardSide.id+(cardSide.element?" ["+cardSide.element+"]":"")+(cardSide.drainCost.mana?" {-"+cardSide.drainCost.mana+"}":""));
                 if (data.started) {
                     addActionCard(card,side);
                     valid=performActions(cardSide,tooption);
@@ -442,8 +442,8 @@ function play(cards,config,data,results,action,card,side,tooption) {
                     })
 
                 let canRecover = "recoverable";
-                for (let k in data.exhaustCost)
-                    if (data.resources[k]<data.exhaustCost[k]) {
+                for (let k in data.drainCost)
+                    if (data.resources[k]<data.drainCost[k]) {
                         canRecover="unrecoverable";
                         break;
                     }
