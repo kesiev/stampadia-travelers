@@ -13,7 +13,8 @@ const
     SMALLTEXTGAP=0.6,
     LARGETEXTGAP=1.1,
     INNERBORDERSPACING=1,
-    EMPTYLINESIZE=2;
+    EMPTYLINESIZE=2,
+    SYMBOLDISTANCE=9.5;
 
 function formatOptionalityRepeating(language,optionality,repeating) {
     return (repeating?replaceValue(language.repeating[repeating.word][repeating.times==1?"singular":"plural"],repeating.times)+" ":"")+(
@@ -103,7 +104,7 @@ function translateEnemyModifier(language,modifier,addend) {
 function formatConditionedAction(language,conditions,action,times) {
     let text="";
     if (conditions.length)
-        text+=(times||language.conditions.if)+" "+conditions.join(language.conditions.separator)+language.conditions.effectSeparator;
+        text+=(times?times+" ":"")+conditions.join(language.conditions.separator)+language.conditions.effectSeparator;
     if (action.length)
         text+=action.join(language.conditions.actionSeparator);
     return getEffectText(language,text);
@@ -710,6 +711,12 @@ function CardPrinter(svg,modelid,x,y) {
                     width:largeSymbolsSize,
                     height:largeSymbolsSize
                 },
+                classSymbol:{
+                    x:halfCard.content.x+halfCard.content.width-largeSymbolsSize,
+                    y:halfCard.content.y+halfCard.content.height-SYMBOLDISTANCE,
+                    width:largeSymbolsSize,
+                    height:largeSymbolsSize
+                },
                 content:[
                     {
                         textBox:{
@@ -770,7 +777,14 @@ function CardPrinter(svg,modelid,x,y) {
     
     this.getHelperCardRulers=(settings)=>{
         let
-            rulers={};
+            rulers={
+                classSymbol:{
+                    x:halfCard.content.x+halfCard.content.width-largeSymbolsSize-0.5,
+                    y:halfCard.content.y+0.19,
+                    width:largeSymbolsSize,
+                    height:largeSymbolsSize
+                },
+            };
 
         addCardNumberRulers(rulers);
         if (DEBUG) {
@@ -798,6 +812,12 @@ function CardPrinter(svg,modelid,x,y) {
                 element:{
                     x:halfCard.content.x,
                     y:halfCard.content.y,
+                    width:largeSymbolsSize,
+                    height:largeSymbolsSize
+                },
+                classSymbol:{
+                    x:halfCard.content.x+halfCard.content.width-largeSymbolsSize,
+                    y:halfCard.content.y+halfCard.content.height-SYMBOLDISTANCE,
                     width:largeSymbolsSize,
                     height:largeSymbolsSize
                 },
