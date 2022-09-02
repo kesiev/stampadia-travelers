@@ -64,8 +64,8 @@ let
         {id:"image-force", file:"images/image-force.png", asBinary:true, addToPictures:"image-force.png", addToImages:"force" },
         {id:"image-activate", file:"images/image-activate.png", asBinary:true, addToPictures:"image-activate.png", addToImages:"activate" },
         {id:"image-add", file:"images/image-add.png", asBinary:true, addToPictures:"image-add.png", addToImages:"add" },
-        {id:"image-exhaust1", file:"images/image-exhaust1.png", asBinary:true, addToPictures:"image-exhaust1.png", addToImages:"exhaust1" },
-        {id:"image-exhaust2", file:"images/image-exhaust2.png", asBinary:true, addToPictures:"image-exhaust2.png", addToImages:"exhaust2" },
+        {id:"image-drain1", file:"images/image-drain1.png", asBinary:true, addToPictures:"image-drain1.png", addToImages:"drain1" },
+        {id:"image-drain2", file:"images/image-drain2.png", asBinary:true, addToPictures:"image-drain2.png", addToImages:"drain2" },
         {id:"image-perform", file:"images/image-perform.png", asBinary:true, addToPictures:"image-perform.png", addToImages:"perform" },
         {id:"image-restore", file:"images/image-restore.png", asBinary:true, addToPictures:"image-restore.png", addToImages:"restore" },
         {id:"image-symbols", file:"images/image-symbols.png", asBinary:true, addToPictures:"image-symbols.png", addToImages:"symbols" },
@@ -80,6 +80,8 @@ let
         {id:"image-dungeonfight1", file:"images/image-dungeonfight1.png", asBinary:true, addToPictures:"image-dungeonfight1.png", addToImages:"dungeonfight1" },
         {id:"image-dungeonfight2", file:"images/image-dungeonfight2.png", asBinary:true, addToPictures:"image-dungeonfight2.png", addToImages:"dungeonfight2" },
         {id:"image-dossier", file:"images/image-dossier.png", asBinary:true, addToPictures:"image-dossier.png", addToImages:"dossier" },
+        {id:"image-places", file:"images/image-places.png", asBinary:true, addToPictures:"image-places.png", addToImages:"places" },
+        {id:"image-scoring", file:"images/image-scoring.png", asBinary:true, addToPictures:"image-scoring.png", addToImages:"scoring" },
         {id:"image-logo", file:"images/image-logo.png", asBinary:true, addToPictures:"image-logo.png", addToImages:"logo" },
     ];
 
@@ -345,10 +347,12 @@ function downloadManual(language) {
 
             let simplifiedWords=[];
             wordcounttext.forEach(orgword=>{
-                word=simplify(orgword);
-                if (word.length>2) {
-                    if (reservedwords[word]) console.warn("Word",orgword,"is in placeholder",reservedwords[word]);
-                    simplifiedWords.push(word);
+                if (typeof wordcountindex[orgword] != "function") {
+                    word=simplify(orgword);
+                    if (word.length>2) {
+                        if (reservedwords[word] && (typeof reservedwords[word] != "function")) console.warn("Word",orgword,"is in placeholder",reservedwords[word]);
+                        simplifiedWords.push(word);
+                    }
                 }
             })
 
