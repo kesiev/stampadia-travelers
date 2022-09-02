@@ -1,16 +1,32 @@
-function loadHeroElementalistClassSkills(MOD) {
+function loadHeroElementalistClassAttackSkills(MOD) {
     return [
+        { model:"wish", id:"yin", item1:"attack", item2:"defense" },
+        { model:"tierElement", id:"forge", subject:"inPlay", tiers:2, item:"attack" },
         { model:"baseElemental", id:"concentration", item1:"attack", item2:"defense" },
-        { model:"baseElemental", id:"concentration", item1:"defense", item2:"attack" },
-        { model:"comboElements", id:"balance", item:"attack" },
-        { model:"criticalElement", id:"excess", item:"attack" },
-        { model:"noElement", id:"emptiness", item:"attack" },
-        { model:"base", id:"quiet", item1:"defense", item2:"attack" },
+        { model:"comboElements", id:"scale", subject1:"inPlay", subject2:"inPlay", item:"attack" },
+        { model:"criticalElement", id:"excess", subject:"inPlay", item:"attack" },
+        { model:"noElement", id:"void", cardsCount:2, cardsSubject:"inPlay", subject:"inPlay", item:"attack" },
+        { model:"flowElement", id:"ascent", item1:"attack", subject1:"inPlay", item2:"defense", subject2:"inPlay", },
         // Transfer skills are gained on lower levels
         { level:[1,5], model:"fullTransferElement", id:"compression", from:"defense", to:"attack" },
-        { level:[1,5], model:"fullTransferElement", id:"decompression", from:"attack", to:"defense" },
     ];
 }
+
+function loadHeroElementalistClassDefenseSkills(MOD) {
+    return [
+        { model:"wish", id:"yang", item1:"defense", item2:"attack" },
+        { model:"tierElement", id:"hardening", subject:"inHand", tiers:2, item:"defense" },
+        { model:"baseElemental", id:"concentration", item1:"defense", item2:"attack" },
+        { model:"comboElements", id:"mixture", subject1:"inHand", subject2:"inHand", item:"defense" },
+        { model:"criticalElement", id:"absorption", subject:"inHand", item:"defense" },
+        { model:"noElement", id:"purity", cardsCount:2, cardsSubject:"inHand", subject:"inHand", item:"defense" },
+        { model:"base", id:"quiet", item1:"defense", item2:"attack" },
+        { model:"flowElement", id:"descent", item1:"defense", subject1:"inPlay", item2:"attack", subject2:"inPlay", },
+        // Transfer skills are gained on lower levels
+        { level:[1,5], model:"fullTransferElement", id:"expansion", from:"attack", to:"defense" },
+    ];
+}
+
 
 function loadHeroElementalistClassLegacySkills(MOD) {
     return [
@@ -30,7 +46,9 @@ function loadHeroElementalistClass(MOD) {
                 defense:1.2
             }
         }),
-        skillsBag=MOD.random.createBag(loadHeroElementalistClassSkills(MOD),true),
+        attackSkillsBag=MOD.random.createBag(loadHeroElementalistClassAttackSkills(MOD),true),
+        defenseSkillsBag=MOD.random.createBag(loadHeroElementalistClassDefenseSkills(MOD),true),
+        skillsBag=MOD.random.createBag([attackSkillsBag,attackSkillsBag,defenseSkillsBag],true),
         legacySkillsBag=MOD.random.createBag(loadHeroElementalistClassLegacySkills(MOD),true);
 
     return {
@@ -51,8 +69,8 @@ function loadHeroElementalistClass(MOD) {
             { action:"addSkill", toSide:1 ,type:"tier3", times:2 },
             { action:"addSkill", toSide:1, type:"tier4", times:1 },
             { action:"addSkill", toSide:1, type:"legacy", times:1 },
-            { action:"addPerks", times:2 },
-            { action:"addExhaustModel", model:MOD.random.getFromBag(MOD.exhaustModelsBag), toCard:MOD.random.getFromBag(MOD.cardsBag) }
+            { action:"addPerks", times:3 },
+            { action:"addDrainModel", model:MOD.random.getFromBag(MOD.drainModelsBag), toCard:MOD.random.getFromBag(MOD.cardsBag) }
         ],
         skills:[
 
@@ -68,13 +86,14 @@ function loadHeroElementalistClass(MOD) {
 
             // Basic attacks
 
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",3,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier1",4,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",5,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier2",6,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier3",8,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
-            skillCrafter.craftFromBag(MOD.random,skillsBag,"tier4",9,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier1",3,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier1",4,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier2",5,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier2",6,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier3",7,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier4",8,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
+            skillCrafter.craftFromBag(MOD.random,MOD.random.getFromBag(skillsBag),"tier4",8,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
             skillCrafter.craftFromBag(MOD.random,legacySkillsBag,"legacy",9,{ element:MOD.random.getFromBag(MOD.elementsBag) }),
 
         ]
