@@ -280,7 +280,7 @@ function loadDungeonEvents(MOD) {
             ]
         },{
             id:"eventGambler",
-            codex:"The Gambler: select a card, draw a card and compare mana values to win or lose a card from hand.",
+            codex:"The Gambler: select a card, draw a card, and compare mana values to win or lose a card from hand.",
             steps:[
                 [
                     {
