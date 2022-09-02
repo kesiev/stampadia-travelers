@@ -150,7 +150,7 @@ Once I've set the resources and how the player can gain them, I tried to get the
     <p>Strain action (from the TOS manual)</p>
 </div>
 
-During the tests, I've added the _Strain_ action, which allows the player to pay 1 Mana and use any card to gain 1 Attack or 1 Defense. It's a _pricey_ action the player can use to gain a little of what exactly needs that you can find in many card-based exploration board game adventures like [Mage Knight Board Game](https://boardgamegeek.com/boardgame/96848/mage-knight-board-game) and [Gloomhaven](https://boardgamegeek.com/boardgame/174430/gloomhaven) and helps on mitigating edge cases while introducing more choices. Due to its _mitigating_ effect, the simulated player can never use the _Strain_ action.
+During the tests, I've added the _Strain_ action, which allows the player to use any card to gain 1 Attack or 1 Defense. It's a _pricey_ action the player can use to gain a little of what exactly needs that you can find in many card-based exploration board game adventures like [Mage Knight Board Game](https://boardgamegeek.com/boardgame/96848/mage-knight-board-game) and [Gloomhaven](https://boardgamegeek.com/boardgame/174430/gloomhaven) and helps on mitigating edge cases while introducing more choices. Due to its _mitigating_ effect, the action is free and the simulated player can never use that.
 
 <div align="center" style="margin:60px 0">
     <p><img src="markdown/mageknight.png"></p>
@@ -167,7 +167,7 @@ I worked on 2 classes (The Swordmaster and The Elementalist) mainly changing the
 I needed something to help the player on tracking these resources so I used one of the 9 cards as a tracker. The resource tracker also allowed the player to _store_ some of the resources from game to game, creating a new opportunity to create rewards... but it left me just 8 cards for skills, which is barely enough to create a player's hand and surely not enough to make the gameplay I wanted. I've split the cards in two, like in _World Adventures_, and then added up to 2 skills per half, so the player must do some little hand and cards management to create a good sequence of cards and chain resources and abilities to get Attack and Defense.
 
 <div align="center" style="margin:60px 0">
-    <p><img src="assets/manual/images/image-exhaust2.png"></p>
+    <p><img src="assets/manual/images/image-drain2.png"></p>
     <p>Hero card flow (from the TOS manual)</p>
 </div>
 
