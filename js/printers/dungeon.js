@@ -266,9 +266,18 @@ function DungeonPrinter(modifiers) {
         template.load(()=>{
         
             let
+                dungeon,
+                attempt=0;
+
+            while (attempt<10) {
+                dungeon=generateDungeon(modifiers,attempt);
+                if (dungeon) break;
+                else attempt++;
+            }
+
+            let
                 language=LANGUAGES[settings.language],
                 svg=new SVG(template),
-                dungeon=generateDungeon(modifiers),
                 translatedNarrative=translateNarrativePlaceholders(language,dungeon.narrative),
                 lastMapCard=dungeon.cards.length,
                 borderTop=(SHEETHEIGHT-(CARDHEIGHT*3+CARDSPACING*2))/2,

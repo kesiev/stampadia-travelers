@@ -1,4 +1,4 @@
-function generateDungeon(modifiers) {
+function generateDungeon(modifiers,attempt) {
     const
         SIDES=["A","B","C","D"],
         IDS=["1","2","3","4","5","6"],
@@ -694,7 +694,7 @@ function generateDungeon(modifiers) {
 
     let
         random=new Random({
-            seed:modifiers.seed
+            seed:modifiers.seed+attempt
         }),
         enemyGenerator=new EnemyGenerator(random),
         actionGenerator=new ActionGenerator(random),
