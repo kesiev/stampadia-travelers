@@ -16,6 +16,10 @@ const
     EMPTYLINESIZE=2,
     SYMBOLDISTANCE=9.5;
 
+let
+    SIZERATIO = 1,
+    ITALICSPACING = 0;
+
 function formatOptionalityRepeating(language,optionality,repeating) {
     return (repeating?replaceValue(language.repeating[repeating.word][repeating.times==1?"singular":"plural"],repeating.times)+" ":"")+(
         optionality.word=="may"?
@@ -294,7 +298,16 @@ function CardPrinter(svg,modelid,x,y) {
         width=0,
         height=0,
         fullCard=0,
-        halfCard=0;
+        halfCard=0,
+        root = svg.node.getElementsByTagName("svg")[0];
+        bboxWidth = root.getBBox().width;
+
+    // Firefox gets different sizes
+
+    if (bboxWidth>10000) {
+        SIZERATIO = 0.01;
+        ITALICSPACING = -1.4;
+    }
 
     function createRectangle(x,y,w,h) {
 
@@ -391,8 +404,10 @@ function CardPrinter(svg,modelid,x,y) {
     function measureNode(node) {
         let box=node.getBBox();
         return {
-            width:box.width,
-            height:box.height
+            x:box.x*SIZERATIO,
+            y:box.y*SIZERATIO,
+            width:box.width*SIZERATIO,
+            height:box.height*SIZERATIO
         };
     }
 
