@@ -42,7 +42,9 @@
     
 function onl() { 
 
-    seed=Math.floor(Math.random()*100000);
+    let tmpdate = new Date(); 
+    DAYMSEC = 1000*60*60*24,
+    seed=Math.floor((tmpdate.getTime()/DAYMSEC))*DAYMSEC;
     console.warn(seed);
     generateDungeon({
         debug:true,
@@ -50,7 +52,7 @@ function onl() {
         debugRedRoom:["bossRoom"],
         debugBlueRoom:["curseRoom","keyRoom","generalRoom"]
         // noRandom:true
-    });
+    },0);
 
 }
 </script>
