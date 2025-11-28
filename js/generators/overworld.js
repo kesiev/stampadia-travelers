@@ -87,6 +87,11 @@ function generateOverworld(modifiers) {
         }
 
         function getRandomRevealPosition(except,timing) {
+            // Upper sideds already flipped cannot reveal another card.
+            if (except[1]==0)
+                for (let k in revealingCard)
+                    if (revealingCard[k].indexOf(except[0]) != -1)
+                        return false;
             // Can't reveal the same card the action is into.
             let
                 candidates = neededReveal.filter(reveal=>(reveal!=except[0])&&((!neededRevealMeta[reveal])||(neededRevealMeta[reveal]>=timing))),
