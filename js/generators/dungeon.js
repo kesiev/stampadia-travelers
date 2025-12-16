@@ -397,28 +397,25 @@ function generateDungeon(modifiers,attempt) {
             return getNearerPosition(bags,position,skipPickableCardSides);
     }
 
-    function getVisiblePositions(cardside,bags,except,symbols,path,results,distance) {
+    function getVisiblePositions(cardside,bags,except,firstcard,path,results,distance) {
         if (!path) {
-            symbols=[];
+            firstcard=cardside.card.getId();
             path=[];
             results={};
             distance=0;
         }
 
         let uid=IDS[cardside.card.getId()]+SIDES[cardside.side];
-        if (path.indexOf(uid) == -1) {
+        if ((!distance || (cardside.card.getId() != firstcard)) && (path.indexOf(uid) == -1)) {
             path.push(uid);
             let
                 bag=bags[cardside.inBag],
                 bagId=random.getBagId(bag,cardside),
                 symbol=cardside.card.getSymbolByIndex(0,cardside.side);
-            if (symbols.indexOf(symbol.id) === -1) {
-                symbols.push(symbol.id);
-                if (distance && (!except || (except.indexOf(cardside)==-1)) && (!results[symbol.id] || results[symbol.id].distance<symbol.distance) && (bag.indexes.indexOf(bagId) !== -1))
-                    results[symbol.id]= { distance:distance, symbol:symbol, cardside:cardside, route:Tools.clone(path) };
-            }
+            if (distance && (!except || (except.indexOf(cardside)==-1)) && (!results[symbol.id] || results[symbol.id].distance<symbol.distance) && (bag.indexes.indexOf(bagId) !== -1))
+                results[symbol.id]= { distance:distance, symbol:symbol, cardside:cardside, route:Tools.clone(path) };
             cardside.exits.forEach(exit=>{
-                getVisiblePositions(exit,bags,except,Tools.clone(symbols),Tools.clone(path),results,distance+1);
+                getVisiblePositions(exit,bags,except,firstcard,Tools.clone(path),results,distance+1);
             });
         }
         
