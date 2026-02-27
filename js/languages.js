@@ -31,6 +31,10 @@ const
 						"label":"Fronte-retro",
 						"description":"Il PDF deve essere stampato sulle 2 facce dello stesso foglio A4 sul lato lungo e semplicemente ritagliato lungo le righe tratteggiate. In questo modo le carte potrebbero non risultare perfettamente centrate, sono meno solide e pi&ugrave; difficili da mescolare ma sono di gran lunga pi&ugrave; facili da assemblare.",
 					},
+					"doublesidedcross":{
+						"label":"Fronte-retro con crocini",
+						"description":"Il PDF pu&ograve; essere stampato sulle 2 facce dello stesso foglio A4 sul lato lungo o su 2 fogli incollati tra loro allineando i crocini stampati tra le carte. Tagliando poi il foglio da crocino a crocino con una taglierina si possono ottenere delle carte centrate e pulite ma richiedono un po' pi&ugrave; di lavoro.",
+					},
 				},
 				"learnHowToPlayTheGame":"Impara a giocare a {title}!",
 				"theGameManual":"Il Manuale di Gioco",
@@ -2204,6 +2208,10 @@ const
 						"label":"Double-sided",
 						"description":"The PDF must be printed on 2 sides of the same A4 sheet on the long edge and just cut following the dashed lines. This way the cards may not be exactly centered, less solid, and a little harder to shuffle but they are way faster to assemble.",
 					},
+					"doublesidedcross":{
+						"label":"Double-sided with crosshairs",
+						"description":"The PDF can be printed on both sides of the same A4 sheet of paper, along the long edge, or on 2 sheets of paper glued together by aligning the crosshairs printed between the cards. Cutting the sheet from crosshair to crosshair with a paper cutter can produce clean, centered cards, but it requires a little more work.",
+					}
 				},
 				"learnHowToPlayTheGame":"Learn how to play {title}!",
 				"theGameManual":"The Game Manual",

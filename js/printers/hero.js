@@ -58,6 +58,18 @@ function HeroPrinter(modifiers) {
             cardPrinter.delete([
                 "heroHelpCutout"
             ]);
+
+        if (settings.noCross) 
+            cardPrinter.delete([
+                "heroHelpCross1",
+                "heroHelpCross2",
+                "heroHelpCross3",
+                "heroHelpCross4",
+                "heroHelpCross5",
+                "heroHelpCross6",
+                "heroHelpCross7",
+                "heroHelpCross8"
+            ]);
     }
 
     function printHeroCard(settings,svg,playerClass,language,x,y,data) {
@@ -328,6 +340,12 @@ function HeroPrinter(modifiers) {
         if (settings.noBorder)
             cardPrinter.delete([
                 "heroCardCutout"
+            ]);
+
+        if (settings.noCross) 
+            cardPrinter.delete([
+                "heroCardCross1",
+                "heroCardCross2"
             ]);
 
         cardPrinter.startLowerSide();

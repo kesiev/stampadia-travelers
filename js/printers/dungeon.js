@@ -89,6 +89,19 @@ function DungeonPrinter(modifiers) {
                 "dungeonCardCutout"
             ]);
 
+        if (settings.noCross) 
+            cardPrinter.delete([
+                "dungeonCardCross1",
+                "dungeonCardCross2",
+                "dungeonCardCross3",
+                "dungeonCardCross4",
+                "dungeonCardCross5",
+                "dungeonCardCross6",
+                "dungeonCardCross7",
+                "dungeonCardCross8"
+            ]);
+
+
     }
 
     function printLegendCard(settings,svg,language,narrative,translatedNarrative,x,y,data,page) {
@@ -256,6 +269,18 @@ function DungeonPrinter(modifiers) {
         if (settings.noBorder)
             cardPrinter.delete([
                 "dungeonLegendCardCutout"
+            ]);
+
+        if (settings.noCross) 
+            cardPrinter.delete([
+                "dungeonLegendCardCross1",
+                "dungeonLegendCardCross2",
+                "dungeonLegendCardCross3",
+                "dungeonLegendCardCross4",
+                "dungeonLegendCardCross5",
+                "dungeonLegendCardCross6",
+                "dungeonLegendCardCross7",
+                "dungeonLegendCardCross8"
             ]);
 
     }

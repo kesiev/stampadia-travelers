@@ -360,6 +360,14 @@ function OverworldPrinter(modifiers) {
                 "mapCardCutout"
             ]);
 
+        if (settings.noCross) 
+            cardPrinter.delete([
+                "mapCardCross1",
+                "mapCardCross2",
+                "mapCardCross3",
+                "mapCardCross4"
+            ]);
+
 
         cardPrinter.startLowerSide();
         printSide(settings,data,data.sides[1]);

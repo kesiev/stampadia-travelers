@@ -1,10 +1,13 @@
 const GENERATORMODES=[
     {
         id:"default",
-        settings:[{ flipX:false, noBorder:false, noCode:false }, { flipX:false, noBorder:false, noCode:false }]
+        settings:[{ flipX:false, noBorder:false, noCross:true, noCode:false }, { flipX:false, noBorder:false, noCross:true, noCode:false }]
     },{
         id:"doublesided",
-        settings:[{ flipX:false, noBorder:false, noCode:false }, { flipX:true, noBorder:true, noCode:true }] 
+        settings:[{ flipX:false, noBorder:false, noCross:true, noCode:false }, { flipX:true, noBorder:true, noCross:true, noCode:true }] 
+    },{
+        id:"doublesidedcross",
+        settings:[{ flipX:false, noBorder:true, noCross:false, noCode:false }, { flipX:true, noBorder:true, noCross:false, noCode:true }] 
     }
 ];
 
