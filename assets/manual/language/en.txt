@@ -1,6 +1,6 @@
 {
   "placeholders":{
-    "manualVersion":"0.2b",
+    "manualVersion":"0.3b",
     "gameShortTitle":"TOS",
     "place":"Stampadia",
     "thanks":"**Bianca** and the **Discord** and **BGG** travelers of Stampadia for sharing their efforts and ideas",
@@ -189,31 +189,31 @@ We’re recovering, translating, and digitalizing one new **document set** daily
 
 # Construction
 
-To play {config-title} you need **2 complete sets (even two copies of the same set is enough)**.
+To play {config-title} you need **2 full card sets (even two copies of the same set if this is your only one)**.
 
-A single {gameShortTitle} set is made of 9 double-faced cards: on one face there are the cards that will allow you to live the role of a {hero} and on the other one there are the cards that will tell you a story in the lands of {place}, playable with any {hero}.
+A single {gameShortTitle} set is made of 9 double-sided cards: on one side are the cards that will allow you to live the role of a {hero} and on the other one are the cards that will tell you a story in the lands of {place}, playable with any {hero}.
 
-Every day you can download a new set from the game website ({config-homepageUrl}): it's a 2-page PDF, one for the {hero} and the other one for the adventure, to cut and assemble.
+Every day you can download a new set of cards from the game website ({config-homepageUrl}): it's a 2-page PDF, one for the {hero} and the other one for the adventure, to cut and assemble. 
 
 {image createset}
 
 There are many ways to assemble a set of {gameShortTitle}. I'll teach the most common one.
 
-# Stuff you need
+# The simple way: Stuff you need
 
 {image materials}
 
 You need 9 63.5x88mm card game sleeves {symbol 1}. They shouldn't be expensive, you can use them to create your own card game and, if you're a board game fan, you should have a bunch of them in some drawer.
 
-You also need a regular 3.5"x2.5" poker deck {symbol 2} from which you'll borrow 9 cards or you can cut 9 cardboard same-sized rectangles and use them instead.
+You also need a regular 3.5"x2.5" poker deck {symbol 2} from which you'll borrow 9 cards (or cut 9 cardboard same-sized rectangles and use them instead).
 
-Finally, you need one PDF downloaded from the game site to be printed on 2 A4 sheets {symbol 3}.
+Finally, you need one PDF downloaded from the game site to be printed on 2 A4 sheets {symbol 3}. Check the options menu beforehand and ensure "default" is selected.
 
 # Let's start!
 
 First, you've to cut the 9 slips from the 2 printed sheets, following the dashed lines.
 
-Every slip has a code printed on one of its longer sides, similar to "TOS20220706-H-1A" or "TOS20220706-H-1B". Use the penultimate character of this code to split the little sheets into 9 pairs: 1A and 1B, 2A and 2B, 3A and 3B, and so on.
+Every slip has a code printed on one of its longer sides (ending with "A" on {hero} slip and "B" on adventude slip), similar to "TOS20220706-H-1A" or "TOS20220706-H-1B". Use the last two characters of this code to split the little sheets into 9 pairs: 1A and 1B, 2A and 2B, 3A and 3B, and so on.
 
 Now take a sleeve and put one poker card or one cardboard rectangle in it.
 
@@ -221,7 +221,7 @@ Take one of the 9 slip pairs you formed before and sleeve them so both are facin
 
 {image sleeving}
 
-Repeat these last 2 steps for every slip pair. Once done, **your first set of {gameShortTitle} will be ready**: 9 cards, with a {hero} on one side and an adventure on the other one!
+Repeat these last 2 steps for every slip pair. Once done, **your first set of {gameShortTitle} is ready**: 9 cards, with a {hero} on one side and an adventure on the other one!
 
 # Hints
 
@@ -229,43 +229,43 @@ If you've opted for poker cards or if the cardboard rectangles have different co
 
 If you can't remember from which set a slip comes from you can use the first part of its code to recognize it. The slips from the same set have the same code first part, so "**TOS20220706**-H-1A" and "**TOS20220706**-W-3B" are coming from the same set with the "**TOS20220706**" code and "**TOS20220712**-H-1A" comes from the set with the "**TOS20220712**" code.
 
-If your printer supports double-sided printing you can go to the site options and change the print mode. The next PDFs you download will be printed on the 2 sides of the same A4 sheet, which you will then have to cut out along the dotted lines. Cards made this way may not be perfectly centered, they are less solid, and a little more difficult to shuffle but are far easier to assemble. The front and back of each card will be automatically paired during printing, so the code will only be found on one of the 2 sides.
-
 You'll need 2 sets to play, so you've to repeat the construction procedure twice. Don't worry: when you'll want to play a new {gameShortTitle} set you'll just have to print a new PDF, cut the slips, choose one of the two sets you already have (use the cards' first code part to recognize the set), and replace its slips.
+
+# Perfectionist's path: Double-sided printing
+
+If you want to print double-sided cards you can go to the site options and change print mode to "double-sided". The next PDFs you download will have matching A and B slips to be printed on the 2 sides of the same A4 sheet, which you will then have to cut out along the dotted lines. Cards made this way may not be perfectly centered, might be weaker unless printed on heavy paper (200g is nice), and a little more difficult to shuffle (unless laminated) but require no assembly after cutting. The front and back of each card will be automatically paired during printing, so the code will only be found on {hero} side (ending with "A").
 
 # Other components
 
 {image extramaterials}
 
-In addition to the 2 {gameShortTitle} sets {symbol 1},  you'll need a pawn for {your-hero} once again {symbol 2}. You can use a button, a shell, a miniature, or any small object you like. From now we will call this token the "**{pawn-hero}**".
+In addition to the 2 {gameShortTitle} card sets {symbol 1}, you'll need a pawn for {your-hero} once again {symbol 2}. You can use a button, a shell, a miniature, or any small object you like. From now we will call this token the "**{pawn-hero}**".
 
 You may need a pencil too {symbol 3}... but I don't want to spoil you the surprise!
 
 Finally, to make your first {gameShortTitle} games easier, I suggest you get about 20 little {token-plural} {symbol 4} different from the {pawn-hero}. You can use small cardboard squares, small cubes, little rocks, etc. It doesn't matter the shape and color. You'll use them less and less as you'll learn how to play.
 
-# Setup
+# Setup: {hero} deck
 
 {image setup}
 
-Once the 2 sets are ready, it's time to learn how to fight. First split the 2 sets into 2 decks {symbol 1} so every card displays a {banner} with a single tip that starts from its upper right corner. To find the right side you may need to flip and turn the cards. In each deck, there is one particular card, with a very short {banner} and some {track-plural} printed on it: put this card on the top of each deck.
+Once the 2 card sets are ready, it's time to learn how to fight. Every {gameShortTitle} game starts with {your-hero} choice. Choose one of the two decks {symbol 2} as your {hero} deck: stack cards so each one displays a {banner} with a single tip that starts from its upper right corner. To find the right side you may need to flip and turn the cards. 
 
-Every {gameShortTitle} game starts with {your-hero} choice. Choose one of the two decks {symbol 2} and put the other one away for now.
-
-Put the chosen deck's first card in front of you {symbol 3}, the one with the shorter {banner} and the {track-plural}: this card shows {your-hero} stats during the adventure and we will call this card the **{card-status}**. Put a {token} at the beginning of each {card-status} {track}: on 0 of the sword {track} {symbol heroCardAttackSmallSymbol} (Attack), on 0 of the shield {track} {symbol heroCardDefenseSmallSymbol} (Defense), on 2 of the trophy {track} {symbol heroCardAttackLevelSymbol} (Level), and on 0 of the circle {track} {symbol heroCardManaSmallSymbol} (Mana).
+In each {hero} deck is one particular card, with a very short {banner} and some {track-plural} printed on it. Put this card in front of you {symbol 3}: this card shows {your-hero} stats during the adventure and we will call this card the **{card-status}**. Put a {token} at the beginning of each {card-status} {track}: on 0 of the sword {track} {symbol heroCardAttackSmallSymbol} (Attack), on 0 of the shield {track} {symbol heroCardDefenseSmallSymbol} (Defense), on 2 of the trophy {track} {symbol heroCardAttackLevelSymbol} (Level), and on 0 of the circle {track} {symbol heroCardManaSmallSymbol} (Mana).
 
 During the game, the values of these {track-plural} will go up and down. The {attack} and {defense} {track-plural} are going to be considered of infinite length (so it's allowed to surpass the 23 {point-attack-plural} and 15 {point-defense-plural}) and the {level} {track} can never surpass the 9 and the {mana} can never surpass the {level} {track} value.
 
-Shuffle all the other remaining cards face up and put them vertically on the {card-status} right: this deck will be named **{deck-discard}** {symbol 4}.
+Shuffle all the other remaining {card-hero-plural} face up and form a vertical deck to the right of {card-status}: this deck will be named **{deck-discard}** {symbol 4}.
 
-In {gameShortTitle} {card-hero-plural} are always {draw-done} from the {deck-discard} sliding them **to the bottom**, so slide 5 cards from the {deck-discard} bottom to form your first {hand}, keeping all the cards facing up {symbol 5}. 
+In {gameShortTitle} {card-hero-plural} are always {draw-done} from the {deck-discard} sliding them **from the bottom**, so slide 5 cards from the {deck-discard} bottom to form your first {hand}, keeping all the cards facing up {symbol 5}. 
 
-On the {card-status} left, there is the **{card-removed-plural}** deck {symbol 6}. It's horizontal and collects all of {your-hero} lost cards you can't use anymore. When the game starts the {card-removed-plural} deck is empty. In {gameShortTitle} the {card-hero-plural} are not only the different techniques {your-hero} knows but also his life: **when all of your {card-hero-plural} are in the {card-removed-plural} deck {your-hero} will be {defeated} and the game will instantly end**!
+To the left of {card-status} is the **{card-removed-plural}** zone {symbol 6}. It's horizontal and collects all of {your-hero} lost cards you can't use anymore. When the game starts the {card-removed-plural} zone is empty. In {gameShortTitle} the {card-hero-plural} are not only the different techniques {your-hero} knows but also his life: **when all of your {card-hero-plural} are in the {card-removed-plural} zone {your-hero} is {defeated} and the game ends instantly**!
 
 We're ready to go!
 
 # The Golden Rule
 
-In {gameShortTitle} cards will often ask you to perform actions. If these actions will go against the rules of this manual, **the text on the card always takes precedence**!
+In {gameShortTitle} cards will often ask you to perform actions. If these actions would go against the rules of this manual, **the text on the card always takes precedence**!
 
 # Training: The {card-hero}
 
@@ -273,15 +273,15 @@ Before starting let's have a look at the {card-hero-plural}. Place your first 5-
 
 {image herocardparts}
 
-The valid part of a {card-hero} is always the upper and straight one: the lower and upside-down part has always no effect. We're going to ignore everything that's on the card's lower part.
+The valid part of a {card-hero} is always the upper and straight one: the lower  upside-down part has no effect. We're going to ignore everything that's on the card's lower part.
 
-During setup, you've already seen that there is a {banner} starting from the upper right corner of each {card-hero} {symbol 1} that ends at the card half. The {banner-plural} of your current {hand} cards all have a single tip {symbol heroCardBanner1SmallSymbol} but, as you can see, the upside-down part of each card shows a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} instead. The number of {banner} tips represents the {card-hero}'s power and difficulty: {card-hero-plural} with a single-tipped {banner} {symbol heroCardBanner1SmallSymbol} are less powerful and easier to use while those with a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} have devastating {ability-plural} but are harder to use. Different {banner-plural} {inplay} may also be used to {activate-to} some {ability-plural}. Finally, during the game, you will have several opportunities to flip the cards and switch from one {banner} to another: on some occasions, it will be vital to do so, on some others it will be a disaster. The symbol at the end of the {banner} represents your {hero} class.
+During setup, you've already seen that there is a {banner} starting from the upper right corner of each {card-hero} {symbol 1} that ends at the card half. The {banner-plural} of your current {hand} cards all have a single tip {symbol heroCardBanner1SmallSymbol} but, as you can see, the upside-down part of each card shows a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} instead. The number of {banner} tips represents the {card-hero}'s power and difficulty: {card-hero-plural} with a single-tipped {banner} {symbol heroCardBanner1SmallSymbol} are less powerful and easier to use while those with a double-tipped {banner} {symbol heroCardBanner2SmallSymbol} have devastating {ability-plural} but are harder to use. Different {banner-plural} {inplay} may also be used to {activate-to} some {ability-plural}. Finally, during the game, you will have several opportunities to flip the cards and switch from one {banner} to another: on some occasions, it will be vital to do so, on some others it will be a disaster. The symbol in the tip of the {banner} represents your {hero} class.
 
 {card-hero-plural:capital} have a sphere in the upper right part {symbol 2}, just near the {banner} beginning, with a number inside: that's the **{card-value}**. When cards are played as {card-open} or used for {action-load-to}, the {card-hero-plural} will let you {earn} as many {mana} as its {card-value} that you can spend to {activate-to} card {ability-plural}. We will discover {action-load-to} later.
 
-On the upper side in the middle of the card {symbol 3}, there is its name and, just below, its {effect-drain}. The {effect-drain} describes what you've to do with some cards during the {turn-combat} {phase-drain} phase, or when the game will ask you to {drain-to} a card - we'll learn that better later. 
+The top of the card {symbol 3} shows its name and, just below, its {effect-drain}. The {effect-drain} describes what you must to do with some cards during the {turn-combat} {phase-drain} phase, or when the game will ask you to {drain-to} a card - we'll learn about that later. 
 
-On the card upper left {symbol 4}, some cards show a triangle: that's the card {element}. There are 4 {element-plural} in {gameShortTitle}: {element-air}, {element-water}, {element-earth}, and {element-fire}.
+On the card's top left {symbol 4} may appear a triangle: that's the card {element}. There are 4 {element-plural} in {gameShortTitle}: {element-air}, {element-water}, {element-earth}, and {element-fire}.
 
 {image elements}
 
@@ -297,48 +297,48 @@ The {element-earth} absorbs the {element-water}.
 The {element-water} extinguishes the {element-fire}.
 {listEnd}
 
-During the adventure events and {ability-plural} may make use of {element-plural} so you better know them.
+During the adventure events and {ability-plural} may make use of {element-plural} so try to remember them.
 
-Every card may have up to 2 {ability-plural} printed in the middle {symbol 5}. The spheres on the left with a number in the middle are the {cost-activation}: to apply the described {ability} you'll need to pay the {cost-activation} with {mana} in the sphere. In cards with 2 {ability-plural}, the lower one is a {ability-secondary} and can be {activate-past-singular} only when the upper one has been previously {activate-past-singular}.
+A {card-hero} may have up to 2 {ability-plural} printed in its middle part {symbol 5}. The spheres on the left with a number in the middle are the {cost-activation}: to use the described {ability} you'll need to pay the {cost-activation} with {mana} in the sphere. In cards with 2 {ability-plural}, the lower one is a {ability-secondary} and can be {activate-past-singular} only when the upper one has previously been {activate-past-singular}.
 
 Finally, pairs and single {ability-plural} {cost-activation} spheres on the card left {symbol 6} can be placed side by side during the game, creating sphere sequences called {constellation-plural}. {inplay:capital} {constellation-plural}, like {element-plural} and {banner-plural}, can be used to {activate-to} {ability-plural}.
 
 # Training: A Little Help
 
 {boxOpen}
-**Training**: We'll learn how to play {gameShortTitle} on the field! I'll teach you step-by-step how to train in these boxes. In a game of {gameShortTitle}, {your-hero} starts from {level} 2 as explained during setup. In our training we'll start from {level} 4: move the {level} {token} (the one on the trophy {track}) to the {track}'s number 4.
+**Training**: We'll learn how to play {gameShortTitle} on the field! I'll teach you how to train step-by-step in these boxes. In a game of {gameShortTitle}, {your-hero} starts at {level} 2 as explained during setup. In our training we'll start at {level} 4: move the {level} {token} (the one on the trophy {track}) to 4.
 {boxClose}
 
 # The {turn-combat}
 
-In {gameShortTitle} combat is made of a series of {turn-combat-plural} in which you've to {earn} {point-attack-plural} ({tracked} by the {card-status} sword {track}) and {point-defense-plural} ({tracked} by the {card-status} shield {track}). Different effects then are applied, depending on the combat type, the event, or the adventure you're facing.
+In {gameShortTitle} combat is a sequence of {turn-combat-plural} in which you've to {earn} {point-attack-plural} ({tracked} by the {card-status} sword {track}) and {point-defense-plural} ({tracked} by the {card-status} shield {track}). Different effects are then applied, depending on the combat type, the event, or the adventure you're facing.
 
-Every {turn-combat} is split into these phases:
+Each {turn-combat} is split into seven phases:
 
 {listStart}
-**{phase-prepare}**: At the beginning of the first {turn-combat} against an {enemy} you'll shuffle the {deck-discard} ad {draw-do} cards from the bottom until you've 5 cards in {hand} or the {deck-discard} is empty.
+**{phase-prepare}**: At the beginning of the first {turn-combat} against an {enemy} you must shuffle the {deck-discard} and {draw-do} cards from the bottom until you have 5 cards in {hand} or the {deck-discard} is empty.
 {listItemNext}
-**{phase-open}**: You'll choose your first card from the {hand}, collecting {mana} and {inplay-put-ofthat} its {banner}, {element}, and {constellation}. The {card-open} will start the {banner-main}.
+**{phase-open}**: Choose a card from {hand}, collecting {mana} and {inplay-put-ofthat} its {banner}, {element}, and {constellation}. The {card-open} forms the beginning of the {banner-main}.
 {listItemNext}
-**{phase-plan}**: You'll play any number of {card-hero-plural} from {hand} to change your {point-attack-plural} and {point-defense-plural}.
+**{phase-plan}**: Play any number of {card-hero-plural} to change your {point-attack-plural} and {point-defense-plural}. You can:
 {listItemNext}
   {listSubStart}
-  **{action-load}**: You'll play a {card-hero} from {hand} to {earn} {mana} and {banner-plural} {inplay-put}.
+  **{action-load}**: Play a {card-hero} from {hand} to {earn} {mana} and {banner-plural} {inplay-put}.
   {listItemNext}
-  **{action-infuse}**: You'll play a {card-hero} from {hand} to {element-plural} {inplay-put} and extend {constellation-plural}.
+  **{action-infuse}**: Play a {card-hero} from {hand} to {element-plural} {inplay-put} and extend {constellation-plural}.
   {listItemNext}
-  **{action-activate}**: You'll {activate-to} {ability-plural} from cards by paying their {cost-activation}.
+  **{action-activate}**: You can {activate-to} {ability-plural} from cards by paying their {cost-activation}.
   {listItemNext}
-  **{action-add}**: You'll play a {card-hero} from {hand} to add new {ability-plural} to the {card-open}, {inplay-put} {element-plural}, and change the {banner-main}.
+  **{action-add}**: Play a {card-hero} from {hand} to add new {ability-plural} to the {card-open}, {inplay-put} {element-plural}, and change the {banner-main}.
   {listItemNext}
-  **{action-strain}**: You'll play one {card-hero} from the {hand} to perform a simple {attack} or a simple {defense} defense for free.
+  **{action-strain}**: Play one {card-hero} from the {hand} to perform a simple {attack} or a simple {defense} for free.
   {listSubEnd}
 {listItemNext}
-**{phase-drain}**: You'll perform all the visible {effect-drain-plural} from the cards {inplay} and {discard} the other cards on the {deck-discard} top.
+**{phase-drain}**: Perform all the visible {effect-drain-plural} from the cards {inplay} and {discard} the other cards on the {deck-discard} top.
 {listItemNext}
-**{phase-execute}**: You'll use your collected {point-attack-plural} and {point-defense-plural} to {defeat} or block the {enemy}.
+**{phase-execute}**: Use your collected {point-attack-plural} and {point-defense-plural} to {defeat} or block the {enemy}.
 {listItemNext}
-**{phase-restore}**: You'll set the {attack}, {defense}, and {mana} {track-plural} to 0 and {draw-do} 5 new cards from the bottom.
+**{phase-restore}**: Set the {attack}, {defense}, and {mana} {track-plural} to 0 and {draw-do} 5 new cards from the bottom.
 {listEnd}
 
 # {phase-prepare}

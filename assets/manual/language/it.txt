@@ -1,6 +1,6 @@
 {
   "placeholders":{
-    "manualVersion":"0.2b",
+    "manualVersion":"0.3b",
     "gameShortTitle":"TOS",
     "place":"Stampadia",
     "thanks":"**Bianca** e i viaggiatori del **Discord** e **BGG** di Stampadia per aver condiviso i loro sforzi e le loro idee",
@@ -189,7 +189,7 @@ Stiamo recuperando, traducendo e digitalizzando un nuovo **set di documenti** og
 
 # Costruzione
 
-Per giocare a {config-title} devi avere **2 set completi (anche due copie dello stesso set è sufficiente)**.
+Per giocare a {config-title} devi avere **2 set completi (anche due copie dello stesso set è l'unico che possiedi)**.
 
 Un singolo set di {gameShortTitle} è composto da 9 carte a doppia faccia: su una faccia ci sono le carte che ti permetteranno di vestire i panni di un {hero} mentre sull'altra ci sono le carte che ti racconteranno un'avventura nelle terre di {place}, affrontabile con qualsiasi {hero}.
 
@@ -199,7 +199,7 @@ Ogni giorno puoi scaricare un nuovo set dal sito del gioco ({config-homepageUrl}
 
 Ci sono diversi modi per comporre un set di {gameShortTitle}. Ti spiegherò quello più comune.
 
-# Cosa ti serve
+# La via facile: Cosa ti serve
 
 {image materials}
 
@@ -207,7 +207,7 @@ Devi procurarti 9 bustine per carte da gioco 63.5x88mm {symbol 1}. Non dovrebber
 
 Ti servirà anche un regolare mazzo da poker 3.5"x2.5" {symbol 2} dal quale prendere in prestito 9 carte o, in alternativa, puoi ritagliare 9 cartoncini rettangolari di pari dimensioni e usarle al loro posto.
 
-Infine ti serve un PDF scaricato dal sito del gioco e stampato su 2 fogli A4 {symbol 3}.
+Infine ti serve un PDF scaricato dal sito del gioco e stampato su 2 fogli A4 {symbol 3}. Assicurati che l'opzione selezionata sia "default".
 
 # Cominciamo!
 
@@ -229,9 +229,11 @@ Se hai deciso di usare le carte da poker o se i cartoncini che hai usato hanno c
 
 Se non ricordi più a quale set appartiene un foglietto puoi usare la prima parte del suo codice per riconoscerlo. I foglietti di uno stesso set hanno la prima parte del codice uguale, per cui "**TOS20220706**-H-1A" e "**TOS20220706**-W-3B" appartengono allo stesso set con codice "**TOS20220706**", mentre "**TOS20220712**-H-1A" al set con codice "**TOS20220712**".
 
-Se la tua stampante supporta la stampa fronte-retro puoi andare nelle opzioni del sito e cambiare la modalità di stampa. I prossimi PDF che scaricherai andranno stampati sulle 2 facce dello stesso foglio A4, che dovrai poi ritagliare lungo le righe tratteggiate. Le carte realizzate in questo modo potrebbero non risultare perfettamente centrate, sono meno solide e un pochino più difficili da mescolare ma sono di gran lunga più facili da assemblare. Il fronte ed il retro di ogni carta verrà automaticamente appaiato durante la stampa, per cui il codice si troverà solo su una delle 2 facce.
-
 Per giocare ti serviranno 2 set, per cui dovrai ripetere la procedura di costruzione due volte. Ma non ti preoccupare: quando vorrai giocare un nuovo set di {gameShortTitle} ti basterà stampare un nuovo PDF, ritagliarne i foglietti, scegliere uno dei due set che già hai (puoi riconoscere le carte di uno stesso set dalla prima parte del codice) e sostituirne i foglietti.
+
+# La via del perfezionista: Stampa fronte-retro
+
+Se desideri stampare le carte fronte-retro, puoi andare alle opzioni del sito e impostare la modalità di stampa su "fronte-retro". I PDF successivi che scaricherai conterranno le pagine A e B da stampare sui due lati dello stesso foglio A4, che dovrai poi ritagliare lungo le linee tratteggiate. I biglietti realizzati in questo modo potrebbero non essere perfettamente centrati, potrebbero essere più fragili a meno che non vengano stampati su carta pesante (200 g è l'ideale) e un po' più difficili da mescolare (a meno che non siano plastificati), ma non richiedono alcun assemblaggio dopo il taglio. Il fronte e il retro di ogni carta verranno automaticamente abbinati durante la stampa, quindi il codice sarà presente solo sul lato {hero} (che termina con "A").
 
 # Altri componenti
 
@@ -243,21 +245,19 @@ Potrebbe servirti anche una matita {symbol 3}... ma non voglio rovinarti la sorp
 
 Infine, per rendere più semplici le tue prime partite a {gameShortTitle}, ti suggerisco di procurarti anche una ventina di piccoli {token-plural} {symbol 4} che si distinguano dalla {pawn-hero}. Puoi usare dei quadratini di cartoncino, dei cubetti, dei sassolini etc. Non importa il colore o la forma. Man mano che imparerai a giocare ne userai sempre meno.
 
-# Preparazione
+# Preparazione: il mazzo {hero}
 
 {image setup}
 
-Una volta preparati i 2 set che servono per giocare, è il momento di imparare come si combatte. Per prima cosa separa i 2 set in 2 mazzi {symbol 1}, in modo tale che ogni carta mostri uno {banner} a singola punta che parte dall'angolo in alto a destra. Per trovare il lato giusto potresti aver bisogno di voltare e girare le carte. In ogni mazzo ce n'è una particolare, con uno {banner} molto corto ed alcuni {track-plural} stampati su di essa: mettila in cima ad ogni mazzo.
+Una volta preparati i 2 set, è il momento di imparare come si combatte. Ogni partita a {gameShortTitle} inizia con la scelta del {your-hero}. Scegli quale dei due mazzi {symbol 2} satà il tuo mazzzo {hero}: forma il tuo mazzo in modo tale che ogni carta mostri uno {banner} a singola punta che parte dall'angolo in alto a destra. Per trovare il lato giusto potresti aver bisogno di voltare e girare le carte.
 
-Ogni partita a {gameShortTitle} inizia con la scelta del {your-hero}. Scegli uno dei due mazzi {symbol 2} e, per il momento, metti da parte l'altro.
-
-Metti davanti a te la prima carta del mazzo che hai scelto {symbol 3}, quella con lo {banner} più corto ed i {track-plural}: questa carta rappresenta lo stato del {your-hero} durante l'avventura e prenderà il nome di **{card-status}**. Metti un {token} all'inizio di ogni {track} della {card-status}: sullo 0 del {track} con la spada {symbol heroCardAttackSmallSymbol} (Attacco), sullo 0 del {track} con lo scudo {symbol heroCardDefenseSmallSymbol} (Difesa), sul 2 del {track} con la coppa {symbol heroCardAttackLevelSymbol} (Livello) e sullo 0 del {track} con il cerchietto {symbol heroCardManaSmallSymbol} (Mana).
+In ogni mazzo {hero} c'é una carta particolare, con uno {banner} molto corto ed alcuni {track-plural} stampati su di essa: mettila davanti a te: questa carta rappresenta lo stato del {your-hero} durante l'avventura e prenderà il nome di **{card-status}**. Metti un {token} all'inizio di ogni {track} della {card-status}: sullo 0 del {track} con la spada {symbol heroCardAttackSmallSymbol} (Attacco), sullo 0 del {track} con lo scudo {symbol heroCardDefenseSmallSymbol} (Difesa), sul 2 del {track} con la coppa {symbol heroCardAttackLevelSymbol} (Livello) e sullo 0 del {track} con il cerchietto {symbol heroCardManaSmallSymbol} (Mana).
 
 Durante la partita il valore di questi {track-plural} potrà salire e scendere: se i {track-plural} {attack} e {defense} sono da considerarsi di lunghezza infinita (cioè è possibile andare oltre i 23 {point-attack-plural} e i 15 {point-defense-plural}), il {track} del {level} non può mai superare il 9 e quello del {mana} non può mai sorpassare il valore segnato dal {track} del {level}.
 
 Mescola tutte le altre carte rimanenti tenendole a faccia in su e poggiale in verticale e a destra della {card-status}: questo mazzo si chiamerà **{deck-discard}** {symbol 4}.
 
-In {gameShortTitle} le {card-hero-plural} vengono sempre {draw-done} dal {deck-discard} facendole scorrere **dal fondo**, quindi fai scorrere 5 carte dal fondo del {deck-discard} per formare la tua prima {hand}, tenendo ogni carta a faccia in su {symbol 5}. 
+In {gameShortTitle} le {card-hero-plural} vengono sempre {draw-done} dal {deck-discard} facendole scorrere **dal fondo**, quindi fai scorrere 5 carte dal fondo del {deck-discard} per formare la tua prima {hand}, tenendo ogni carta a faccia in su {symbol 5}.
 
 A sinistra della {card-status} si trova il mazzo delle **{card-removed-plural}** {symbol 6}, disposto in orizzontale, che raccoglie tutte le carte che il {your-hero} ha perso e che non può più usare. Il mazzo delle {card-removed-plural} è vuoto ad inizio partita. In {gameShortTitle} le {card-hero-plural} non rappresentano soltanto le diverse tecniche conosciute dal {your-hero} ma anche la sua vita: **nel momento in cui tutte le tue {card-hero-plural} saranno nel mazzo delle {card-removed-plural} il {your-hero} sarà {defeated} e la partita terminerà all'istante**!
 
@@ -277,7 +277,7 @@ La parte valida di una {card-hero} è sempre quella superiore e dritta: la parte
 
 Durante la preparazione hai visto che dall'angolo in alto a destra di ogni {card-hero} parte uno {banner} {symbol 1} che arriva sino a metà dell'altezza della carta. I {banner-plural} delle carte della tua {hand} corrente hanno tutte una singola punta {symbol heroCardBanner1SmallSymbol} ma, come puoi vedere, la parte sottosopra di ogni carta mostra invece uno {banner} a due punte {symbol heroCardBanner2SmallSymbol}. Il numero di punte di uno {banner} rappresenta la potenza e la difficoltà di una {card-hero}: le {card-hero-plural} con uno {banner} a punta singola {symbol heroCardBanner1SmallSymbol} sono meno potenti e più facili da usare mentre quelle con lo {banner} a 2 punte {symbol heroCardBanner2SmallSymbol} hanno {ability-plural} devastanti ma sono più difficili da usare. I diversi {banner-plural} {inplay} potranno anche usati per {activate-to} alcune {ability-plural}. Infine, durante la partita, avrai diverse occasioni per girare le carte e passare da uno {banner} all'altro: in alcune occasioni sarà vitale farlo, in altre sarà una sciagura. Il simbolo in fondo allo {banner} rappresenta la classe di appartenza del tuo {hero}.
 
-Le {card-hero-plural} hanno una sfera in alto a destra {symbol 2}, proprio all'inizio dello {banner}, con un numero nel centro: quello rappresenta il **{card-value}**. Quando vengono giocate come {card-open} o usate per {action-load}, le {card-hero-plural} permettono di {earn} {mana} pari al {card-value}, spendibile per {activate-to} le {ability-plural} delle carte. Ma scopriremo come {action-load-to} più avanti.
+Le {card-hero-plural} hanno un sfera in alto a destra {symbol 2}, proprio all'inizio dello {banner}, con un numero nel centro: quello rappresenta il **{card-value}**. Quando vengono giocate come {card-open} o usate per {action-load}, le {card-hero-plural} permettono di {earn} {mana} pari al {card-value}, spendibile per {activate-to} le {ability-plural} delle carte. Ma scopriremo come {action-load-to} più avanti.
 
 In alto al centro {symbol 3} c'è il nome della carta e, subito sotto, l'{effect-drain}. L'{effect-drain} descrive cosa dovrai fare con alcune carte durante la fase {phase-drain} del {turn-combat} o quando il gioco ti chiederà di {drain-to} una {card-hero} - ma anche questo lo scopriremo meglio in seguito.
 
@@ -299,7 +299,7 @@ L'{element-water} spegne il {element-fire}.
 
 Durante l'avventura, eventi e {ability-plural} faranno uso degli {element-plural} per cui conoscerli sarà molto importante.
 
-Ogni carta può avere sino a 2 {ability-plural}, stampate al centro {symbol 5}. Le sfere sulla sinistra, con un numero al centro, rappresentano il {cost-activation}: per applicare l'{ability} descritta sarà necessario pagarne il {cost-activation} in {mana} rappresentato nella sfera. Nelle carte con 2 {ability-plural}, quella inferiore è da considerarsi come {ability-secondary} e potrà essere {activate-past-singular} solo se quella superiore è stata {activate-past-singular} in precedenza.
+Ogni carta può avere sino a 2 {ability-plural}, stampate al centro {symbol 5}. Le sfere con un numero al centro rappresentano il {cost-activation}: per applicare l'{ability} descritta sarà necessario pagarne il {cost-activation} in {mana} rappresentato nella sfera. Nelle carte con 2 {ability-plural}, quella inferiore è da considerarsi come {ability-secondary} e potrà essere {activate-past-singular} solo se quella superiore è stata {activate-past-singular} in precedenza.
 
 Infine le coppie o le singole sfere che rappresentano il {cost-activation} delle {ability-plural} posizionate sulla sinistra della carta {symbol 6} potranno essere affiancate tra loro durante la partita, creando sequenze di sfere chiamate {constellation-plural}. Le {constellation-plural} {inplay}, come gli {element-plural} e gli {banner-plural}, possono essere usate per {activate-to} diverse {ability-plural}.
 
@@ -318,27 +318,27 @@ Ogni {turn-combat} è strutturato nelle seguenti fasi:
 {listStart}
 **{phase-prepare}**: solo all'inizio del primo {turn-combat} contro un {enemy} dovrai mescolare il {deck-discard} e {draw-doing} carte dal fondo fino ad averne 5 in {hand} o fin quando il {deck-discard} non terminerà.
 {listItemNext}
-**{phase-open}**: dovrai scegliere la tua prima carta dalla {hand}, raccogliendone il {mana} e {inplay-put-ofthat} lo {banner}, l'{element} e la {constellation}. Dalla {card-open} partirà lo {banner-main}.
+**{phase-open}**: scegli la tua prima carta dalla {hand}, raccogliendone il {mana} e {inplay-put-ofthat} lo {banner}, l'{element} e la {constellation}. Dalla {card-open} partirà lo {banner-main}.
 {listItemNext}
-**{phase-plan}**: potrai giocare un qualsiasi numero di {card-hero-plural} dalla {hand} per modificare i {point-attack-plural} e {point-defense-plural}.
+**{phase-plan}**: gioca un qualsiasi numero di {card-hero-plural} dalla {hand} per modificare i {point-attack-plural} e {point-defense-plural}.
 {listItemNext}
   {listSubStart}
-  **{action-load}**: potrai giocare una {card-hero} dalla {hand} per {earn} {mana} e {inplay-put} {banner-plural}.
+  **{action-load}**: gioca una {card-hero} dalla {hand} per {earn} {mana} e {inplay-put} {banner-plural}.
   {listItemNext}
-  **{action-infuse}**: potrai giocare una {card-hero} dalla {hand} per {inplay-put} {element-plural} e estendere le tue {constellation-plural}.
+  **{action-infuse}**: gioca una {card-hero} dalla {hand} per {inplay-put} {element-plural} e estendere le tue {constellation-plural}.
   {listItemNext}
-  **{action-activate}**: potrai, pagandone il {cost-activation}, {activate-to} le {ability-plural} sulle carte.
+  **{action-activate}**: paga il {cost-activation} per {activate-to} le {ability-plural} sulle carte.
   {listItemNext}
-  **{action-add}**: potrai giocare una {card-hero} dalla {hand} per nuove {ability-plural} alla {card-open}, {inplay-put} {element-plural} e modificare lo {banner-main}.
+  **{action-add}**: gioca una {card-hero} dalla {hand} per nuove {ability-plural} alla {card-open}, {inplay-put} {element-plural} e modificare lo {banner-main}.
   {listItemNext}
-  **{action-strain}**: potrai giocare gratuitamente una {card-hero} dalla {hand} per compiere un {attack} semplice o una {defense} semplice.
+  **{action-strain}**: gioca gratuitamente una {card-hero} dalla {hand} per compiere un {attack} semplice o una {defense} semplice.
   {listSubEnd}
 {listItemNext}
-**{phase-drain}**: dovrai compiere tutti gli {effect-drain-plural} visibili sulle carte {inplay} e {discard} in cima al {deck-discard} tutte le altre.
+**{phase-drain}**: applica tutti gli {effect-drain-plural} visibili sulle carte {inplay} e {discard} in cima al {deck-discard} tutte le altre.
 {listItemNext}
-**{phase-execute}**: dovrai usare i {point-attack-plural} e i {point-defense-plural} accumulati per {defeat-doing} o evitare il {enemy}.
+**{phase-execute}**: usa i {point-attack-plural} e i {point-defense-plural} accumulati per {defeat-doing} o evitare il {enemy}.
 {listItemNext}
-**{phase-restore}**: dovrai riportare i {track-plural} di {attack}, {defense} e {mana} a 0 e {draw-doing} 5 nuove carte dal fondo.
+**{phase-restore}**: riporta i {track-plural} di {attack}, {defense} e {mana} a 0 e {draw-doing} 5 nuove carte dal fondo.
 {listEnd}
 
 # {phase-prepare}
